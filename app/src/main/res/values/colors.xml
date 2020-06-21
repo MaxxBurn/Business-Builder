@@ -9,4 +9,5 @@
     <color name="BackgroundColor">#cccfcd</color>
     <color name="GridColor">#ffffff</color>
     <color name="Background_Thingy">#baf5ea</color>
+    <color name="background_thingy_brighter">#FFDDF4F0</color>
 </resources>
