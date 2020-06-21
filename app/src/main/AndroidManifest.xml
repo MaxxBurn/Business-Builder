@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.businessbuilder">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MileStone"></activity>
+        <activity android:name=".ObjectiveDetails" />
+        <activity android:name=".PlanningAction6" />
+        <activity android:name=".PlanningAction5" />
+        <activity android:name=".PlanningAction4" />
+        <activity android:name=".PlanningAction3" />
+        <activity android:name=".PlanningAction2" />
+        <activity android:name=".PlanningAction1" />
+        <activity android:name=".DailyTransaction6" />
+        <activity android:name=".DailyActivity6" />
+        <activity android:name=".DailyTransaction5" />
+        <activity android:name=".DailyTranscation4" />
+        <activity android:name=".DailyTransaction3" />
+        <activity android:name=".DailyTransaction1" />
+        <activity android:name=".AddIncomeMenu" />
+        <activity android:name=".DailyTransaction2" />
+        <activity
+            android:name=".ExecutiveRoutine"
+            android:label="@string/title_activity_executive_routine"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Resources"
+            android:label="@string/title_activity_resources"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".OperationalGuides"
+            android:label="@string/title_activity_operational_guide"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".KeyPeople"
+            android:label="@string/title_activity_key_people"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".PlanningAction"
+            android:label="@string/title_activity_planningaction"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DailyTransaction"
+            android:label="@string/title_activity_daily_transaction"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

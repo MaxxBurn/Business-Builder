@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    //Added and needed
+    <color name="FirstItemBackground">#008221</color>
+    <color name="BackgroundColor">#cccfcd</color>
+    <color name="GridColor">#ffffff</color>
+    <color name="Background_Thingy">#baf5ea</color>
+</resources>
