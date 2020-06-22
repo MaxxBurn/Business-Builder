@@ -43,12 +43,12 @@
                         android:text="0.00"
                         android:textAlignment="center"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/floatingActionButton4"
+                        app:layout_constraintEnd_toStartOf="@+id/cashBookAddButton"
                         app:layout_constraintStart_toEndOf="@+id/textView18"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/floatingActionButton4"
+                        android:id="@+id/cashBookAddButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:clickable="true"

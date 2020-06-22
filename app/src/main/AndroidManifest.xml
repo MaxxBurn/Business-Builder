@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MileStone"></activity>
+        <activity android:name=".Invoice"></activity>
+        <activity android:name=".Production" />
+        <activity android:name=".AssetRegister" />
+        <activity android:name=".Cashbook" />
+        <activity android:name=".MileStone" />
         <activity android:name=".ObjectiveDetails" />
         <activity android:name=".PlanningAction6" />
         <activity android:name=".PlanningAction5" />
