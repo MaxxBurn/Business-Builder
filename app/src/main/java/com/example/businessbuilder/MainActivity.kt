@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         button7 = findViewById<ImageButton>(R.id.resources)
         button8 = findViewById<ImageButton>(R.id.executiveRoutine)
 
+        button1.setOnClickListener{
+            val logInMenu = Intent(this, LogInActivity::class.java)
+            startActivity(logInMenu)
+        }
+
         button3.setOnClickListener{
             val firstMenu = Intent(this,DailyTransaction::class.java)
             startActivity(firstMenu)
