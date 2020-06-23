@@ -11,7 +11,9 @@
     <string name="title_activity_operational_guide">CheckList and Guides</string>
     <string name="title_activity_resources">Resource Center</string>
     <string name="title_activity_executive_routine">My Day in Business</string>
-
+    <string name="act_planning_5_string"><b>Stay Informed</b>\n\nStay up to date with current trends and new developments in your sector by tuning in to the</string>
+    <string name="act_planning_5_string2"><b>Research</b>\n\nDo thorough research about your business opportunity, other similar businesses, your competitors, customer behaviours and other areas that might be of concern to your business. This will help you make better decisions and give you a competitive edge.</string>
+    <string name="act_plannint_5_string3"><b>Reach out for help</b>\n\nSeek help from others. You can start by joining Forums, and industry association or even engaging your friends and family. Talk to them about your challenges.</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
