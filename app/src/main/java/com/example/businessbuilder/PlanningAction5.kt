@@ -8,15 +8,18 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
 class PlanningAction5 : AppCompatActivity() {
+
     //First Question
     lateinit var firstButton: Button
     lateinit var clickableText: TextView
-    //Second Question
 
+    //Second Question
+    lateinit var secondButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planning_action5)
+
         //First Question
         firstButton = findViewById(R.id.FirstQuestionButton)
         val firstLayout: ConstraintLayout = findViewById(R.id.firstButtonLayout)
@@ -24,10 +27,11 @@ class PlanningAction5 : AppCompatActivity() {
         clickableText = findViewById(R.id.firstButtonText3)
         val secondLayout: ConstraintLayout = findViewById(R.id.textViewConstraint)
         var clickedText: Boolean = false
+
         //Second Question
-
-
-
+        val secondButtonLayout: ConstraintLayout = findViewById(R.id.secondButtonLayout)
+        secondButton = findViewById(R.id.secondButton)
+        var clickedButton: Boolean = false
 
 
         //First Question Click Listeners
@@ -49,6 +53,16 @@ class PlanningAction5 : AppCompatActivity() {
             else{
                 secondLayout.visibility = View.GONE
                 clickedText = false
+            }
+        }
+        secondButton.setOnClickListener {
+            if(!clickedButton){
+                secondButtonLayout.visibility = View.VISIBLE
+                clickedButton = true
+            }
+            else{
+                secondButtonLayout.visibility = View.GONE
+                clickedButton = false
             }
         }
 
