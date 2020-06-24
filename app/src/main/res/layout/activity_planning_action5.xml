@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlanningAction5">
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -489,12 +490,14 @@
                     android:id="@+id/button10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:background="@color/text_background_blue"
                     android:text="Business Model"
                     android:textAllCaps="false"
                     android:textColor="#000000"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/textView103"
+                    app:layout_constraintStart_toEndOf="@+id/textView112"
                     app:layout_constraintTop_toBottomOf="@+id/textView111" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -518,15 +521,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/thirdLayoutButton"
                 android:layout_width="match_parent"
-                android:layout_height="435dp"
+                android:layout_height="350dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textView113"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="Task 4. For your business to be successful you will need to identify the needs of potential customers and to satisfy those needs better than your competitors. Find out more information about the market from as many sources as you can."
                     android:textColor="@color/FirstItemBackground"
@@ -550,7 +556,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="160dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -560,7 +566,7 @@
                         android:id="@+id/imageView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="110dp"
+                        android:layout_marginTop="30dp"
                         app:layout_constraintEnd_toStartOf="@+id/textView118"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -571,7 +577,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
-                        android:layout_marginTop="90dp"
+                        android:layout_marginTop="10dp"
                         android:background="#ffe3b0"
                         android:paddingLeft="10dp"
                         android:paddingRight="40dp"
@@ -580,8 +586,246 @@
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView114"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Task 5. Record your findings and present them in a\nlogical manner"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView118" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/forthButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#D1F8CE"
+                    android:paddingLeft="10dp"
+                    android:text="Day 5. Create marketing plan for your business"
+                    android:textAlignment="textStart"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/forthButtonLayout"
+                android:layout_width="match_parent"
+                android:layout_height="1244dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textView115"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text='Does your product meet your customer\s basic needs? Does it go beyond and meet their "user specific" needs? e.g. moral standards, environmental issues or simple colour variations? Meeting their specific needs may make your product more competitve'
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView116"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 6. Go to the product section of the Business Plan and describe your product in as much detail as possible."
+                    android:textColor="@color/FirstItemBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView115" />
+
+                <Button
+                    android:id="@+id/button13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/FirstItemBackground"
+                    android:text="Product"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView116"
+                    app:layout_constraintTop_toBottomOf="@+id/textView115" />
+
+                <TextView
+                    android:id="@+id/textView117"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 7. Decide what price you will charge, what discounts you will give and if you are going to give any credit. Then complete the Price section"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView116" />
+
+                <Button
+                    android:id="@+id/button14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:background="@color/FirstItemBackground"
+                    android:text="Price"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView117"
+                    app:layout_constraintTop_toBottomOf="@+id/button13" />
+
+                <TextView
+                    android:id="@+id/textView119"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="NB- At this stage, if you're not sure how to set prices, don't sweat it. We'll get to it."
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView117" />
+
+                <Button
+                    android:id="@+id/button15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:background="@color/FirstItemBackground"
+                    android:text="Place"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView119"
+                    app:layout_constraintTop_toBottomOf="@+id/button14" />
+
+                <TextView
+                    android:id="@+id/textView120"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 9. Think about all the different methods that you can use to market your business. Decide what methods you will use and complete section 3.4. of the Business plan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView119" />
+
+                <Button
+                    android:id="@+id/button16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:background="@color/FirstItemBackground"
+                    android:text="Promotion"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView120"
+                    app:layout_constraintTop_toBottomOf="@+id/button15" />
+
+                <TextView
+                    android:id="@+id/textView121"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 10. From a marketing perspective, decide what positions are critical for the success of your business. Is it the front staff, the sales guis or the technical team etc? Complete section 3.5. of your business plan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView120" />
+
+                <Button
+                    android:id="@+id/button17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:background="@color/FirstItemBackground"
+                    android:text="People"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView121"
+                    app:layout_constraintTop_toBottomOf="@+id/button16" />
+
+                <TextView
+                    android:id="@+id/textView122"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 11. From the point of awareness to the actual interaction, think about a process that would please your customers and make them decied to buy your product. Completesection 3.6. of the Business Plan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView121" />
+
+                <Button
+                    android:id="@+id/button18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:background="@color/FirstItemBackground"
+                    android:text="Process"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView122"
+                    app:layout_constraintTop_toBottomOf="@+id/button17" />
+
+                <TextView
+                    android:id="@+id/textView123"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 12. Decide what physical components you could implement to achieve the apperance that will attract customers. Complete Section 2.8 of the Business Plan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView122" />
+
+                <Button
+                    android:id="@+id/button19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:background="@color/FirstItemBackground"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Physical Elements"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView123"
+                    app:layout_constraintTop_toBottomOf="@+id/button18" />
+
+                <TextView
+                    android:id="@+id/textView124"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Task 13. What sales volume or market share do you want to capture within your first year? Once you come up with a realistic and achievable figure, fill in section 3.8 of the Business Plan."
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView123" />
+
+                <Button
+                    android:id="@+id/button20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="110dp"
+                    android:background="@color/FirstItemBackground"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Sales Estimation"
+                    android:textAllCaps="false"
+                    android:textColor="@color/GridColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textView124"
+                    app:layout_constraintTop_toBottomOf="@+id/button19" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

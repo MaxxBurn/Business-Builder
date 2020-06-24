@@ -16,6 +16,12 @@ class PlanningAction5 : AppCompatActivity() {
     //Second Question
     lateinit var secondButton: Button
 
+    //Third Question
+    lateinit var thirdButton: Button
+
+    //Forth Question
+    lateinit var forthButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planning_action5)
@@ -33,6 +39,15 @@ class PlanningAction5 : AppCompatActivity() {
         secondButton = findViewById(R.id.secondButton)
         var clickedButton: Boolean = false
 
+        //Third Question
+        thirdButton = findViewById(R.id.thirdButton)
+        val thirdButtonLayout:ConstraintLayout = findViewById(R.id.thirdLayoutButton)
+        var clickedThirdButton: Boolean = false
+
+        //Forth Question
+        forthButton = findViewById(R.id.forthButton)
+        val forthButtonLayout: ConstraintLayout = findViewById(R.id.forthButtonLayout)
+        var clickedForthButton = false
 
         //First Question Click Listeners
         firstButton.setOnClickListener {
@@ -63,6 +78,26 @@ class PlanningAction5 : AppCompatActivity() {
             else{
                 secondButtonLayout.visibility = View.GONE
                 clickedButton = false
+            }
+        }
+        thirdButton.setOnClickListener {
+            if(!clickedThirdButton){
+                thirdButtonLayout.visibility = View.VISIBLE
+                clickedThirdButton = true
+            }
+            else{
+                thirdButtonLayout.visibility = View.GONE
+                clickedThirdButton = false
+            }
+        }
+        forthButton.setOnClickListener {
+            if(!clickedForthButton){
+                forthButtonLayout.visibility = View.VISIBLE
+                clickedForthButton = true
+            }
+            else{
+                forthButtonLayout.visibility = View.GONE
+                clickedForthButton = false
             }
         }
 
