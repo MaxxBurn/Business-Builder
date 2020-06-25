@@ -80,7 +80,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/text_background_blue"
                 android:paddingTop="5dp"
@@ -102,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp">
 
@@ -372,7 +373,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="192dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp">
 
@@ -511,6 +512,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="187dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginRight="10dp">
 
                 <TextView
@@ -722,6 +724,489 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/editTextNumber36"
                     app:layout_constraintTop_toBottomOf="@+id/editTextNumber39" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/background_thingy_brighter">
+
+                <TextView
+                    android:id="@+id/textView142"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Milestones"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName50"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Milestone 1"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+                <EditText
+                    android:id="@+id/editTextNumber41"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="01/01/2020"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName50" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName50"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName53"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Milestone 2"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName50"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+                <EditText
+                    android:id="@+id/editTextNumber42"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="01/01/2020"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber41"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName53" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName53"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName54"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Milestone 3"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName53"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+                <EditText
+                    android:id="@+id/editTextNumber43"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="01/02/2020"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber42"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName54" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName54"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName55"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Milestone 4"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName54"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+                <EditText
+                    android:id="@+id/editTextNumber44"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="10/05/2020"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber43"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName55" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/background_thingy_brighter"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView143"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Team and Key Roles"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="173dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="10dp">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName56"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName57"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Position"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName56" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName58"
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Give a brief\ndescription of\nthe person's\nprofile and\nskills"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName57" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName59"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName56"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName63"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Position"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName57"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName59" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName71"
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Give a brief\ndescription of\nthe person's\nprofileand\nskills"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName58"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName63" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName72"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName59"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName73"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Position"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName63"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName72" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName74"
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Give a brief\ndescription of\nthe person's\nprofile and\nskills"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName71"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName73" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/background_thingy_brighter">
+
+                <TextView
+                    android:id="@+id/textView144"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="Partners and resources"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="127dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="10dp">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName75"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Speciality"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName76"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Speciality"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName75"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName77"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Speciality"
+                    android:inputType="textPersonName"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName76"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName78"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Speciality"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName77"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName79"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Brief\ndescription\nof activities\nprovided"
+                    android:inputType="textPersonName"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName75" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName80"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Brief\ndescription\nof activities\nprovided"
+                    android:inputType="textPersonName"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName79"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName76" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName81"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Brief\ndescription\nof activities\nprovided"
+                    android:inputType="textPersonName"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName80"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName77" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName82"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Brief\ndescription\nof activities\nprovided"
+                    android:inputType="textPersonName"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName81"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName78" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
