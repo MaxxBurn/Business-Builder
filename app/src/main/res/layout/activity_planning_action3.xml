@@ -373,7 +373,8 @@
                 android:layout_height="192dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp">
 
                 <EditText
                     android:id="@+id/editTextTextPersonName62"
@@ -483,6 +484,244 @@
                     app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName64"
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName69" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/background_thingy_brighter"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:id="@+id/textView137"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Financial Projections"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="187dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/textView138"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    android:text="Revenue"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView139"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Expenses"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView138" />
+
+                <TextView
+                    android:id="@+id/textView140"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Profit"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView139" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName46"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="36dp"
+                    android:background="@color/background_thingy_brighter"
+                    android:ems="10"
+                    android:hint="Year 1"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView138"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName49"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="#FF63C687"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView138"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName46" />
+
+                <EditText
+                    android:id="@+id/editTextNumber31"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@color/background_thingy_brighter"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView139"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName49" />
+
+                <EditText
+                    android:id="@+id/editTextNumber32"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="#FF63C687"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView140"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber31" />
+
+                <EditText
+                    android:id="@+id/editTextNumber33"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Year 2"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName46"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextNumber34"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_thingy_brighter"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName49"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber33" />
+
+                <EditText
+                    android:id="@+id/editTextNumber35"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber31"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber34" />
+
+                <EditText
+                    android:id="@+id/editTextNumber36"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_thingy_brighter"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber32"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber35" />
+
+                <EditText
+                    android:id="@+id/editTextNumber37"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:background="@color/background_thingy_brighter"
+                    android:ems="10"
+                    android:hint="Year 3"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber33"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextNumber38"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FF63C687"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber34"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber37" />
+
+                <EditText
+                    android:id="@+id/editTextNumber39"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_thingy_brighter"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber35"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber38" />
+
+                <EditText
+                    android:id="@+id/editTextNumber40"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FF63C687"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/editTextNumber36"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber39" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

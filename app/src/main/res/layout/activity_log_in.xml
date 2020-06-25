@@ -46,7 +46,7 @@
                 android:layout_marginBottom="20dp">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName46"
+                    android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:background="@color/GridColor"
@@ -88,7 +88,7 @@
                 android:layout_marginRight="15dp">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/LOGIN"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:background="@color/FirstItemBackground"
@@ -108,8 +108,17 @@
                     android:textAllCaps="false"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/button2"
-                    app:layout_constraintTop_toBottomOf="@+id/button2" />
+                    app:layout_constraintStart_toStartOf="@+id/LOGIN"
+                    app:layout_constraintTop_toBottomOf="@+id/LOGIN" />
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/button5" />
 
                 <TextView
                     android:id="@+id/textView90"
@@ -139,8 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="70dp"
-                    android:text="Terms of Service"
                     android:background="@null"
+                    android:text="Terms of Service"
                     android:textAllCaps="false"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/button6" />
@@ -161,10 +170,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="Privacy Policy"
-                    app:layout_constraintStart_toEndOf="@+id/textView91"
                     android:background="@null"
+                    android:text="Privacy Policy"
                     android:textAllCaps="false"
+                    app:layout_constraintStart_toEndOf="@+id/textView91"
                     app:layout_constraintTop_toBottomOf="@+id/button6" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

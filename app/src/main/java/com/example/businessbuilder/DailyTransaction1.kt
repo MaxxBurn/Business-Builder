@@ -18,6 +18,5 @@ class DailyTransaction1 : AppCompatActivity() {
                 val invoiceMenu = Intent(this,Invoice::class.java)
                 startActivity(invoiceMenu)
             }
-
     }
 }
