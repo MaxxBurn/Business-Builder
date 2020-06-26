@@ -22,7 +22,7 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textView150"
+                    android:id="@+id/customerAndDebtors"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -58,6 +58,20 @@
                     app:layout_constraintEnd_toStartOf="@+id/searchButtonCustomers"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@android:drawable/ic_menu_add" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/searchButtonCustomers"
+                    app:layout_constraintEnd_toEndOf="@+id/searchButtonCustomers"
+                    app:layout_constraintStart_toStartOf="@+id/searchButtonCustomers"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/abc_vector_test" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

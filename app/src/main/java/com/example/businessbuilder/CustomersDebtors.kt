@@ -3,6 +3,7 @@ package com.example.businessbuilder
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class CustomersDebtors : AppCompatActivity() {
@@ -16,6 +17,7 @@ class CustomersDebtors : AppCompatActivity() {
 
         searchButton = findViewById(R.id.searchButtonCustomers)
         addButton = findViewById(R.id.addButtonCustomers)
+        val textView: TextView = findViewById(R.id.customerAndDebtors)
 
         searchButton.setOnClickListener {
 
