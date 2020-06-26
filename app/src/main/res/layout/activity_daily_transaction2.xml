@@ -35,7 +35,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/searchButton"
+                    android:id="@+id/searchButtonCustomers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -70,7 +70,7 @@
                     android:inputType="textPersonName"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/searchButton"
+                    app:layout_constraintEnd_toStartOf="@+id/searchButtonCustomers"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,7 +85,7 @@
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/addButton"
-                    app:layout_constraintTop_toTopOf="@+id/searchButton"
+                    app:layout_constraintTop_toTopOf="@+id/searchButtonCustomers"
                     app:srcCompat="@android:drawable/ic_menu_zoom" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

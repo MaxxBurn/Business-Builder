@@ -22,7 +22,7 @@ open class DailyTransaction2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_transaction2)
 
-        searchButton = findViewById(R.id.searchButton)
+        searchButton = findViewById(R.id.searchButtonCustomers)
         addButton = findViewById(R.id.addButton)
         income = findViewById(R.id.income)
         searchBar = findViewById(R.id.searchBar)
