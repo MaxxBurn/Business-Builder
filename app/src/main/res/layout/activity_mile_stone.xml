@@ -86,7 +86,7 @@
                     android:ems="10"
                     android:hint="Add milestone details e.g. Get our first 100 customers"
                     android:inputType="textPersonName"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -118,10 +118,11 @@
                     android:id="@+id/editTextTextPersonName7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:ems="10"
                     android:hint="People or department responsible for making sure the task is \nachieved"
                     android:inputType="textPersonName"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -157,6 +158,7 @@
                     android:ems="10"
                     android:hint="0"
                     android:inputType="textPersonName"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -187,11 +189,12 @@
 
                 <EditText
                     android:id="@+id/editTextTextPersonName9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Subscribers"
                     android:inputType="textPersonName"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -222,11 +225,12 @@
 
                 <EditText
                     android:id="@+id/editTextTextPersonName10"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="dd/mm/yy"
                     android:inputType="textPersonName"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -258,9 +262,11 @@
                     android:id="@+id/editTextNumber2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:ems="10"
                     android:hint="0.00"
                     android:inputType="number"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -33,13 +33,16 @@ class KeyPeople : AppCompatActivity() {
             startActivity(intent)
         }
         button3.setOnClickListener {
-
+            val intent = Intent(this, SuppliersCreditors::class.java)
+            startActivity(intent)
         }
         button4.setOnClickListener {
-
+            val intent = Intent(this, StrategicPartners::class.java)
+            startActivity(intent)
         }
         button5.setOnClickListener {
-
+            val intent = Intent(this, Other::class.java)
+            startActivity(intent)
         }
     }
 }
