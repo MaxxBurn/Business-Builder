@@ -11,7 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddCreditorsSuppliers"></activity>
+        <activity android:name=".MenuToDoList"></activity>
+        <activity android:name=".BusinessJournalMenu" />
+        <activity android:name=".AddPerformanceSnap" />
+        <activity android:name=".AddNotes" />
+        <activity android:name=".AddBusinessJournal" />
+        <activity android:name=".AddToDoList" />
+        <activity android:name=".PersonalDev" />
+        <activity android:name=".AddOther" />
+        <activity android:name=".AddStrategicPartners" />
+        <activity android:name=".AddCreditorsSuppliers" />
         <activity android:name=".CustomerDebtorsMenu" />
         <activity android:name=".AddEmployee" />
         <activity android:name=".Other" />

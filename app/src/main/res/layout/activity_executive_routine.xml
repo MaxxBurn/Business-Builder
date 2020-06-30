@@ -16,7 +16,7 @@
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/imageButton32"
+                android:id="@+id/toDoListButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -24,21 +24,21 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton33"
+                android:id="@+id/businessJournalButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton34"
+                android:id="@+id/notesButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton35"
+                android:id="@+id/performanceSnapButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"

@@ -8,21 +8,25 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#EDEDED">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="Personal Development" />
+                android:layout_marginLeft="10dp"
+                android:text="Personal Development"
+                android:textColor="@color/FirstItemBackground"
+                android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButton19"
+                android:id="@+id/personalDev"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -33,10 +37,13 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="Communication" />
+                android:layout_marginLeft="10dp"
+                android:text="Communication"
+                android:textColor="@color/FirstItemBackground"
+                android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButton20"
+                android:id="@+id/commun1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -44,7 +51,7 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton21"
+                android:id="@+id/commun2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -55,10 +62,13 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:text="Sales and Marketing" />
+                android:layout_marginLeft="10dp"
+                android:text="Sales and Marketing"
+                android:textColor="@color/FirstItemBackground"
+                android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButton22"
+                android:id="@+id/sales1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -66,7 +76,7 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton23"
+                android:id="@+id/sales2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -77,10 +87,13 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="General Admin" />
+                android:layout_marginLeft="10dp"
+                android:text="General Admin"
+                android:textColor="@color/FirstItemBackground"
+                android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButton24"
+                android:id="@+id/general1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -88,7 +101,7 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton25"
+                android:id="@+id/general2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -96,7 +109,7 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton26"
+                android:id="@+id/general3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -107,10 +120,13 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Strategic Planning" />
+                android:layout_marginLeft="10dp"
+                android:text="Strategic Planning"
+                android:textColor="@color/FirstItemBackground"
+                android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButton27"
+                android:id="@+id/strat1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
