@@ -55,6 +55,7 @@ open class MySingleton constructor(context: Context) {
                 },
                 Response.ErrorListener {
                     button.text = "Couldn't connect to the internet"
+                    progressBar.visibility = View.GONE
                 })
             addToRequestQueue(stringRequest)
         }

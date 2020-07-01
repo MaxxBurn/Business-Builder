@@ -115,7 +115,7 @@
 
                 <EditText
                     android:id="@+id/editTextNumber17"
-                    android:layout_width="60dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:background="@color/GridColor"
@@ -150,7 +150,7 @@
                     android:id="@+id/editTextTextPersonName24"
                     android:layout_width="230dp"
                     android:layout_height="25dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="29dp"
                     android:background="@color/GridColor"
                     android:ems="10"
                     android:hint="Enter product name e.g. Cola 500ml"
@@ -182,7 +182,7 @@
                     android:id="@+id/editTextTextPersonName25"
                     android:layout_width="230dp"
                     android:layout_height="25dp"
-                    android:layout_marginStart="36dp"
+                    android:layout_marginStart="40dp"
                     android:background="@color/GridColor"
                     android:ems="10"
                     android:hint="Product details e.g. 6 Pack"

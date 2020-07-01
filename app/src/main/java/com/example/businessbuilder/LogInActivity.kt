@@ -29,7 +29,7 @@ class LogInActivity : AppCompatActivity() {
         }
     }
     //Used to create another level of abstraction
-    fun requestAbstractor(){
+    private fun requestAbstractor(){
         MySingleton.getInstance(this).buttonRequest(URL, logButton,loading)
     }
 }
