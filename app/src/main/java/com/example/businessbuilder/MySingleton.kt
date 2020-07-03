@@ -6,12 +6,16 @@ import android.util.LruCache
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.ImageLoader
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONArray
+import org.json.JSONObject
 
 open class MySingleton constructor(context: Context) {
     companion object {
@@ -36,12 +40,12 @@ open class MySingleton constructor(context: Context) {
                 }
             })
     }
-    val requestQueue: RequestQueue by lazy {
+    private val requestQueue: RequestQueue by lazy {
         // applicationContext is key, it keeps you from leaking the
         // Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
-    fun <T> addToRequestQueue(req: Request<T>) {
+    private fun <T> addToRequestQueue(req: Request<T>) {
         requestQueue.add(req)
     }
     fun buttonRequest(url: String, button: Button, progressBar: ProgressBar) {
@@ -59,4 +63,36 @@ open class MySingleton constructor(context: Context) {
                 })
             addToRequestQueue(stringRequest)
         }
+
+    // JSON REQUEST SERVER FOR LIST
+
+    fun listRequest(url: String, text: TextView, progressBar: ProgressBar){
+        val stringRequest = StringRequest(Request.Method.GET, url,
+            Response.Listener<String> { response->
+
+                var strResp = response.toString()
+                val jsonObj: JSONObject = JSONObject(strResp)
+                val jsonArray: JSONArray = jsonObj.getJSONArray("items")
+                var str_user: String = ""
+                for(i in 0 until jsonArray.length()){
+                    var jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                    str_user = str_user + "\n" + jsonInner.get("login")
+                }
+                text!!.text = "$str_user"
+            },
+        Response.ErrorListener { text!!.text = "You have no internet connection!" })
+        addToRequestQueue(stringRequest)
+    }
+    //Update Database List
+
+    fun updateDatabase(url: String, json: JSONObject){
+        val req = JsonObjectRequest(Request.Method.POST, url,json,
+            Response.Listener<JSONObject>{ response->
+                print("Success")
+            },
+            Response.ErrorListener {
+                print("REEEEEEEEEEEEEEEEEEEEE")
+            })
+        addToRequestQueue(req)
+    }
 }
