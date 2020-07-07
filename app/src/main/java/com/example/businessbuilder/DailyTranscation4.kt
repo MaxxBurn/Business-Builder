@@ -28,9 +28,11 @@ class DailyTranscation4 : AppCompatActivity() {
         json.put("name","test name")
         json.put("age","25")
 
-        testJson.setOnClickListener {
-            MySingleton.getInstance(this).updateDatabase("https://api.github.com/search/users?q=eyehunt",json)
-        }
+
+        MySingleton.getInstance(this).listRequest("http://momentum.al/phpmyadmin/tbl_structure.php?db=momalbania12_system_administrata&table=test",testText)
+
+
+
         addCashBook.setOnClickListener {
             val intent = Intent(this,Cashbook::class.java)
             startActivity(intent)

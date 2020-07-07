@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -66,7 +68,7 @@ open class MySingleton constructor(context: Context) {
 
     // JSON REQUEST SERVER FOR LIST
 
-    fun listRequest(url: String, text: TextView, progressBar: ProgressBar){
+    fun listRequest(url: String, text: TextView){
         val stringRequest = StringRequest(Request.Method.GET, url,
             Response.Listener<String> { response->
 
@@ -76,11 +78,11 @@ open class MySingleton constructor(context: Context) {
                 var str_user: String = ""
                 for(i in 0 until jsonArray.length()){
                     var jsonInner: JSONObject = jsonArray.getJSONObject(i)
-                    str_user = str_user + "\n" + jsonInner.get("login")
+                    str_user =  str_user  + jsonInner.get("login") + "\t" + jsonInner.get("id") + "\t" + jsonInner.get("type") +"\n\n\n"
                 }
                 text!!.text = "$str_user"
             },
-        Response.ErrorListener { text!!.text = "You have no internet connection!" })
+        Response.ErrorListener { text!!.text = "Error!" })
         addToRequestQueue(stringRequest)
     }
     //Update Database List
