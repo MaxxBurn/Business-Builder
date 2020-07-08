@@ -30,6 +30,7 @@ open class MySingleton constructor(context: Context) {
                 }
             }
     }
+
     val imageLoader: ImageLoader by lazy {
         ImageLoader(requestQueue,
             object : ImageLoader.ImageCache {
@@ -37,6 +38,7 @@ open class MySingleton constructor(context: Context) {
                 override fun getBitmap(url: String): Bitmap {
                     return cache.get(url)
                 }
+
                 override fun putBitmap(url: String, bitmap: Bitmap) {
                     cache.put(url, bitmap)
                 }
@@ -47,54 +49,24 @@ open class MySingleton constructor(context: Context) {
         // Activity or BroadcastReceiver if someone passes one in.
         Volley.newRequestQueue(context.applicationContext)
     }
+
     private fun <T> addToRequestQueue(req: Request<T>) {
         requestQueue.add(req)
     }
+
     fun buttonRequest(url: String, button: Button, progressBar: ProgressBar) {
-            progressBar.visibility = View.VISIBLE
-            val stringRequest = StringRequest(
-                Request.Method.GET,
-                url,
-                Response.Listener<String> { response ->
-                    button.text = "${response.substring(0, 20)}"
-                    progressBar.visibility = View.GONE
-                },
-                Response.ErrorListener {
-                    button.text = "Couldn't connect to the internet"
-                    progressBar.visibility = View.GONE
-                })
-            addToRequestQueue(stringRequest)
-        }
-
-    // JSON REQUEST SERVER FOR LIST
-
-    fun listRequest(url: String, text: TextView){
-        val stringRequest = StringRequest(Request.Method.GET, url,
-            Response.Listener<String> { response->
-
-                var strResp = response.toString()
-                val jsonObj: JSONObject = JSONObject(strResp)
-                val jsonArray: JSONArray = jsonObj.getJSONArray("items")
-                var str_user: String = ""
-                for(i in 0 until jsonArray.length()){
-                    var jsonInner: JSONObject = jsonArray.getJSONObject(i)
-                    str_user =  str_user  + jsonInner.get("login") + "\t" + jsonInner.get("id") + "\t" + jsonInner.get("type") +"\n\n\n"
-                }
-                text!!.text = "$str_user"
-            },
-        Response.ErrorListener { text!!.text = "Error!" })
-        addToRequestQueue(stringRequest)
-    }
-    //Update Database List
-
-    fun updateDatabase(url: String, json: JSONObject){
-        val req = JsonObjectRequest(Request.Method.POST, url,json,
-            Response.Listener<JSONObject>{ response->
-                print("Success")
+        progressBar.visibility = View.VISIBLE
+        val stringRequest = StringRequest(
+            Request.Method.GET,
+            url,
+            Response.Listener<String> { response ->
+                button.text = "${response.substring(0, 20)}"
+                progressBar.visibility = View.GONE
             },
             Response.ErrorListener {
-                print("REEEEEEEEEEEEEEEEEEEEE")
+                button.text = "Couldn't connect to the internet"
+                progressBar.visibility = View.GONE
             })
-        addToRequestQueue(req)
+        addToRequestQueue(stringRequest)
     }
 }

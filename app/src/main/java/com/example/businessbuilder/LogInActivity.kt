@@ -13,7 +13,7 @@ import com.android.volley.toolbox.StringRequest
 
 class LogInActivity : AppCompatActivity() {
     //URL's
-    val URL = "https://www.google.com"
+    val URL = "http://192.168.100.138/loginapp/login.php"
     lateinit var logButton: Button
     lateinit var username: TextView
     lateinit var loading : ProgressBar

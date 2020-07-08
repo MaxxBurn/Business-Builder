@@ -17,19 +17,13 @@ import org.json.JSONObject
 class DailyTranscation4 : AppCompatActivity() {
 
     lateinit var addCashBook: FloatingActionButton
-    lateinit var testText : TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_transcation4)
 
         addCashBook = findViewById(R.id.cashBookAddButton)
-        testText = findViewById(R.id.testAPI)
-        val json = JSONObject()
-        json.put("name","test name")
-        json.put("age","25")
-
-
-        MySingleton.getInstance(this).listRequest("http://momentum.al/phpmyadmin/tbl_structure.php?db=momalbania12_system_administrata&table=test",testText)
 
 
 
