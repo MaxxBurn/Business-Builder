@@ -4,6 +4,8 @@ import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -24,12 +26,17 @@ class DailyTranscation4 : AppCompatActivity() {
         setContentView(R.layout.activity_daily_transcation4)
 
         addCashBook = findViewById(R.id.cashBookAddButton)
+        val button = findViewById<Button>(R.id.apitest)
+        val insertName = findViewById<EditText>(R.id.insertName)
 
 
 
         addCashBook.setOnClickListener {
             val intent = Intent(this,Cashbook::class.java)
             startActivity(intent)
+        }
+        button.setOnClickListener {
+            insert()
         }
     }
 

@@ -1,31 +1,38 @@
 package com.example.businessbuilder
 
+import android.os.AsyncTask
+import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
 
 
-class XposedDb(){
+    object Yeet: Table(){
+        val name = varchar("name", 50)
+        val age = integer("age")
+        val lastname = varchar("lastname", 50)
+        val id = varchar("id",10)
 
-    val db = Database.connect("jdcb:mysql://albreezetours.com:2083/albreezetours_klavio", driver = "org.h2.Driver",
-        user = "albreezetours", password = "PmRAPLBraeHG")
-
-
-
-    object Users: IntIdTable(){
-        val sequelId: Column<Int> = integer("sequel_id").uniqueIndex()
-        val name: Column<String> = varchar("name",255)
-        val lastname: Column<String> = varchar("lastname",255)
-        val age: Column<Int> = integer("age")
-
-
-        override val primaryKey = PrimaryKey(id, name="PK_Users_ID")
+        override val primaryKey = PrimaryKey(id, name = "PK_User_ID")
     }
 
-    val id = Users.insertAndGetId{
-        it[name] = "Max"
-        it[lastname] = "Burn"
-        it[age] = 20
-        it[sequelId] = 1
-    }
+fun insert() {
 
+
+    Thread {Database.connect(
+        "jdbc:mysql://host67.registrar-servers.com:3306/albreeztours_klavio",
+        driver = "com.mysql.cj.jdbc.Driver",
+        user = "albreezetours_klavio",
+        password = "YBaim6RhJQKa"
+    )
+        transaction {
+            addLogger(StdOutSqlLogger)
+            SchemaUtils.create(Yeet)
+
+            Yeet.insert {
+                it[name] = "asd"
+                it[lastname] = "sok"
+                it[age] = 50
+            }
+        }}.start()
 }
