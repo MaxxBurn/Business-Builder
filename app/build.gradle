@@ -57,20 +57,5 @@ dependencies {
     //Volley
     implementation 'com.android.volley:volley:1.1.1'
 
-    //xPosed
-    implementation("com.h2database:h2:1.4.199")
-    implementation("org.slf4j:slf4j-nop:1.7.30")
-
-    implementation 'org.jetbrains.exposed:exposed-core:0.24.1'
-    implementation 'org.jetbrains.exposed:exposed-jdbc:0.24.1'
-    implementation 'org.jetbrains.exposed:exposed-jodatime:0.24.1'
-    implementation 'org.jetbrains.exposed:exposed-java-time:0.24.1'
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation ("com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre7")
-    implementation "mysql:mysql-connector-java:8.0.19"
-
-
-    //xPosed compile
-    implementation("mysql:mysql-connector-java:5.1.48")
 
 }
