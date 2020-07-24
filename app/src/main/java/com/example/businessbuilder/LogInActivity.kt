@@ -1,35 +1,55 @@
 package com.example.businessbuilder
 
-import android.app.DownloadManager
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
-import android.widget.TextView
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
+
+data class LogInStuff(val email:String, val password:String){
+    override fun toString(): String {
+        return "${this.email}\n${this.password}"
+    }
+}
 
 class LogInActivity : AppCompatActivity() {
-    //URL's
-    val URL = "http://192.168.100.138/loginapp/login.php"
+
     lateinit var logButton: Button
-    lateinit var username: TextView
+    lateinit var email: EditText
     lateinit var loading : ProgressBar
+    lateinit var signUp: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
-        logButton = findViewById(R.id.LOGIN)
-        username = findViewById(R.id.username)
+        logButton = findViewById(R.id.login)
+        email = findViewById(R.id.userName)
         loading = findViewById(R.id.loading)
+        signUp = findViewById(R.id.signUp)
+        val passwordLog = findViewById<EditText>(R.id.passwordbar)
+
+        signUp.setOnClickListener {
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
         logButton.setOnClickListener {
-            requestAbstractor()
+            MySingleton.getInstance(this).logIn(this, email.text.toString(), passwordLog.text.toString())
+            if (SESSION_STATUS == "User" || SESSION_STATUS == "SuperUser"){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+            else if(SESSION_STATUS == "Administrator"){
+                val intent = Intent(this, AdministratorMenu::class.java)
+                startActivity(intent)
+            }
+
         }
     }
     //Used to create another level of abstraction
-    private fun requestAbstractor(){
+
+    /* private fun requestAbstractor(){
         MySingleton.getInstance(this).buttonRequest(URL, logButton,loading)
-    }
+    }*/
+
 }

@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DailyTransaction3">
+    android:background="#FFFFFF"
+    tools:context=".Payment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-79dp"
-        tools:layout_editor_absoluteY="243dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,45 +18,323 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:layout_marginBottom="15dp">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:background="@color/background_thingy_brighter">
 
                 <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="60dp"
-                    android:layout_height="21dp"
+                    android:id="@+id/textView69"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="Payments"
+                    android:layout_marginBottom="10dp"
+                    android:text="Payment Details"
+                    android:textColor="@color/FirstItemBackground"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/openPayment"
+                    android:id="@+id/floatingActionButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
                     android:clickable="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_add" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@android:drawable/ic_menu_save" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/background_thingy_brighter"
+                android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/textView80"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:text="Total:"
+                    android:layout_marginTop="10dp"
+                    android:text="Voucher"
+                    android:textAlignment="center"
+                    android:textColor="@color/FirstItemBackground"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="75dp"
+                android:paddingBottom="5dp">
+
+                <EditText
+                    android:id="@+id/titlePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:ems="10"
+                    android:hint="Title..."
+                    android:inputType="textPersonName"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/datePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="Date..."
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/common_google_signin_btn_text_dark_focused" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="30dp">
+
+                <TextView
+                    android:id="@+id/textView84"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="#d9e7ff"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:text="Details"
+                    android:textColor="#4287f5"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner4" />
+
+                <EditText
+                    android:id="@+id/descriptionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Description of purchase"
+                    android:inputType="textMultiLine"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView84" />
+
+                <TextView
+                    android:id="@+id/textView85"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/text_background_blue"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:text="Reason"
+                    android:textColor="@color/text_color_in_blue_background"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView88"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/text_background_blue"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:text="Amount"
+                    android:textColor="@color/text_color_in_blue_background"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner3" />
+
+                <EditText
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="0.00"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+                <TextView
+                    android:id="@+id/textView81"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/text_background_blue"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="7dp"
+                    android:text="Type of Payment"
+                    android:textColor="@color/text_color_in_blue_background"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+                <TextView
+                    android:id="@+id/textView82"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/text_background_blue"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="7dp"
+                    android:text="Person Requesting"
+                    android:textColor="@color/text_color_in_blue_background"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup3" />
+
+                <TextView
+                    android:id="@+id/textView83"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/text_background_blue"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="7dp"
+                    android:text="Business"
+                    android:textColor="@color/text_color_in_blue_background"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/text_background_blue"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="7dp"
+                    android:text="Gave"
+                    android:textColor="@color/text_color_in_blue_background"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView82" />
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView83" />
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView85" />
+
+                <Spinner
+                    android:id="@+id/spinner4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:checkedButton="@id/radioButton"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView81">
+
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cash" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bank" />
+
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

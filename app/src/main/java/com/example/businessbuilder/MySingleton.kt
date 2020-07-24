@@ -1,6 +1,7 @@
 package com.example.businessbuilder
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.util.LruCache
 import android.view.View
@@ -17,9 +18,21 @@ import com.android.volley.toolbox.Volley
 import org.json.JSONArray
 import org.json.JSONObject
 
-val dbConnectUrl: String = "https://albreezetours.com/android_register_login/Connection.php"
-val insertData: String = "https://albreezetours.com/android_register_login/InsertData.php"
-val getData: String = "https://albreezetours.com/android_register_login/GetData.php"
+private val dbConnectUrl: String = "https://albreezetours.com/android_register_login/Connection.php"
+private val insertDataUrl: String = "https://albreezetours.com/android_register_login/InsertData.php"
+private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
+private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
+private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
+private val insertDataUrl14: String = "https://albreezetours.com/android_register_login/InsertData14.php"
+private val insertRegister: String = "https://albreezetours.com/android_register_login/Register.php"
+private val logInUrl: String = "https://albreezetours.com/android_register_login/Login.php"
+private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
+private val getBusinessNames: String = "https://albreezetours.com/android_register_login/GetBusinessNames.php"
+private val getReason: String = "https://albreezetours.com/android_register_login/GetReason.php"
+
+//ID the user will LogIn with and uses to update/receive his data.
+var SESSION_ID: String = ""
+var SESSION_STATUS: String = ""
 
 open class MySingleton constructor(context: Context) {
     companion object {
@@ -68,71 +81,273 @@ open class MySingleton constructor(context: Context) {
             Response.ErrorListener {
                 button.text = "Couldn't connect to the internet"
                 progressBar.visibility = View.GONE
-            })
+            }
+        )
         addToRequestQueue(stringRequest)
     }
 
     //Connecting to Database
-    fun dbConnect(url:String, textView: TextView){
+    fun dbConnect(textView: TextView) {
         val stringRequest = StringRequest(
             Request.Method.GET,
-            url,
-            Response.Listener<String>{response ->
-                textView.text = "${response.substring(0,20)}"
+            dbConnectUrl,
+            Response.Listener<String> { response ->
+                textView.text = "${response.substring(0, 20)}"
             },
             Response.ErrorListener {
                 textView.text = "Failed"
-            })
+            }
+        )
         addToRequestQueue(stringRequest)
     }
-    //Inserting Data in DB
-    fun insertData(url: String){
-        val rootObject = JSONObject()
-        rootObject.put("name", "su")
-        rootObject.put("password","ijasdiasj")
-        rootObject.put("email","tara@hotmail.com")
-        val jsonObject = JsonObjectRequest(
+
+    fun updateData() {
+        val obj = JSONObject()
+        obj.put("name", "suzuka")
+        obj.put("password", "gozen")
+        obj.put("email", "1234@kek@gmail.com")
+        obj.put("id", 18)
+        val post = JsonObjectRequest(
             Request.Method.POST,
-            url,
-            rootObject,
-            Response.Listener{response->
+            updateDataUrl,
+            obj,
+            Response.Listener { response ->
 
             },
             Response.ErrorListener {
 
             }
         )
+        addToRequestQueue(post)
+    }
+
+    //Login Menu
+    fun insertRegister(
+        text1: String, text2: String, text3: String, text4: String,
+        text5: String, text6: String
+    ) {
+        val rootObject = JSONObject()
+        rootObject.put("name", text1)
+        rootObject.put("lastname", text2)
+        rootObject.put("email", text3)
+        rootObject.put("position", text4)
+        rootObject.put("password", text5)
+        rootObject.put("status", text6)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            insertRegister,
+            rootObject,
+            Response.Listener { response ->
+            },
+            Response.ErrorListener {
+            }
+        )
         addToRequestQueue(jsonObject)
     }
 
-    //Parsing JSON Data
-    fun getData(url:String, list: ListView, applicationContext: Context){
+    fun logIn(context: Context, email: String, password: String) {
+        val obj1 = JSONObject()
+        obj1.put("email", email)
+        obj1.put("password", password)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            logInUrl,
+            obj1,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                SESSION_ID = jsonObj.getString("id")
+                SESSION_STATUS = jsonObj.getString("user_status")
 
-        val yeet = mutableListOf<String>()
-        val adapter:  ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, yeet)
+            },
+            Response.ErrorListener {
+                val text = "Incorrect email or password!"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(context, text, duration)
+                toast.show()
+            }
+        )
+        addToRequestQueue(jsonObject)
 
+    }
+
+    //Inserting Data in DB DailyTransaction 1-2
+    fun getData12(
+        list: ListView,
+        applicationContext: Context,
+        yeet: MutableList<String>,
+        adapter: ArrayAdapter<String>
+    ) {
         val request = JsonObjectRequest(
             Request.Method.GET,
-            url,
+            getDataUrl,
             null,
-            Response.Listener{response->
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+                    val willWrite = IncomeDetails(
+                        userStuff.getString("date"),
+                        userStuff.getString("receivedFrom"),
+                        userStuff.getString("reference"),
+                        userStuff.getInt("price/unit"),
+                        userStuff.getInt("quantity"),
+                        userStuff.getInt("total")
+                    ).toString()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+
+    //1-4
+    fun insertData14(
+        text1: String,
+        text2: String,
+        text3: String,
+        text4: String,
+        text5: String,
+        text6: String,
+        text7: String
+    ) {
+        val rootObject = JSONObject()
+        rootObject.put("date", text1)
+        rootObject.put("description", text2)
+        rootObject.put("reference", text3)
+        rootObject.put("department", text4)
+        rootObject.put("cashIn", text5)
+        rootObject.put("cashOut", text6)
+        rootObject.put("balance", text7)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            insertDataUrl14,
+            rootObject,
+            Response.Listener { response ->
+            },
+            Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
+    //1-4
+    fun getData14(
+        list: ListView,
+        applicationContext: Context,
+        yeet: MutableList<String>,
+        adapter: ArrayAdapter<String>
+    ) {
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            getDataUrl14,
+            null,
+            Response.Listener { response ->
                 val jsonObj: JSONObject = response
                 val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
 
-                for(i in 0 until jsonArray.length()){
+                for (i in 0 until jsonArray.length()) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
-                    val willWrite = Users(
-                        userStuff.getString("name"),
-                        userStuff.getString("password"),
-                        userStuff.getString("email")
+                    val willWrite = addCashBook(
+                        userStuff.getString("date"),
+                        userStuff.getString("description"),
+                        userStuff.getString("reference"),
+                        userStuff.getString("department"),
+                        userStuff.getInt("cashIn"),
+                        userStuff.getInt("cashOut"),
+                        userStuff.getInt("balance")
                     ).toString()
                     yeet.add(willWrite)
                 }
                 list.adapter = adapter
 
-            },Response.ErrorListener {
-            })
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+
+    }
+    fun getUsersNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>) {
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            getUsersName,
+            null,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = GetUsersName(
+                        userStuff.getString("name_user")
+                    ).toString()
+
+                    nameList.add(willWrite)
+                }
+                spinner.adapter = arrayAdapter
+
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun getBusinessNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>,nameList: MutableList<String>){
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            getBusinessNames,
+            null,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = GetUsersName(
+                        userStuff.getString("name_business")
+                    ).toString()
+
+                    nameList.add(willWrite)
+                }
+                spinner.adapter = arrayAdapter
+
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun getReason(spinner:Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>){
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            getReason,
+            null,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = GetUsersName(
+                        userStuff.getString("title_reason")
+                    ).toString()
+
+                    nameList.add(willWrite)
+                }
+                spinner.adapter = arrayAdapter
+
+            }, Response.ErrorListener {
+            }
+        )
         addToRequestQueue(request)
     }
 }
+
+
+
+
+
+
+
+

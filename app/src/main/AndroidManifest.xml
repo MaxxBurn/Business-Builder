@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoteMenu"></activity>
+        <activity android:name=".AdministratorMenu"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".NoteMenu" />
         <activity android:name=".MenuToDoList" />
         <activity android:name=".BusinessJournalMenu" />
         <activity android:name=".AddPerformanceSnap" />
@@ -29,7 +31,15 @@
         <activity android:name=".SuppliersCreditors" />
         <activity android:name=".CustomersDebtors" />
         <activity android:name=".Employees" />
-        <activity android:name=".LogInActivity" />
+        <activity
+            android:name=".LogInActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Payment" />
         <activity android:name=".Invoice" />
         <activity android:name=".Production" />
@@ -44,7 +54,6 @@
         <activity android:name=".PlanningAction2" />
         <activity android:name=".PlanningAction1" />
         <activity android:name=".DailyTransaction6" />
-        <activity android:name=".DailyActivity6" />
         <activity android:name=".DailyTransaction5" />
         <activity android:name=".DailyTranscation4" />
         <activity android:name=".DailyTransaction3" />
@@ -75,13 +84,7 @@
             android:name=".DailyTransaction"
             android:label="@string/title_activity_daily_transaction"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
