@@ -5,10 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.DateKeyListener
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_daily_transaction3.*
 import java.util.*
@@ -18,24 +15,24 @@ data class GetUsersName(val name: String){
         return "${this.name}"
     }
 }
+data class GetUsersNameAndLastName(val name:String, val lastName: String){
+    override fun toString(): String {
+        return "${this.name} ${this.lastName}"
+    }
+}
 
 class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
-
     var day = 0
     var month = 0
     var year = 0
-
     var savedDay = 0
     var savedMonth = 0
     var savedYear = 0
-
 
     lateinit var openPaymentButton: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_transaction3)
-
-
 
         val datePicker = findViewById<TextView>(R.id.datePicker)
         pickDate()
@@ -73,6 +70,54 @@ class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         nameList4.add("Flladi Malaj")
         val adapter4: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList4)
         spinner4.adapter = adapter4
+
+        //Button
+        val budgetRequestSave: FloatingActionButton = findViewById(R.id.budgetRequestSave)
+
+        //Stuff that will be inputed
+        val title = findViewById<EditText>(R.id.titlePicker)
+        val date = findViewById<TextView>(R.id.datePicker)
+        val amount = findViewById<EditText>(R.id.amount)
+        val typeOfPayment = findViewById<RadioGroup>(R.id.radioGroup3)
+        val description = findViewById<EditText>(R.id.descriptionText)
+
+        budgetRequestSave.setOnClickListener {
+            val inputText = "Please fill out all the forms!"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(applicationContext, inputText, duration)
+
+            if(spinner1.selectedItem.toString() == "Select User..."){
+                toast.show()
+            }
+            else if(spinner2.selectedItem.toString() == "Select Business..."){
+                toast.show()
+            }
+            else if(spinner3.selectedItem.toString() == "Select Reason..."){
+                toast.show()
+            }
+            else if(spinner4.selectedItem.toString() == "Select Giver..."){
+                toast.show()
+            }
+            else if(amount.text.toString() == ""){
+                toast.show()
+            }
+            else if(title.text.toString() == ""){
+                toast.show()
+            }
+            else{
+                val pickedButton: Int = typeOfPayment.checkedRadioButtonId
+                val stringOfPickedRadio : String = pickedButton.toString()
+
+                MySingleton.getInstance(this).getBusinessId(spinner2.selectedItem.toString())
+                val USER_ID: String = MySingleton.getInstance(this).getUserId(spinner1.selectedItem.toString())
+                println("--------------")
+                println(BUSINESS_ID)
+                println(USER_ID)
+                //MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(),BUSINESS_ID.toInt(),
+                  // spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), stringOfPickedRadio, spinner4.selectedItem.toString(),
+                    //description.text.toString(), date.text.toString(), USER_ID.toInt(), spinner1.selectedItem.toString())
+            }
+        }
     }
     private fun pickDate(){
         datePicker.setOnClickListener {

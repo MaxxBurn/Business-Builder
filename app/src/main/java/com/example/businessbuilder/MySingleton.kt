@@ -29,10 +29,15 @@ private val logInUrl: String = "https://albreezetours.com/android_register_login
 private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
 private val getBusinessNames: String = "https://albreezetours.com/android_register_login/GetBusinessNames.php"
 private val getReason: String = "https://albreezetours.com/android_register_login/GetReason.php"
+private val requestBudget: String = "https://albreezetours.com/android_register_login/RequestBudget.php"
+private val getBusinessID: String = "https://albreezetours.com/android_register_login/GetBusinessId.php"
+private val getUserID: String = "https://albreezetours.com/android_register_login/GetUserId.php"
 
 //ID the user will LogIn with and uses to update/receive his data.
 var SESSION_ID: String = ""
 var SESSION_STATUS: String = ""
+var SESSION_NAME: String = ""
+var BUSINESS_ID: String = ""
 
 open class MySingleton constructor(context: Context) {
     companion object {
@@ -157,7 +162,7 @@ open class MySingleton constructor(context: Context) {
                 val jsonObj: JSONObject = response
                 SESSION_ID = jsonObj.getString("id")
                 SESSION_STATUS = jsonObj.getString("user_status")
-
+                SESSION_NAME = jsonObj.getString("name")
             },
             Response.ErrorListener {
                 val text = "Incorrect email or password!"
@@ -167,7 +172,35 @@ open class MySingleton constructor(context: Context) {
             }
         )
         addToRequestQueue(jsonObject)
+    }
 
+    //RequestBudget
+    fun requestBudget(title: String, amount:Int, businessId: Int, businessName: String, reason: String,
+                        deposit: String, giver: String, description: String, data: String, userId: Int, userName: String){
+        val obj1 = JSONObject()
+        obj1.put("title", title)
+        obj1.put("amount", amount)
+        obj1.put("userId", userId)
+        obj1.put("user", userName)
+        obj1.put("businessId", businessId)
+        obj1.put("business", businessName)
+        obj1.put("reason",reason)
+        obj1.put("deposit", deposit)
+        obj1.put("giver", giver)
+        obj1.put("description", description)
+        obj1.put("data", data)
+
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            requestBudget,
+            obj1,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+            },
+            Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(jsonObject)
     }
 
     //Inserting Data in DB DailyTransaction 1-2
@@ -202,7 +235,6 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-
     //1-4
     fun insertData14(
         text1: String,
@@ -281,8 +313,9 @@ open class MySingleton constructor(context: Context) {
                 for (i in 0 until jsonArray.length()) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
-                    val willWrite = GetUsersName(
-                        userStuff.getString("name_user")
+                    val willWrite = GetUsersNameAndLastName(
+                        userStuff.getString("name_user"),
+                        userStuff.getString("last_name_user")
                     ).toString()
 
                     nameList.add(willWrite)
@@ -294,6 +327,61 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
+    fun getUserId(name: String): String{
+        var first_name: String = ""
+        var last_name: String = ""
+        var keepInMind: Int = 0
+        for(i in 0 until name.length){
+            if(keepInMind == 0){
+                first_name += name[i]
+            }
+            else if(keepInMind == 1){
+                last_name += name[i]
+            }
+            if(name[i] == ' '){
+                keepInMind = 1
+            }
+
+        }
+        var answer12: String = ""
+        val obj1 = JSONObject()
+        obj1.put("name", first_name)
+        obj1.put("lastname",last_name)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            getUserID,
+            obj1,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                answer12 = jsonObj.getString("id")
+            },
+            Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(jsonObject)
+        println(answer12)
+        return answer12
+    }
+
+    fun getBusinessId(name: String){
+        var answer12: String = ""
+        val obj1 = JSONObject()
+        obj1.put("businessName", name)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            getBusinessID,
+            obj1,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                answer12 = jsonObj.getString("id")
+                BUSINESS_ID = answer12
+            },
+            Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
     fun getBusinessNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>,nameList: MutableList<String>){
         val request = JsonObjectRequest(
             Request.Method.GET,
