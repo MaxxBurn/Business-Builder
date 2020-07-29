@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdministratorMenu"></activity>
+        <activity android:name=".BudgetRequestList"></activity>
+        <activity android:name=".EditUsersMenu" />
+        <activity android:name=".EditUsersMenuList" />
+        <activity android:name=".AdministratorMenu" />
         <activity android:name=".Register" />
         <activity android:name=".NoteMenu" />
         <activity android:name=".MenuToDoList" />
@@ -84,7 +87,7 @@
             android:name=".DailyTransaction"
             android:label="@string/title_activity_daily_transaction"
             android:theme="@style/AppTheme" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

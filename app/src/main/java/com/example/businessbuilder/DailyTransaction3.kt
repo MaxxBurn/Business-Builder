@@ -10,6 +10,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_daily_transaction3.*
 import java.util.*
 
+var BUSINESS_ID: Int = 0
+var USER_ID: Int = 0
+
 data class GetUsersName(val name: String){
     override fun toString(): String {
         return "${this.name}"
@@ -79,6 +82,7 @@ class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         val date = findViewById<TextView>(R.id.datePicker)
         val amount = findViewById<EditText>(R.id.amount)
         val typeOfPayment = findViewById<RadioGroup>(R.id.radioGroup3)
+
         val description = findViewById<EditText>(R.id.descriptionText)
 
         budgetRequestSave.setOnClickListener {
@@ -105,17 +109,19 @@ class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                 toast.show()
             }
             else{
-                val pickedButton: Int = typeOfPayment.checkedRadioButtonId
-                val stringOfPickedRadio : String = pickedButton.toString()
+                val pickedButtonId: Int = typeOfPayment.checkedRadioButtonId
+                val radio: RadioButton = findViewById(pickedButtonId)
 
                 MySingleton.getInstance(this).getBusinessId(spinner2.selectedItem.toString())
-                val USER_ID: String = MySingleton.getInstance(this).getUserId(spinner1.selectedItem.toString())
-                println("--------------")
-                println(BUSINESS_ID)
+                MySingleton.getInstance(this).getUserId(spinner1.selectedItem.toString())
                 println(USER_ID)
-                //MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(),BUSINESS_ID.toInt(),
-                  // spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), stringOfPickedRadio, spinner4.selectedItem.toString(),
-                    //description.text.toString(), date.text.toString(), USER_ID.toInt(), spinner1.selectedItem.toString())
+                println("=======")
+                MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(), BUSINESS_ID,
+                    spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), radio.text.toString(), spinner4.selectedItem.toString(),
+                    description.text.toString(), date.text.toString(), USER_ID, spinner1.selectedItem.toString())
+                
+                val intent = Intent(this, DailyTransaction::class.java)
+                startActivity(intent)
             }
         }
     }

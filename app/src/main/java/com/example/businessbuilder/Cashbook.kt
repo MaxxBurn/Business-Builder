@@ -20,7 +20,6 @@ class Cashbook : AppCompatActivity() {
         val text6: EditText = findViewById(R.id.cashOut)
         val text7: EditText = findViewById(R.id.balance)
 
-
         if(given != null) {
             autoCompleteFields(text, text2, text3, text4, text5, text6, text7, given)
         }

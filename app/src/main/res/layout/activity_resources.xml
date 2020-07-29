@@ -24,14 +24,14 @@
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton29"
+                android:id="@+id/editUsers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <ImageButton
-                android:id="@+id/imageButton30"
+                android:id="@+id/budgetRequestImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
