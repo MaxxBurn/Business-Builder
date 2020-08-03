@@ -46,7 +46,7 @@ class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListene
         nameList.add("Select User...")
         val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList)
         spinner1.adapter = adapter
-        MySingleton.getInstance(this).getUsersNames(spinner1, adapter, nameList)
+        MySingleton.getInstance(this).getUsersNames(spinner1, adapter, nameList, SESSION_STATUS)
 
         //Second Spinner
         val spinner2 = findViewById<Spinner>(R.id.spinner2)

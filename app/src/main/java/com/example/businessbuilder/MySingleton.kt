@@ -34,6 +34,8 @@ private val requestBudget: String = "https://albreezetours.com/android_register_
 private val getBusinessID: String = "https://albreezetours.com/android_register_login/GetBusinessId.php"
 private val getUserID: String = "https://albreezetours.com/android_register_login/GetUserId.php"
 private val getBudgetRequestListUrl: String = "https://albreezetours.com/android_register_login/GetBudgetList.php"
+private val updateUsersUrl: String = "https://albreezetours.com/android_register_login/UpdateUsers.php"
+private val getUsersNameSolo: String = "https://albreezetours.com/android_register_login/GetUserNamesSolo.php"
 
 //ID the user will LogIn with and uses to update/receive his data.
 var SESSION_ID: String = ""
@@ -106,7 +108,6 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(stringRequest)
     }
-
     fun updateData() {
         val obj = JSONObject()
         obj.put("name", "suzuka")
@@ -126,7 +127,35 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(post)
     }
-
+    fun updateUsers(context: Context, text1: String, text2: String, text3: String, text4: String, text5:String,
+                    text6: String, nameBefore: String, lname: String){
+        val obj = JSONObject()
+        obj.put("name_user", text1)
+        obj.put("last_name_user", text2)
+        obj.put("user_email", text3)
+        obj.put("user_position", text4)
+        obj.put("user_status", text5)
+        obj.put("status", text6)
+        obj.put("nameBefore", nameBefore)
+        obj.put("lnameBefore", lname)
+        println("ASDIASJDIASJDASIDJASIDJASDIJAISDJ")
+        println(obj)
+        val post = JsonObjectRequest(
+            Request.Method.POST,
+            updateUsersUrl,
+            obj,
+            Response.Listener{
+                val text: String = "User information updated!"
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(context, text, duration)
+                toast.show()
+            },
+            Response.ErrorListener {error->
+                println(error)
+            }
+        )
+        addToRequestQueue(post)
+    }
     //Login Menu
     fun insertRegister(
         text1: String, text2: String, text3: String, text4: String,
@@ -155,6 +184,8 @@ open class MySingleton constructor(context: Context) {
         val obj1 = JSONObject()
         obj1.put("email", email)
         obj1.put("password", password)
+
+        println(obj1)
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
             logInUrl,
@@ -165,7 +196,8 @@ open class MySingleton constructor(context: Context) {
                 SESSION_STATUS = jsonObj.getString("user_status")
                 SESSION_NAME = jsonObj.getString("name")
             },
-            Response.ErrorListener {
+            Response.ErrorListener {error->
+                println(error)
                 val text = "Incorrect email or password!"
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(context, text, duration)
@@ -300,8 +332,8 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(request)
 
     }
-    fun getUserDetails( list: ListView, applicationContext: Context, yeet: MutableList<String>,
-                        adapter: ArrayAdapter<String>){
+    fun getUserDetails( list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                        adapter: ArrayAdapter<CharSequence>){
         val request = JsonObjectRequest(
             Request.Method.GET,
             getUserDetailsUrl,
@@ -317,8 +349,9 @@ open class MySingleton constructor(context: Context) {
                         userStuff.getString("name_user"),
                         userStuff.getString("last_name_user"),
                         userStuff.getString("user_status"),
-                        userStuff.getString("user_email")
-                    ).toString()
+                        userStuff.getString("user_email"),
+                        applicationContext
+                    ).toString1()
                     yeet.add(willWrite)
                 }
                 list.adapter = adapter
@@ -328,8 +361,8 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-    /*fun getBudgetRequestList(list: ListView, applicationContext: Context, yeet: MutableList<String>,
-                             adapter: ArrayAdapter<String>){
+    fun getBudgetRequestList(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                             adapter: ArrayAdapter<CharSequence>){
 
         val request = JsonObjectRequest(
             Request.Method.GET,
@@ -342,47 +375,74 @@ open class MySingleton constructor(context: Context) {
                 for (i in 0 until jsonArray.length()) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
-                    val willWrite = UserDetails(
-                        userStuff.getString("name_user"),
-                        userStuff.getString("last_name_user"),
-                        userStuff.getString("user_status"),
-                        userStuff.getString("user_email")
-                    ).toString()
+                    val willWrite = BudgetList(
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
                     yeet.add(willWrite)
                 }
                 list.adapter = adapter
-
             }, Response.ErrorListener {
             }
         )
         addToRequestQueue(request)
-    }*/
+    }
 
 
-    fun getUsersNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>) {
-        val request = JsonObjectRequest(
-            Request.Method.GET,
-            getUsersName,
-            null,
-            Response.Listener { response ->
-                val jsonObj: JSONObject = response
-                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
-                for (i in 0 until jsonArray.length()) {
-                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+    fun getUsersNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>, user_status: String) {
+        if(user_status == "User" || user_status == "SuperUsers") {
+            val obj = JSONObject()
+            obj.put("id", SESSION_ID)
+            val request = JsonObjectRequest(
+                Request.Method.POST,
+                getUsersNameSolo,
+                obj,
+                Response.Listener { response ->
+                    val jsonObj: JSONObject = response
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                    for (i in 0 until jsonArray.length()) {
+                        val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
-                    val willWrite = GetUsersNameAndLastName(
-                        userStuff.getString("name_user"),
-                        userStuff.getString("last_name_user")
-                    ).toString()
+                        val willWrite = GetUsersNameAndLastName(
+                            userStuff.getString("name_user"),
+                            userStuff.getString("last_name_user")
+                        ).toString()
+                        nameList.add(willWrite)
+                    }
+                    spinner.adapter = arrayAdapter
 
-                    nameList.add(willWrite)
+                }, Response.ErrorListener {
                 }
-                spinner.adapter = arrayAdapter
+            )
+            addToRequestQueue(request)
+        }
+        else{
+            val request = JsonObjectRequest(
+                Request.Method.GET,
+                getUsersName,
+                null,
+                Response.Listener { response ->
+                    val jsonObj: JSONObject = response
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                    for (i in 0 until jsonArray.length()) {
+                        val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
-            }, Response.ErrorListener {
-            }
-        )
-        addToRequestQueue(request)
+                        val willWrite = GetUsersNameAndLastName(
+                            userStuff.getString("name_user"),
+                            userStuff.getString("last_name_user")
+                        ).toString()
+
+                        nameList.add(willWrite)
+                    }
+                    spinner.adapter = arrayAdapter
+
+                }, Response.ErrorListener {
+                }
+            )
+            addToRequestQueue(request)
+        }
     }
     fun getUserId(name: String){
         var first_name: String = ""

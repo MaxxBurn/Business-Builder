@@ -12,11 +12,11 @@ class EditUsersMenuList : AppCompatActivity() {
         setContentView(R.layout.activity_edit_users)
 
 
-        val yeet = mutableListOf<String>()
-        val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_selectable_list_item, yeet)
+        val yeet = mutableListOf<CharSequence>()
+        val adapter: ArrayAdapter<CharSequence> = ArrayAdapter(applicationContext, android.R.layout.simple_selectable_list_item, yeet)
         val list: ListView = findViewById(R.id.userList)
 
-        MySingleton.getInstance(this).getUserDetails(list,this,yeet,adapter)
+        MySingleton.getInstance(this).getUserDetails(list,this, yeet, adapter)
 
         list.setOnItemClickListener { parent, view, position, id ->
             val element = adapter.getItem(position)
@@ -24,6 +24,8 @@ class EditUsersMenuList : AppCompatActivity() {
             intent.putExtra("autoComplete", element)
             startActivity(intent)
         }
+
+
 
     }
 }

@@ -37,10 +37,10 @@ class Register : AppCompatActivity() {
                 status = "User"
             }
             else if(superuserRadioButton.isChecked){
-                status = "SuperUser"
+                status = "Super Users"
             }
-            else{
-                status = "Admin"
+            else if (administratorRadioButton.isChecked){
+                status = "Administrator"
             }
 
             if (text5.text.toString() == "" || text4.text.toString() == "" || text3.text.toString() == ""

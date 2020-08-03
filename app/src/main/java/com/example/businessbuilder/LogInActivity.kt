@@ -35,7 +35,7 @@ class LogInActivity : AppCompatActivity() {
         }
         logButton.setOnClickListener {
             MySingleton.getInstance(this).logIn(this, email.text.toString(), passwordLog.text.toString())
-            if (SESSION_STATUS == "User" || SESSION_STATUS == "SuperUser"){
+            if (SESSION_STATUS == "User" || SESSION_STATUS == "Super Users"){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }

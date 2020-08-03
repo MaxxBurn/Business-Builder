@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BudgetRequestList"></activity>
+        <activity android:name=".EditBudgetMenu"></activity>
+        <activity android:name=".BudgetRequestList" />
         <activity android:name=".EditUsersMenu" />
         <activity android:name=".EditUsersMenuList" />
         <activity android:name=".AdministratorMenu" />
