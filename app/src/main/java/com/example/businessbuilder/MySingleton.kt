@@ -36,6 +36,7 @@ private val getUserID: String = "https://albreezetours.com/android_register_logi
 private val getBudgetRequestListUrl: String = "https://albreezetours.com/android_register_login/GetBudgetList.php"
 private val updateUsersUrl: String = "https://albreezetours.com/android_register_login/UpdateUsers.php"
 private val getUsersNameSolo: String = "https://albreezetours.com/android_register_login/GetUserNamesSolo.php"
+private val getGiver: String = "https://albreezetours.com/android_register_login/GetGiver.php"
 
 //ID the user will LogIn with and uses to update/receive his data.
 var SESSION_ID: String = ""
@@ -184,8 +185,6 @@ open class MySingleton constructor(context: Context) {
         val obj1 = JSONObject()
         obj1.put("email", email)
         obj1.put("password", password)
-
-        println(obj1)
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
             logInUrl,
@@ -232,6 +231,29 @@ open class MySingleton constructor(context: Context) {
             }
         )
         addToRequestQueue(jsonObject)
+    }
+    fun getGiver(id: Int, textview: TextView, textview2: TextView, textview3: EditText){
+        val obj1 = JSONObject()
+        obj1.put("id",id)
+        var answer: String = ""
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getGiver,
+            obj1,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+                    textview.text = userStuff.getString("gave")
+                    textview2.text = userStuff.getString("titull_request")
+                    textview3.setText(userStuff.getString("description").toString())
+                }
+            }, Response.ErrorListener {error->
+            }
+        )
+        addToRequestQueue(request)
     }
     //Inserting Data in DB DailyTransaction 1-2
     fun getData12(
@@ -376,6 +398,7 @@ open class MySingleton constructor(context: Context) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
                     val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
                         userStuff.getString("request"),
                         userStuff.getString("business"),
                         userStuff.getString("sum_budget"),
@@ -534,11 +557,9 @@ open class MySingleton constructor(context: Context) {
                     val willWrite = GetUsersName(
                         userStuff.getString("title_reason")
                     ).toString()
-
                     nameList.add(willWrite)
                 }
                 spinner.adapter = arrayAdapter
-
             }, Response.ErrorListener {
             }
         )
