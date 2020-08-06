@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.method.DateKeyListener
 import android.widget.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_daily_transaction3.*
+import kotlinx.android.synthetic.main.activity_request_budget.*
 import java.util.*
 
 var BUSINESS_ID: Int = 0
@@ -23,8 +23,7 @@ data class GetUsersNameAndLastName(val name:String, val lastName: String){
         return "${this.name} ${this.lastName}"
     }
 }
-
-class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+class RequestBudget : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     var day = 0
     var month = 0
     var year = 0
@@ -35,7 +34,7 @@ class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListene
     lateinit var openPaymentButton: FloatingActionButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_daily_transaction3)
+        setContentView(R.layout.activity_request_budget)
 
         val datePicker = findViewById<TextView>(R.id.datePicker)
         pickDate()
@@ -119,8 +118,8 @@ class DailyTransaction3 : AppCompatActivity(), DatePickerDialog.OnDateSetListene
                 MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(), BUSINESS_ID,
                     spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), radio.text.toString(), spinner4.selectedItem.toString(),
                     description.text.toString(), date.text.toString(), USER_ID, spinner1.selectedItem.toString())
-                
-                val intent = Intent(this, DailyTransaction::class.java)
+
+                val intent = Intent(this, BudgetMenu::class.java)
                 startActivity(intent)
             }
         }

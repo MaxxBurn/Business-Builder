@@ -17,8 +17,7 @@ class LogInActivity : AppCompatActivity() {
 
     lateinit var logButton: Button
     lateinit var email: EditText
-    lateinit var loading : ProgressBar
-    lateinit var signUp: Button
+    lateinit var loading : ProgressBar  
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +25,8 @@ class LogInActivity : AppCompatActivity() {
         logButton = findViewById(R.id.login)
         email = findViewById(R.id.userName)
         loading = findViewById(R.id.loading)
-        signUp = findViewById(R.id.signUp)
         val passwordLog = findViewById<EditText>(R.id.passwordbar)
 
-        signUp.setOnClickListener {
-            val intent = Intent(this, Register::class.java)
-            startActivity(intent)
-        }
         logButton.setOnClickListener {
             MySingleton.getInstance(this).logIn(this, email.text.toString(), passwordLog.text.toString())
             if (SESSION_STATUS == "User" || SESSION_STATUS == "Super Users"){

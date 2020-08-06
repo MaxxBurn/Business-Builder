@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val button8 = findViewById<ImageButton>(R.id.executiveRoutine)
 
         button7.visibility = INVISIBLE
+        button5.visibility = INVISIBLE
 
 
         button1.setOnClickListener{
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(forthMenu)
         }
         button7.setOnClickListener{
-            val fifthMenu = Intent(this, Resources::class.java)
+            val fifthMenu = Intent(this, BudgetMenu::class.java)
             startActivity(fifthMenu)
         }
         button8.setOnClickListener {

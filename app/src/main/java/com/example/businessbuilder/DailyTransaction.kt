@@ -40,7 +40,7 @@ class DailyTransaction : AppCompatActivity() {
             startActivity(button1)
         }
         button3.setOnClickListener{
-            val button3 = Intent(this,DailyTransaction3::class.java)
+            val button3 = Intent(this, RequestBudget::class.java)
             startActivity(button3)
         }
         button4.setOnClickListener {

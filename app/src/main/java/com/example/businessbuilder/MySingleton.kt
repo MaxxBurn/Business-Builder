@@ -37,6 +37,7 @@ private val getBudgetRequestListUrl: String = "https://albreezetours.com/android
 private val updateUsersUrl: String = "https://albreezetours.com/android_register_login/UpdateUsers.php"
 private val getUsersNameSolo: String = "https://albreezetours.com/android_register_login/GetUserNamesSolo.php"
 private val getGiver: String = "https://albreezetours.com/android_register_login/GetGiver.php"
+private val updateBudget: String = "https://albreezetours.com/android_register_login/UpdateBudget.php"
 
 //ID the user will LogIn with and uses to update/receive his data.
 var SESSION_ID: String = ""
@@ -232,7 +233,7 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(jsonObject)
     }
-    fun getGiver(id: Int, textview: TextView, textview2: TextView, textview3: EditText){
+    fun getGiver(id: Int, textview: TextView, textview2: EditText, textview3: EditText){
         val obj1 = JSONObject()
         obj1.put("id",id)
         var answer: String = ""
@@ -247,9 +248,29 @@ open class MySingleton constructor(context: Context) {
                 for (i in 0 until jsonArray.length()) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
                     textview.text = userStuff.getString("gave")
-                    textview2.text = userStuff.getString("titull_request")
+                    textview2.setText(userStuff.getString("titull_request").toString())
                     textview3.setText(userStuff.getString("description").toString())
                 }
+            }, Response.ErrorListener {error->
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun updateBudget(rId: Int, text1: String, text2: String, text3: String, text4: String, text5: String){
+
+        val obj1 = JSONObject()
+        obj1.put("id",rId)
+        obj1.put("amount", text1)
+        obj1.put("title", text2)
+        obj1.put("date", text3)
+        obj1.put("description", text4)
+        obj1.put("reason", text5)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            updateBudget,
+            obj1,
+            Response.Listener { response ->
             }, Response.ErrorListener {error->
             }
         )

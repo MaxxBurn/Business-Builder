@@ -23,6 +23,7 @@ class KeyPeople : AppCompatActivity() {
         button3 = findViewById(R.id.suppliersCreditors)
         button4 = findViewById(R.id.strategicPartners)
         button5 = findViewById(R.id.other)
+        val button6 = findViewById<ImageButton>(R.id.userList)
 
         button1.setOnClickListener {
             val intent = Intent(this, Employees::class.java)
@@ -43,6 +44,10 @@ class KeyPeople : AppCompatActivity() {
         button5.setOnClickListener {
             val intent = Intent(this, Other::class.java)
             startActivity(intent)
+        }
+        button6.setOnClickListener {
+                val intent = Intent(this, EditUsersMenuList::class.java)
+                startActivity(intent)
         }
     }
 }

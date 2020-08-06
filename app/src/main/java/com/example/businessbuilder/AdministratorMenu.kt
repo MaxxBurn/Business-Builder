@@ -44,7 +44,7 @@ class AdministratorMenu : AppCompatActivity() {
                 startActivity(forthMenu)
             }
             button7.setOnClickListener {
-                val fifthMenu = Intent(this, Resources::class.java)
+                val fifthMenu = Intent(this, BudgetMenu::class.java)
                 startActivity(fifthMenu)
             }
             button8.setOnClickListener {

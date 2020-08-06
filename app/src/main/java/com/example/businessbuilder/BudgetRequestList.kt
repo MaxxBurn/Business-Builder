@@ -14,7 +14,7 @@ import androidx.core.text.HtmlCompat
 data class BudgetList(val id: String, val name: String, val business: String, val amount: String, val context: Context){
     fun toString1(): CharSequence {
         val text = TextView(context)
-        val yeet = id.toInt() - 915
+        val yeet = id.toInt() // - 915
         val html: String = "<b>" +yeet +". "+ name +"</b>" + " - " + business + " - " + amount + "€"
         text.text = HtmlCompat.fromHtml(html, HtmlCompat.FROM_HTML_MODE_LEGACY)
         return text.text
