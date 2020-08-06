@@ -84,6 +84,7 @@ class EditUsersMenu : AppCompatActivity() {
             } else {
                 MySingleton.getInstance(this).updateUsers(this, nameText.text.toString(), lastnameText.text.toString(),
                 emailText.text.toString(), positionText.text.toString(), userstatus, status, nameBefore, lnameBefore)
+
                 val intent = Intent(this, KeyPeople::class.java)
                 startActivity(intent)
             }

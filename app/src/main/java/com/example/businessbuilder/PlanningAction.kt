@@ -12,8 +12,6 @@ class PlanningAction : AppCompatActivity() {
     lateinit var button3 : ImageButton
     lateinit var button4 : ImageButton
     lateinit var button5 : ImageButton
-    lateinit var button6 : ImageButton
-    lateinit var button7 : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +22,6 @@ class PlanningAction : AppCompatActivity() {
         button3 = findViewById(R.id.btn3)
         button4 = findViewById(R.id.btn4)
         button5 = findViewById(R.id.btn5)
-        button6 = findViewById(R.id.btn6)
 
 
         button1.setOnClickListener{
@@ -46,10 +43,6 @@ class PlanningAction : AppCompatActivity() {
         button5.setOnClickListener{
             val button5 = Intent(this,PlanningAction5::class.java)
             startActivity(button5)
-        }
-        button6.setOnClickListener{
-            val button6 = Intent(this,PlanningAction6::class.java)
-            startActivity(button6)
         }
     }
 
