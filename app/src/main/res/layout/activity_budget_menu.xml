@@ -8,18 +8,25 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/requestBudget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:adjustViewBounds="false"
+                android:background="#FFFFFF"
+                android:cropToPadding="false"
+                android:filterTouchesWhenObscured="false"
+                android:scaleType="fitCenter"
+                android:scrollbarSize="4dp"
+                android:src="@mipmap/ic_banner_foreground" />
 
             <ImageButton
                 android:id="@+id/budgetRequestImage"
