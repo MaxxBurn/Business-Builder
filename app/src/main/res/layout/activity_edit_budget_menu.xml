@@ -39,6 +39,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:paddingBottom="20dp">
 
                 <EditText
@@ -46,10 +47,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="33dp"
+                    android:layout_marginTop="35dp"
                     android:background="@null"
                     android:ems="10"
                     android:gravity="start|top"
+                    android:hint="Description"
                     android:inputType="textMultiLine"
                     android:paddingLeft="3dp"
                     android:paddingTop="3dp"
@@ -57,6 +59,37 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/textView218"
                     app:layout_constraintTop_toBottomOf="@+id/autoGiver" />
+
+                <TextView
+                    android:id="@+id/textView145"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="40dp"
+                    android:text="Reason"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/editStuff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_edit" />
+
+                <TextView
+                    android:id="@+id/reasonText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="38dp"
+                    android:layout_marginTop="40dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/textView145"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
 
                 <TextView
                     android:id="@+id/textView219"
@@ -67,6 +100,17 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/viewStuff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_menu_view" />
 
                 <TextView
                     android:id="@+id/textView218"
@@ -120,6 +164,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView212" />
 
+                <EditText
+                    android:id="@+id/reasonRejectText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="40dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="Reason"
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@+id/textView221"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerStatus" />
+
                 <TextView
                     android:id="@+id/textView213"
                     android:layout_width="wrap_content"
@@ -130,6 +193,18 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView214" />
+
+                <TextView
+                    android:id="@+id/textView221"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="40dp"
+                    android:text="Rejection Reason"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerStatus" />
 
                 <TextView
                     android:id="@+id/textView212"
@@ -143,13 +218,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView217" />
 
                 <Spinner
-                    android:id="@+id/spinner5"
+                    android:id="@+id/spinnerStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="40dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
+                    app:layout_constraintTop_toBottomOf="@+id/reasonText" />
 
                 <TextView
                     android:id="@+id/autoGiver"
@@ -184,13 +258,13 @@
                     android:id="@+id/button4"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="40dp"
                     android:background="@color/FirstItemBackground"
                     android:text="Update"
                     android:textColor="@color/GridColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+                    app:layout_constraintTop_toBottomOf="@+id/reasonRejectText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

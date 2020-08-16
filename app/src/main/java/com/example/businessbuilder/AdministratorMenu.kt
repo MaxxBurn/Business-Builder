@@ -16,10 +16,10 @@ class AdministratorMenu : AppCompatActivity() {
         val button2 = findViewById<Button>(R.id.companyProfile)
         val button3 = findViewById<ImageButton>(R.id.dailyTransactions)
         val button4 = findViewById<ImageButton>(R.id.planningAction)
-        val button5 = findViewById<ImageButton>(R.id.keyPeople)
+        val button5 = findViewById<ImageButton>(R.id.tasksMenu)
         val button6 = findViewById<ImageButton>(R.id.operationalGuide)
         val button7 = findViewById<ImageButton>(R.id.resources)
-        val button8 = findViewById<ImageButton>(R.id.executiveRoutine)
+        val button8 = findViewById<ImageButton>(R.id.keyPeople)
 
 
             button1.setOnClickListener {
@@ -36,7 +36,7 @@ class AdministratorMenu : AppCompatActivity() {
                 startActivity(secondMenu)
             }
             button5.setOnClickListener {
-                val thirdMenu = Intent(this, KeyPeople::class.java)
+                val thirdMenu = Intent(this, Tasks::class.java)
                 startActivity(thirdMenu)
             }
             button6.setOnClickListener {
@@ -48,7 +48,7 @@ class AdministratorMenu : AppCompatActivity() {
                 startActivity(fifthMenu)
             }
             button8.setOnClickListener {
-                val sixthMenu = Intent(this, ExecutiveRoutine::class.java)
+                val sixthMenu = Intent(this, KeyPeople::class.java)
                 startActivity(sixthMenu)
             }
 

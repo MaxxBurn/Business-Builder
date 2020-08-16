@@ -22,12 +22,28 @@
             android:layout_height="match_parent"
             android:background="@color/FirstItemBackground"
             android:scrollbarSize="4dp"
-            app:cardBackgroundColor="@color/FirstItemBackground"
+            app:cardBackgroundColor="#000000"
             app:layout_constrainedHeight="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageView33"
+                    android:layout_width="234dp"
+                    android:layout_height="162dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/ic_momentumo_logo2_foreground" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -139,13 +155,13 @@
                 android:layout_marginBottom="30dp">
 
                 <ImageButton
-                    android:id="@+id/keyPeople"
+                    android:id="@+id/tasksMenu"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="70dp"
                     android:layout_marginRight="50dp"
                     android:background="@color/GridColor"
-                    app:srcCompat="@mipmap/key_people_icon" />
+                    app:srcCompat="@drawable/ic_launcher_foreground" />
 
                 <ImageButton
                     android:id="@+id/operationalGuide"
@@ -169,11 +185,11 @@
                     app:srcCompat="@mipmap/budget_menu" />
 
                 <ImageButton
-                    android:id="@+id/executiveRoutine"
+                    android:id="@+id/keyPeople"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/GridColor"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    app:srcCompat="@mipmap/key_people_icon_foreground" />
             </TableRow>
         </TableLayout>
 

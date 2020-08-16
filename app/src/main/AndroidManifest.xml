@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequestBudget"></activity>
+        <activity android:name=".Tasks"></activity>
+        <activity android:name=".RequestBudgetReceived" />
+        <activity android:name=".RequestBudgetUnapproved" />
+        <activity android:name=".RequestBudgetApproved" />
+        <activity android:name=".RequestBudget" />
         <activity android:name=".EditBudgetMenu" />
         <activity android:name=".BudgetRequestList" />
         <activity android:name=".EditUsersMenu" />

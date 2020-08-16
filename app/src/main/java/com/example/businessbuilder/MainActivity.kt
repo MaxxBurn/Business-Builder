@@ -18,20 +18,19 @@ class MainActivity : AppCompatActivity() {
         val button2 = findViewById<Button>(R.id.companyProfile)
         val button3 = findViewById<ImageButton>(R.id.dailyTransactions)
         val button4 = findViewById<ImageButton>(R.id.planningAction)
-        val button5 = findViewById<ImageButton>(R.id.keyPeople)
+        val button5 = findViewById<ImageButton>(R.id.tasksMenu)
         val button6 = findViewById<ImageButton>(R.id.operationalGuide)
         val button7 = findViewById<ImageButton>(R.id.resources)
-        val button8 = findViewById<ImageButton>(R.id.executiveRoutine)
+        val button8 = findViewById<ImageButton>(R.id.keyPeople)
 
         button7.visibility = INVISIBLE
-        button5.visibility = INVISIBLE
+        button8.visibility = INVISIBLE
 
 
         button1.setOnClickListener{
             val logInMenu = Intent(this, LogInActivity::class.java)
             startActivity(logInMenu)
         }
-
         button3.setOnClickListener{
             val firstMenu = Intent(this,DailyTransaction::class.java)
             startActivity(firstMenu)
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(secondMenu)
         }
         button5.setOnClickListener {
-            val thirdMenu = Intent(this,KeyPeople::class.java)
+            val thirdMenu = Intent(this,Tasks::class.java)
             startActivity(thirdMenu)
         }
         button6.setOnClickListener {
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(fifthMenu)
         }
         button8.setOnClickListener {
-            val sixthMenu = Intent(this, ExecutiveRoutine::class.java)
+            val sixthMenu = Intent(this, KeyPeople::class.java)
             startActivity(sixthMenu)
         }
 

@@ -30,10 +30,15 @@ private val logInUrl: String = "https://albreezetours.com/android_register_login
 private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
 private val getBusinessNames: String = "https://albreezetours.com/android_register_login/GetBusinessNames.php"
 private val getReason: String = "https://albreezetours.com/android_register_login/GetReason.php"
+private val getSpecificReason: String = "https://albreezetours.com/android_register_login/GetSpecificReason.php"
+private val verifyPendingStatus: String = "https://albreezetours.com/android_register_login/VerifyPendingImage.php"
 private val requestBudget: String = "https://albreezetours.com/android_register_login/RequestBudget.php"
 private val getBusinessID: String = "https://albreezetours.com/android_register_login/GetBusinessId.php"
 private val getUserID: String = "https://albreezetours.com/android_register_login/GetUserId.php"
 private val getBudgetRequestListUrl: String = "https://albreezetours.com/android_register_login/GetBudgetList.php"
+private val getBudgetRequestApprovedUrl:String = "https://albreezetours.com/android_register_login/GetBudgetApproved.php"
+private val getBudgetRequestUnapprovedUrl: String = "https://albreezetours.com/android_register_login/GetBudgetUnapproved.php"
+private val getBudgetRequestReceivedUrl: String = "https://albreezetours.com/android_register_login/GetBudgetReceived.php"
 private val updateUsersUrl: String = "https://albreezetours.com/android_register_login/UpdateUsers.php"
 private val getUsersNameSolo: String = "https://albreezetours.com/android_register_login/GetUserNamesSolo.php"
 private val getGiver: String = "https://albreezetours.com/android_register_login/GetGiver.php"
@@ -140,8 +145,6 @@ open class MySingleton constructor(context: Context) {
         obj.put("status", text6)
         obj.put("nameBefore", nameBefore)
         obj.put("lnameBefore", lname)
-        println("ASDIASJDIASJDASIDJASIDJASDIJAISDJ")
-        println(obj)
         val post = JsonObjectRequest(
             Request.Method.POST,
             updateUsersUrl,
@@ -153,7 +156,6 @@ open class MySingleton constructor(context: Context) {
                 toast.show()
             },
             Response.ErrorListener {error->
-                println(error)
             }
         )
         addToRequestQueue(post)
@@ -197,7 +199,6 @@ open class MySingleton constructor(context: Context) {
                 SESSION_NAME = jsonObj.getString("name")
             },
             Response.ErrorListener {error->
-                println(error)
                 val text = "Incorrect email or password!"
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(context, text, duration)
@@ -256,16 +257,15 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-    fun updateBudget(rId: Int, text1: String, text2: String, text3: String, text4: String, text5: String){
-
+    fun updateBudget(rId: Int, text1: String, text2: String, text3: String, text4: String, text5: String, text6: String){
         val obj1 = JSONObject()
         obj1.put("id",rId)
         obj1.put("amount", text1)
         obj1.put("title", text2)
         obj1.put("date", text3)
         obj1.put("description", text4)
-        obj1.put("reason", text5)
-
+        obj1.put("reason_reject", text5)
+        obj1.put("status", text6)
         val request = JsonObjectRequest(
             Request.Method.POST,
             updateBudget,
@@ -433,6 +433,92 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
+    fun getBudgetApproved(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                          adapter: ArrayAdapter<CharSequence>){
+
+            val request = JsonObjectRequest(
+                Request.Method.GET,
+                getBudgetRequestApprovedUrl,
+                null,
+                Response.Listener { response ->
+                    val jsonObj: JSONObject = response
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                    for (i in 0 until jsonArray.length()) {
+                        val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                        val willWrite = BudgetList(
+                            userStuff.getString("id_budget"),
+                            userStuff.getString("request"),
+                            userStuff.getString("business"),
+                            userStuff.getString("sum_budget"),
+                            applicationContext
+                        ).toString1()
+                        yeet.add(willWrite)
+                    }
+                    list.adapter = adapter
+                }, Response.ErrorListener {
+                }
+            )
+            addToRequestQueue(request)
+        }
+    fun getBudgetUnapproved(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                          adapter: ArrayAdapter<CharSequence>){
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            getBudgetRequestUnapprovedUrl,
+            null,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun getBudgetReceived(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                            adapter: ArrayAdapter<CharSequence>){
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            getBudgetRequestReceivedUrl,
+            null,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+
 
 
     fun getUsersNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>, user_status: String) {
@@ -564,7 +650,7 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-    fun getReason(spinner:Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>){
+    fun getReason(spinner:Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>) {
         val request = JsonObjectRequest(
             Request.Method.GET,
             getReason,
@@ -586,6 +672,49 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
+    fun getSpecificReason(id:Int, text1: TextView) {
+        val obj1 = JSONObject()
+        obj1.put("id",id)
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getSpecificReason,
+            obj1,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = GetUsersName(
+                        userStuff.getString("reason")
+                    ).toString()
+                    text1.text = willWrite
+                }
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+
+
+    fun verifyPendingStatus(value: ImageButton){
+        val request = StringRequest(
+            Request.Method.GET,
+            verifyPendingStatus,
+            Response.Listener { response ->
+                val yeet: String = response
+                if(yeet == "1"){
+                    value.setImageResource(R.mipmap.ic_pending_ring_foreground)
+                }
+                else{
+                    value.setImageResource(R.mipmap.ic_pending_foreground)
+                }
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+
 }
 
 
