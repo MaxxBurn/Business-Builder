@@ -70,18 +70,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="60dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroup5" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner7" />
 
                 <Spinner
                     android:id="@+id/spinner6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="60dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#FFFFFF"
+                    android:ems="10"
+                    android:hint="Delegated by"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="3dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner6" />
 
                 <EditText
                     android:id="@+id/editTextTextPersonName41"
@@ -102,6 +121,27 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/spinner7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="60dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup5" />
+
+                <TextView
+                    android:id="@+id/textView231"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="77dp"
+                    android:text="Priority:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/finishDate" />
 
                 <TextView
                     android:id="@+id/startDate"
@@ -130,7 +170,7 @@
                     android:id="@+id/editTextTextMultiLine4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginRight="10dp"
                     android:background="#FFFFFF"
@@ -144,28 +184,31 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName20" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="70dp"
                     android:checkedButton="@id/radioButton8"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@+id/textView231"
                     app:layout_constraintTop_toBottomOf="@+id/finishDate">
 
                     <RadioButton
                         android:id="@+id/radioButton8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingRight="3dp"
                         android:text="Low" />
 
                     <RadioButton
                         android:id="@+id/radioButton9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingRight="3dp"
                         android:text="Medium" />
 
                     <RadioButton

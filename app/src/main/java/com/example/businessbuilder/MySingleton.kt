@@ -25,6 +25,7 @@ private val updateDataUrl: String = "https://albreezetours.com/android_register_
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
 private val getUserDetailsUrl: String = "https://albreezetours.com/android_register_login/GetUserDetails.php"
 private val insertDataUrl14: String = "https://albreezetours.com/android_register_login/InsertData14.php"
+private val createTaskUrl: String = "https://albreezetours.com/android_register_login/InsertTask.php"
 private val insertRegister: String = "https://albreezetours.com/android_register_login/Register.php"
 private val logInUrl: String = "https://albreezetours.com/android_register_login/Login.php"
 private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
@@ -175,6 +176,32 @@ open class MySingleton constructor(context: Context) {
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
             insertRegister,
+            rootObject,
+            Response.Listener { response ->
+            },
+            Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
+    fun createTask(
+        text1: String, text2: String, text3: String, text4: String,
+        text5: String, text6: String, text7: String
+    ) {
+        val rootObject = JSONObject()
+        rootObject.put("title_task", text1)
+        rootObject.put("priority", text2)
+        rootObject.put("start_date_task", text3)
+        rootObject.put("end_date_task", text4)
+        rootObject.put("category", text5)
+        rootObject.put("delegated", text6)
+        rootObject.put("comment_task", text7)
+        rootObject.put("id", SESSION_ID)
+
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            createTaskUrl,
             rootObject,
             Response.Listener { response ->
             },
@@ -695,6 +722,7 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
+
 
 
     fun verifyPendingStatus(value: ImageButton){
