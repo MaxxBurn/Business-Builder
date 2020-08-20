@@ -51,7 +51,7 @@
                 android:paddingBottom="20dp">
 
                 <Button
-                    android:id="@+id/button26"
+                    android:id="@+id/createTask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
@@ -64,6 +64,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine4" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="60dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner5">
+
+                </com.google.android.material.chip.ChipGroup>
 
                 <Spinner
                     android:id="@+id/spinner5"
@@ -81,14 +93,26 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="60dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner5" />
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="60dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner6">
+
+                </com.google.android.material.chip.ChipGroup>
 
                 <EditText
                     android:id="@+id/editTextTextPersonName20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginRight="10dp"
                     android:background="#FFFFFF"
                     android:ems="10"
@@ -100,10 +124,10 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spinner6" />
+                    app:layout_constraintTop_toBottomOf="@+id/chipGroup2" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName41"
+                    android:id="@+id/taskTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -149,10 +173,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="95dp"
                     android:layout_marginTop="20dp"
-                    android:text="Start Date"
+                    android:hint="Start Date"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName41" />
+                    app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
 
                 <TextView
                     android:id="@+id/finishDate"
@@ -160,11 +184,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
-                    android:text="Finish Date"
+                    android:hint="Finish Date"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/startDate"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName41" />
+                    app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
 
                 <EditText
                     android:id="@+id/editTextTextMultiLine4"

@@ -2,13 +2,15 @@ package com.example.businessbuilder
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.DateKeyListener
+import android.util.Log
+import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_request_budget.*
 import java.util.*
+
 
 var BUSINESS_ID: Int = 0
 var USER_ID: Int = 0
@@ -46,6 +48,8 @@ class RequestBudget : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList)
         spinner1.adapter = adapter
         MySingleton.getInstance(this).getUsersNames(spinner1, adapter, nameList, SESSION_STATUS)
+
+
 
         //Second Spinner
         val spinner2 = findViewById<Spinner>(R.id.spinner2)
