@@ -124,6 +124,7 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
             if(chipgroup1.isEmpty()){
                 chipgroup1.visibility = GONE
+
             }
             else if (chipgroup1.isNotEmpty()){
                 chipgroup1.visibility = VISIBLE
@@ -156,7 +157,6 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             var text = ""
             val duration = Toast.LENGTH_SHORT
 
-
             if (spinner7.selectedItem.toString() == "Select Category..." || chipgroup1.isEmpty() ||
                 chipgroup2.isEmpty() || startDate.text.toString() == "" || finishDate.text.toString() == ""
                 || taskTitle.text.toString() == "" || delegated.text.toString() == "") {
@@ -164,15 +164,34 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
             } else {
+                //FirstList & SecondList
+                var firstList: MutableList<String> = mutableListOf()
+                var secondList: MutableList<String> =  mutableListOf()
 
+                for(i in 0 until chipgroup1.childCount){
+                    val idList = chipgroup1.getChildAt(i).id
+                    firstList.add(findViewById<Chip>(idList).text.toString())
+                }
+                for(i in 0 until chipgroup2.childCount){
+                    val idList2 = chipgroup2.getChildAt(i).id
+                    secondList.add(findViewById<Chip>(idList2).text.toString())
+                }
+                var taskId: TextView = TextView(this)
+                var userId: TextView = TextView(this)
+                val id = priority.checkedRadioButtonId
+                val text2 = findViewById<RadioButton>(id).text.toString()
                 MySingleton.getInstance(this).createTask(
                     taskTitle.text.toString(),
-                    priority.checkedRadioButtonId.toString(),
+                    text2,
                     startDate.text.toString(),
                     finishDate.text.toString(),
                     spinner7.selectedItem.toString(),
                     delegated.text.toString(),
-                    comment.text.toString()
+                    comment.text.toString(),
+                    firstList,
+                    secondList,
+                    taskId,
+                    userId
                 )
                 text = "Task created!"
                 val toast = Toast.makeText(applicationContext, text, duration)
@@ -207,9 +226,9 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
         getDateTimeCalendar()
         if (isClicked == false) {
-            startDate.text = "$savedYear-$savedMonth-$savedDay"
+            startDate.text = "$savedYear/$savedMonth/$savedDay"
         } else {
-            finishDate.text = "$savedYear-$savedMonth-$savedDay"
+            finishDate.text = "$savedYear/$savedMonth/$savedDay"
         }
     }
 }
