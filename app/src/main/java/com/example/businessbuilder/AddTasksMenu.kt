@@ -31,8 +31,6 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tasks_menu)
 
-
-
         val startDate = findViewById<TextView>(R.id.startDate)
         val finishDate = findViewById<TextView>(R.id.finishDate)
         val spinner5 = findViewById<Spinner>(R.id.spinner5)
@@ -48,9 +46,15 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         spinner5.adapter = adapter5
         MySingleton.getInstance(this).getUsersNames(spinner5, adapter5, nameList5, SESSION_STATUS)
 
+        var nameList6 = mutableListOf<String>()
+        nameList6.add("Select Businesses...")
+        val adapter6: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList6)
+        spinner6.adapter = adapter6
+        MySingleton.getInstance(this).getBusinessNames(spinner6, adapter6, nameList6)
 
         val chipgroup1 = findViewById<ChipGroup>(R.id.chipGroup)
-        val chipgroud2 = findViewById<ChipGroup>(R.id.chipGroup2)
+        val chipgroup2 = findViewById<ChipGroup>(R.id.chipGroup2)
+
         spinner5?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -82,17 +86,61 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 }
             }
         }
-        chipgroup1.setOnCheckedChangeListener { chipGroup, i ->
+        //Chips 6
+        spinner6?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
 
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                var temp = false
+                for(i in 0 until chipgroup2.childCount){
+                    val chippo2 = chipgroup2.getChildAt(i) as Chip
+                    if(chippo2.text.toString() == spinner6.selectedItem.toString()){
+                        temp = true
+                        break
+                    }
+                }
+                if(spinner6.selectedItem.toString() == "Select Businesses..." ){ }
+                else if(temp == true){
+                    temp == false
+                }
+                else{
+                    val chip = layoutInflater.inflate(R.layout.single_chip_layout, chipgroup2,false) as Chip
+                    chip.text = spinner6.selectedItem.toString()
+                    chip.isClickable = true
+                    chipgroup2.addView(chip)
+                }
+                if(chipgroup2.isEmpty()){
+                    chipgroup2.visibility = GONE
+                }
+                else if (chipgroup2.isNotEmpty()){
+                    chipgroup2.visibility = VISIBLE
+                }
+            }
+        }
+        chipgroup1.setOnCheckedChangeListener { chipGroup, i ->
+            val chippo2: Chip = chipgroup1.findViewById(chipGroup.checkedChipId) as Chip
+            chipgroup1.removeView(chippo2)
+
+            if(chipgroup1.isEmpty()){
+                chipgroup1.visibility = GONE
+            }
+            else if (chipgroup1.isNotEmpty()){
+                chipgroup1.visibility = VISIBLE
+            }
         }
 
+        chipgroup2.setOnCheckedChangeListener { chipGroup, i ->
+            val chippo3: Chip = chipgroup2.findViewById(chipGroup.checkedChipId) as Chip
+            chipgroup2.removeView(chippo3)
 
-
-        var nameList6 = mutableListOf<String>()
-        nameList6.add("Select Businesses...")
-        val adapter6: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList6)
-        spinner6.adapter = adapter6
-        MySingleton.getInstance(this).getBusinessNames(spinner6, adapter6, nameList6)
+            if(chipgroup2.isEmpty()){
+                chipgroup2.visibility = GONE
+            }
+            else if (chipgroup2.isNotEmpty()){
+                chipgroup2.visibility = VISIBLE
+            }
+        }
 
         var nameList7 = mutableListOf<String>()
         nameList7.add("Select Category...")
@@ -109,10 +157,9 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             val duration = Toast.LENGTH_SHORT
 
 
-            if (spinner7.selectedItem.toString() == "Select Category..." || spinner6.selectedItem.toString() == "Select Business..." ||
-                spinner5.selectedItem.toString() == "Select Users..." || startDate.text.toString() == "" ||
-                finishDate.text.toString() == "" || taskTitle.text.toString() == "" || delegated.text.toString() == ""
-            ) {
+            if (spinner7.selectedItem.toString() == "Select Category..." || chipgroup1.isEmpty() ||
+                chipgroup2.isEmpty() || startDate.text.toString() == "" || finishDate.text.toString() == ""
+                || taskTitle.text.toString() == "" || delegated.text.toString() == "") {
                 text = "Please complete all forms!"
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
@@ -132,11 +179,8 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 toast.show()
             }
         }
-
         pickDate()
     }
-
-
 
     private fun pickDate(){
         startDate.setOnClickListener {
