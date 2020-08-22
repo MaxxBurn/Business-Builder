@@ -1,6 +1,7 @@
 package com.example.businessbuilder
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.View.GONE
@@ -176,8 +177,6 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                     val idList2 = chipgroup2.getChildAt(i).id
                     secondList.add(findViewById<Chip>(idList2).text.toString())
                 }
-                var taskId: TextView = TextView(this)
-                var userId: TextView = TextView(this)
                 val id = priority.checkedRadioButtonId
                 val text2 = findViewById<RadioButton>(id).text.toString()
                 MySingleton.getInstance(this).createTask(
@@ -189,13 +188,19 @@ class AddTasksMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                     delegated.text.toString(),
                     comment.text.toString(),
                     firstList,
-                    secondList,
-                    taskId,
-                    userId
+                    secondList
                 )
                 text = "Task created!"
                 val toast = Toast.makeText(applicationContext, text, duration)
                 toast.show()
+                if(SESSION_STATUS == "Administrator"){
+                    val intent = Intent(this, AdministratorMenu::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
         pickDate()

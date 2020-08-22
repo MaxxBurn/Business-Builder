@@ -19,14 +19,10 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 private val dbConnectUrl: String = "https://albreezetours.com/android_register_login/Connection.php"
-private val insertDataUrl: String = "https://albreezetours.com/android_register_login/InsertData.php"
 private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
 private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
-private val insertTaskUsersUrl: String = "https://albreezetours.com/android_register_login/InsertTaskUsers.php"
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
-private val getTaskUrl: String = "https://albreezetours.com/android_register_login/GetLastTaskId.php"
 private val getUserDetailsUrl: String = "https://albreezetours.com/android_register_login/GetUserDetails.php"
-private val getLastTaskIdUrl: String = "https://albreezetours.com/android_register_login/GetLastTaskId.php"
 private val insertDataUrl14: String = "https://albreezetours.com/android_register_login/InsertData14.php"
 private val createTaskUrl: String = "https://albreezetours.com/android_register_login/InsertTask.php"
 private val insertRegister: String = "https://albreezetours.com/android_register_login/Register.php"
@@ -190,9 +186,17 @@ open class MySingleton constructor(context: Context) {
 
     fun createTask(
         text1: String, text2: String, text3: String, text4: String,
-        text5: String, text6: String, text7: String, text8: MutableList<String>, text9: MutableList<String>,text10: TextView, name: TextView
+        text5: String, text6: String, text7: String, text8: MutableList<String>, text9: MutableList<String>
     ) {
         val rootObject = JSONObject()
+        val names = JSONArray()
+        for(i in 0 until text8.size){
+            names.put(text8[i])
+        }
+        val business = JSONArray()
+        for(i in 0 until text9.size){
+            business.put(text9[i])
+        }
         rootObject.put("title_task", text1)
         rootObject.put("priority", text2)
         rootObject.put("start_date_task", text3)
@@ -201,6 +205,10 @@ open class MySingleton constructor(context: Context) {
         rootObject.put("delegated", text6)
         rootObject.put("comment_task", text7)
         rootObject.put("id", SESSION_ID)
+        rootObject.put("names", names)
+        rootObject.put("businesses", business)
+
+        println(rootObject)
 
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
@@ -212,72 +220,6 @@ open class MySingleton constructor(context: Context) {
             }
         )
         addToRequestQueue(jsonObject)
-
-        //1 GET USER ID
-
-        var first_name: String = ""
-        var last_name: String = ""
-        var keepInMind: Int = 0
-        for(i in name.text.indices){
-            if(name.text[i] == ' '){
-                keepInMind = 1
-            }
-            if(keepInMind == 0){
-                first_name += name.text[i]
-            }
-            else if(keepInMind == 1 && name.text[i] != ' '){
-                last_name += name.text[i]
-            }
-        }
-        var userIdId : String = ""
-
-        val obj1 = JSONObject()
-        obj1.put("name", first_name)
-        obj1.put("lastname", last_name)
-        val jsonObject2 = JsonObjectRequest(
-            Request.Method.POST,
-            getUserID,
-            obj1,
-            Response.Listener { response ->
-                userIdId = response.toString()
-            },
-            Response.ErrorListener {
-            }
-        )
-        addToRequestQueue(jsonObject2)
-
-        var taskId:String = ""
-        //2 TASK ID
-        val rootObject1 = JSONObject()
-        val jsonObject1 = JsonObjectRequest(
-            Request.Method.POST,
-            getTaskUrl,
-            rootObject1,
-            Response.Listener { response ->
-                taskId= response.toString()
-            },
-            Response.ErrorListener {
-            }
-        )
-        addToRequestQueue(jsonObject1)
-
-        //2 ADD TO USERS TABLE
-        val rootObject3 = JSONObject()
-        rootObject.put("task_id", taskId)
-        rootObject.put("user_id", userIdId)
-        val jsonObject3 = JsonObjectRequest(
-            Request.Method.POST,
-            insertTaskUsersUrl,
-            rootObject3,
-            Response.Listener { response ->
-            },
-            Response.ErrorListener {
-            }
-        )
-        addToRequestQueue(jsonObject3)
-        println("ADSA_D_ASD_ASD_AS_DAS_D_ASD_ASD_A_DA_DA_D_AD_AS_")
-        println(taskId)
-        println(userIdId)
     }
 
     fun logIn(context: Context, email: String, password: String) {
