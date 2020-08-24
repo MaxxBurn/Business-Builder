@@ -6,8 +6,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/momentumoooo2_menu"
+        android:label="Momentum Group"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -22,7 +22,6 @@
         <activity android:name=".EditUsersMenu" />
         <activity android:name=".EditUsersMenuList" />
         <activity android:name=".AdministratorMenu" />
-        <activity android:name=".Register" />
         <activity android:name=".NoteMenu" />
         <activity android:name=".MenuToDoList" />
         <activity android:name=".BusinessJournalMenu" />
@@ -50,14 +49,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Payment" />
         <activity android:name=".Invoice" />
         <activity android:name=".Production" />
         <activity android:name=".AssetRegister" />
         <activity android:name=".Cashbook" />
         <activity android:name=".MileStone" />
         <activity android:name=".ObjectiveDetails" />
-        <activity android:name=".PlanningAction6" />
         <activity android:name=".PlanningAction5" />
         <activity android:name=".PlanningAction4" />
         <activity android:name=".PlanningAction3" />
@@ -66,7 +63,6 @@
         <activity android:name=".DailyTransaction6" />
         <activity android:name=".DailyTransaction5" />
         <activity android:name=".DailyTranscation4" />
-        <activity android:name=".DailyTransaction3" />
         <activity android:name=".DailyTransaction1" />
         <activity android:name=".AddIncomeMenu" />
         <activity android:name=".DailyTransaction2" />
