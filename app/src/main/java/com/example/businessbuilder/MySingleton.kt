@@ -3,22 +3,24 @@ package com.example.businessbuilder
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.media.Image
 import android.util.LruCache
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
-import com.android.volley.toolbox.ImageLoader
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
+import com.android.volley.toolbox.*
 import org.json.JSONArray
 import org.json.JSONObject
 
 private val dbConnectUrl: String = "https://albreezetours.com/android_register_login/Connection.php"
+private val getHRUrl: String = "https://albreezetours.com/android_register_login/GetBusinessHR.php"
 private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
 private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
@@ -100,7 +102,6 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(stringRequest)
     }
-
     //Connecting to Database
     fun dbConnect(textView: TextView) {
         val stringRequest = StringRequest(
@@ -177,6 +178,52 @@ open class MySingleton constructor(context: Context) {
             insertRegister,
             rootObject,
             Response.Listener { response ->
+            },
+            Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
+    fun getHR(context: Context, list: ListView, business: ArrayList<Movie>){
+
+        val jsonObject = JsonObjectRequest(
+            Request.Method.GET,
+            getHRUrl,
+            null,
+            Response.Listener { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+                    val text2 = userStuff.getString("number")
+                    val text = userStuff.getString("logo")
+                    val text3 = userStuff.getString("business_name_unit")
+
+                    val textAdd = TextView(context)
+                    val numberText = TextView(context)
+
+                    val imageObj = ImageRequest(
+                        "https://albreezetours.com/android_register_login/hr-logo/"+"${text}",
+                        Response.Listener<Bitmap> {response1 ->
+                            textAdd.text = text3
+                            numberText.text = text2
+                            val yeet1 = Movie(response1, textAdd.text.toString(), numberText.text.toString())
+                            business.add(yeet1)
+                            println(business)
+                            val adapter1 = MovieAdapter(context, business)
+                            list.adapter = adapter1
+                        },
+                        200,
+                        200,
+                        ImageView.ScaleType.CENTER,
+                        Bitmap.Config.RGB_565,
+                        Response.ErrorListener {
+                        }
+                    )
+                    addToRequestQueue(imageObj)
+                }
+
             },
             Response.ErrorListener {
             }
@@ -733,8 +780,6 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-
-
 
     fun verifyPendingStatus(value: ImageButton){
         val request = StringRequest(

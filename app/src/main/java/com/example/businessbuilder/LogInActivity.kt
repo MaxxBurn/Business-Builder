@@ -27,6 +27,9 @@ class LogInActivity : AppCompatActivity() {
         loading = findViewById(R.id.loading)
         val passwordLog = findViewById<EditText>(R.id.passwordbar)
 
+        SESSION_STATUS = ""
+        SESSION_ID = ""
+        SESSION_NAME = ""
         logButton.setOnClickListener {
             MySingleton.getInstance(this).logIn(this, email.text.toString(), passwordLog.text.toString())
             if (SESSION_STATUS == "User" || SESSION_STATUS == "Super Users"){

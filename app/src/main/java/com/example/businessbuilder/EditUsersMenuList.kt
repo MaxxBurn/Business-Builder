@@ -11,7 +11,6 @@ class EditUsersMenuList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_users)
 
-
         val yeet = mutableListOf<CharSequence>()
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter(applicationContext, android.R.layout.simple_selectable_list_item, yeet)
         val list: ListView = findViewById(R.id.userList)

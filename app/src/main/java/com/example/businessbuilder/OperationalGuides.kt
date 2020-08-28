@@ -1,63 +1,96 @@
 package com.example.businessbuilder
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import com.example.businessbuilder.R
+import android.content.Context
+import android.graphics.Bitmap
+import android.media.Image
 import android.os.Bundle
-import android.widget.ImageButton
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.ListView
+import android.widget.TextView
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+
+
+class MovieAdapter(context: Context, list: ArrayList<Movie>) :
+    ArrayAdapter<Movie?>(context, 0, list as List<Movie?>) {
+    private var mContext: Context
+    private var moviesList: List<Movie> = ArrayList()
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var listItem: View? = convertView
+        if (listItem == null) listItem =
+            LayoutInflater.from(mContext).inflate(R.layout.item_custom, parent, false)
+        val currentMovie = moviesList[position]
+        val image: ImageView = listItem?.findViewById(R.id.imageView_poster) as ImageView
+        image.setImageBitmap(currentMovie.getmImageDrawable())
+        val name = listItem.findViewById(R.id.textView_name) as TextView
+        name.text = currentMovie.getmName()
+        val release = listItem.findViewById(R.id.textView_release) as TextView
+        release.text = currentMovie.getmRelease()
+        return listItem
+    }
+
+    init {
+        moviesList = list
+        mContext = context;
+    }
+}
+
+
+class Movie(
+    private var mImageDrawable: Bitmap,
+    private var mName: String, var mRelease: String
+) {
+
+    fun getmImageDrawable(): Bitmap {
+        return mImageDrawable
+    }
+
+    fun setmImageDrawable(mImageDrawable: Bitmap) {
+        this.mImageDrawable = mImageDrawable
+    }
+
+    fun getmName(): String {
+        return mName
+    }
+
+    fun setmName(mName: String) {
+        this.mName = mName
+    }
+
+    fun getmRelease(): String {
+        return mRelease
+    }
+
+    fun setmRelease(mRelease: String) {
+        this.mRelease = mRelease
+    }
+
+    // Constructor that is used to create an instance of the Movie object
+    init {
+        mName = mName
+        this.mRelease = mRelease
+    }
+}
+
+
 
 class OperationalGuides : AppCompatActivity() {
-
-    lateinit var button1 : ImageButton
-    lateinit var button2 : ImageButton
-    lateinit var button3 : ImageButton
-    lateinit var button4 : ImageButton
-    lateinit var button5 : ImageButton
-    lateinit var button6 : ImageButton
-    lateinit var button7 : ImageButton
-    lateinit var button8 : ImageButton
-    lateinit var button9 : ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_operational_guides)
 
-        button1  = findViewById(R.id.personalDev)
-        button2 = findViewById(R.id.commun1)
-        button3 = findViewById(R.id.commun2)
-        button4 = findViewById(R.id.sales1)
-        button5 = findViewById(R.id.sales2)
-        button6 = findViewById(R.id.general1)
-        button7 = findViewById(R.id.general2)
-        button8 = findViewById(R.id.general3)
-        button9 = findViewById(R.id.strat1)
+        val listView = findViewById<ListView>(R.id.movies_list)
+        val moviesList : ArrayList<Movie> = ArrayList()
 
-        button1.setOnClickListener {
-            val intent = Intent(this, PersonalDev::class.java)
-            startActivity(intent)
-        }
-        button2.setOnClickListener {
+        MySingleton.getInstance(this).getHR(this, listView, moviesList)
 
-        }
-        button3.setOnClickListener {
-
-        }
-        button4.setOnClickListener {
-
-        }
-        button5.setOnClickListener {
-
-        }
-        button6.setOnClickListener {
-
-        }
-        button7.setOnClickListener {
-
-        }
-        button8.setOnClickListener {
-
-        }
-        button9.setOnClickListener {
-
-        }
     }
 }

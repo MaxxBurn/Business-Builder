@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:srcCompat="@mipmap/add_task_foreground" />
 
             <ImageButton
                 android:id="@+id/imageButton4"

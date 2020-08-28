@@ -76,7 +76,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".OperationalGuides"
-            android:label="@string/title_activity_operational_guide"
+            android:label="All Businesses"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".KeyPeople"

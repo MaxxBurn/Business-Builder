@@ -60,10 +60,11 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@color/GridColor"
             android:orientation="vertical"
+            android:paddingBottom="5dp"
             app:layout_column="0"
             app:layout_row="0">
 
@@ -74,16 +75,16 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:contentDescription="TODO"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:srcCompat="@mipmap/user_welcome_foreground" />
 
             <Button
                 android:id="@+id/logIn"
-                android:layout_width="48dp"
-                android:layout_height="29dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="100dp"
-                android:background="@color/GridColor"
-                android:text="@string/login"
+                android:background="@null"
+                android:text="Welcome"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textIsSelectable="false"
@@ -96,22 +97,14 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/background_dark" />
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="63dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:contentDescription="TODO"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
-
             <Button
                 android:id="@+id/companyProfile"
                 android:layout_width="48dp"
                 android:layout_height="29dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/GridColor"
-                android:text="@string/compProfile"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:text="Log Out"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textIsSelectable="false"
@@ -161,14 +154,14 @@
                     android:layout_marginLeft="70dp"
                     android:layout_marginRight="50dp"
                     android:background="@color/GridColor"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    app:srcCompat="@mipmap/tasks_real_foreground" />
 
                 <ImageButton
                     android:id="@+id/operationalGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/GridColor"
-                    app:srcCompat="@drawable/ic_launcher_foreground" />
+                    app:srcCompat="@mipmap/emplyee_real_foreground" />
             </TableRow>
 
             <TableRow
@@ -182,14 +175,14 @@
                     android:layout_marginLeft="70dp"
                     android:layout_marginRight="50dp"
                     android:background="@color/GridColor"
-                    app:srcCompat="@mipmap/budget_menu" />
+                    app:srcCompat="@mipmap/budget_real_foreground" />
 
                 <ImageButton
                     android:id="@+id/keyPeople"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@color/GridColor"
-                    app:srcCompat="@mipmap/key_people_icon_foreground" />
+                    app:srcCompat="@mipmap/users_real_foreground" />
             </TableRow>
         </TableLayout>
 

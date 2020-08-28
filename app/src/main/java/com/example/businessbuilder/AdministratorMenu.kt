@@ -12,7 +12,6 @@ class AdministratorMenu : AppCompatActivity() {
         setContentView(R.layout.activity_administrator_menu)
 
 
-        val button1 = findViewById<Button>(R.id.logIn)
         val button2 = findViewById<Button>(R.id.companyProfile)
         val button3 = findViewById<ImageButton>(R.id.dailyTransactions)
         val button4 = findViewById<ImageButton>(R.id.planningAction)
@@ -20,12 +19,9 @@ class AdministratorMenu : AppCompatActivity() {
         val button6 = findViewById<ImageButton>(R.id.operationalGuide)
         val button7 = findViewById<ImageButton>(R.id.resources)
         val button8 = findViewById<ImageButton>(R.id.keyPeople)
+        val logInButton = findViewById<Button>(R.id.logIn)
 
-
-            button1.setOnClickListener {
-                val logInMenu = Intent(this, LogInActivity::class.java)
-                startActivity(logInMenu)
-            }
+        logInButton.setText("Welcome ${SESSION_NAME}")
 
             button3.setOnClickListener {
                 val firstMenu = Intent(this, DailyTransaction::class.java)
@@ -51,7 +47,8 @@ class AdministratorMenu : AppCompatActivity() {
                 val sixthMenu = Intent(this, KeyPeople::class.java)
                 startActivity(sixthMenu)
             }
-
-
         }
+    override fun onBackPressed() {
+        this.moveTaskToBack(true);
     }
+}
