@@ -2,6 +2,7 @@ package com.example.businessbuilder
 
 import com.example.businessbuilder.R
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.media.Image
 import android.os.Bundle
@@ -42,10 +43,10 @@ class MovieAdapter(context: Context, list: ArrayList<Movie>) :
     }
 }
 
-
 class Movie(
     private var mImageDrawable: Bitmap,
-    private var mName: String, var mRelease: String
+    private var mName: String, var mRelease: String,
+    private var userRelease: String
 ) {
 
     fun getmImageDrawable(): Bitmap {
@@ -71,6 +72,12 @@ class Movie(
     fun setmRelease(mRelease: String) {
         this.mRelease = mRelease
     }
+    fun setUserName(userRelease:String){
+        this.userRelease = userRelease
+    }
+    fun getUserName(): String{
+        return userRelease
+    }
 
     // Constructor that is used to create an instance of the Movie object
     init {
@@ -78,8 +85,6 @@ class Movie(
         this.mRelease = mRelease
     }
 }
-
-
 
 class OperationalGuides : AppCompatActivity() {
 
@@ -89,8 +94,16 @@ class OperationalGuides : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.movies_list)
         val moviesList : ArrayList<Movie> = ArrayList()
+        val adapter1 = MovieAdapter(this, moviesList)
 
         MySingleton.getInstance(this).getHR(this, listView, moviesList)
 
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val element = adapter1.getItem(position)
+            val intent = Intent(this, BusinessEmployees::class.java)
+            intent.putExtra("autoComplete",element?.getUserName())
+            intent.putExtra("nameBusiness", element?.getmName())
+            startActivity(intent)
+        }
     }
 }

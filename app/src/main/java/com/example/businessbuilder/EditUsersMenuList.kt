@@ -20,7 +20,7 @@ class EditUsersMenuList : AppCompatActivity() {
         list.setOnItemClickListener { parent, view, position, id ->
             val element = adapter.getItem(position)
             val intent = Intent(this, EditUsersMenu::class.java)
-            intent.putExtra("autoComplete", element)
+//            intent.putExtra("autoComplete", element)
             startActivity(intent)
         }
 

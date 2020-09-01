@@ -23,6 +23,7 @@ private val dbConnectUrl: String = "https://albreezetours.com/android_register_l
 private val getHRUrl: String = "https://albreezetours.com/android_register_login/GetBusinessHR.php"
 private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
 private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
+private val getBusinessEmployeesUrl: String = "https://albreezetours.com/android_register_login/GetBusinessEmployees.php"
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
 private val getUserDetailsUrl: String = "https://albreezetours.com/android_register_login/GetUserDetails.php"
 private val insertDataUrl14: String = "https://albreezetours.com/android_register_login/InsertData14.php"
@@ -184,9 +185,87 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(jsonObject)
     }
+    fun businessEmployees(businessName: String, list: ListView, array: ArrayList<BusinessEmployee>,
+                            context: Context){
 
+        val rootObject = JSONObject()
+        rootObject.put("name", businessName)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            getBusinessEmployeesUrl,
+            rootObject,
+            { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+
+                    val text1 = userStuff.getString("employee_first_name")
+                    val text2 = userStuff.getString("employee_last_name")
+                    val text3 = userStuff.getString("employee_father_name")
+                    val text4 = userStuff.getString("employee_position")
+                    val text5 = userStuff.getString("employee_start_job")
+                    val fullName = "$text1 $text2"
+                    val obj1 = BusinessEmployee(fullName, text4, text5)
+                    array.add(obj1)
+                    val adapter1 = BusinessAdapter(context, array)
+                    list.adapter = adapter1
+                }
+
+
+            },
+            {
+
+            }
+        )
+
+        addToRequestQueue(jsonObject)
+    }
     fun getHR(context: Context, list: ListView, business: ArrayList<Movie>){
+        val jsonObject = JsonObjectRequest(
+            Request.Method.GET,
+            getHRUrl,
+            null,
+            { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+                    val text2 = userStuff.getString("number")
+                    val text = userStuff.getString("logo")
+                    val text3 = userStuff.getString("business_name_unit")
+                    val text4= userStuff.getString("business_username")
 
+                    val textAdd = TextView(context)
+                    val numberText = TextView(context)
+
+                    val imageObj = ImageRequest(
+                        "https://albreezetours.com/android_register_login/hr-logo/"+"${text}",
+                        {response1 ->
+                            textAdd.text = text3
+                            numberText.text = text2
+                            val yeet1 = Movie(response1, textAdd.text.toString(), numberText.text.toString(),text4)
+                            business.add(yeet1)
+                            val adapter1 = MovieAdapter(context, business)
+                            list.adapter = adapter1
+                        },
+                        200,
+                        200,
+                        ImageView.ScaleType.CENTER,
+                        Bitmap.Config.RGB_565,
+                        {
+                        }
+                    )
+                    addToRequestQueue(imageObj)
+                }
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
+    fun getMoop(context: Context, list: ListView, business: ArrayList<Movie>){
         val jsonObject = JsonObjectRequest(
             Request.Method.GET,
             getHRUrl,
@@ -199,18 +278,18 @@ open class MySingleton constructor(context: Context) {
                     val text2 = userStuff.getString("number")
                     val text = userStuff.getString("logo")
                     val text3 = userStuff.getString("business_name_unit")
+                    val text4= userStuff.getString("business_username")
 
                     val textAdd = TextView(context)
                     val numberText = TextView(context)
 
                     val imageObj = ImageRequest(
-                        "https://albreezetours.com/android_register_login/hr-logo/"+"${text}",
+                        "https://albreezetours.com/android_register_login/logo/"+"${text}",
                         Response.Listener<Bitmap> {response1 ->
                             textAdd.text = text3
                             numberText.text = text2
-                            val yeet1 = Movie(response1, textAdd.text.toString(), numberText.text.toString())
+                            val yeet1 = Movie(response1, textAdd.text.toString(), numberText.text.toString(),text4)
                             business.add(yeet1)
-                            println(business)
                             val adapter1 = MovieAdapter(context, business)
                             list.adapter = adapter1
                         },
@@ -230,6 +309,9 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(jsonObject)
     }
+
+
+
 
     fun createTask(
         text1: String, text2: String, text3: String, text4: String,
@@ -255,7 +337,6 @@ open class MySingleton constructor(context: Context) {
         rootObject.put("names", names)
         rootObject.put("businesses", business)
 
-        println(rootObject)
 
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
@@ -472,7 +553,6 @@ open class MySingleton constructor(context: Context) {
 
                 for (i in 0 until jsonArray.length()) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
-
                     val willWrite = UserDetails(
                         userStuff.getString("name_user"),
                         userStuff.getString("last_name_user"),
@@ -723,7 +803,7 @@ open class MySingleton constructor(context: Context) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
                     val willWrite = GetUsersName(
-                        userStuff.getString("name_business")
+                        userStuff.getString("business_name")
                     ).toString()
 
                     nameList.add(willWrite)

@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val button2 = findViewById<Button>(R.id.companyProfile)
+        val button2 = findViewById<Button>(R.id.companyProfile1)
         val button3 = findViewById<ImageButton>(R.id.dailyTransactions)
         val button4 = findViewById<ImageButton>(R.id.planningAction)
         val button5 = findViewById<ImageButton>(R.id.tasksMenu)
@@ -23,6 +23,14 @@ class MainActivity : AppCompatActivity() {
         val button8 = findViewById<ImageButton>(R.id.keyPeople)
         val logInButton = findViewById<Button>(R.id.logIn)
         logInButton.setText("Welcome ${SESSION_NAME}")
+        val logoutButton = findViewById<Button>(R.id.companyProfile1)
+        logoutButton.setOnClickListener {
+            val intent = Intent(this, LogInActivity::class.java)
+            startActivity(intent)
+        }
+
+
+
         button7.visibility = INVISIBLE
         button8.visibility = INVISIBLE
 

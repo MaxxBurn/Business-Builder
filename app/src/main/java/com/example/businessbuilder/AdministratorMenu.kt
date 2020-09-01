@@ -12,7 +12,7 @@ class AdministratorMenu : AppCompatActivity() {
         setContentView(R.layout.activity_administrator_menu)
 
 
-        val button2 = findViewById<Button>(R.id.companyProfile)
+        val button2 = findViewById<Button>(R.id.companyProfile1)
         val button3 = findViewById<ImageButton>(R.id.dailyTransactions)
         val button4 = findViewById<ImageButton>(R.id.planningAction)
         val button5 = findViewById<ImageButton>(R.id.tasksMenu)
@@ -20,6 +20,12 @@ class AdministratorMenu : AppCompatActivity() {
         val button7 = findViewById<ImageButton>(R.id.resources)
         val button8 = findViewById<ImageButton>(R.id.keyPeople)
         val logInButton = findViewById<Button>(R.id.logIn)
+        val logoutButton = findViewById<Button>(R.id.companyProfile)
+
+        logoutButton.setOnClickListener {
+            val intent = Intent(this, LogInActivity::class.java)
+            startActivity(intent)
+        }
 
         logInButton.setText("Welcome ${SESSION_NAME}")
 

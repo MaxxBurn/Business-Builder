@@ -98,7 +98,7 @@
                 android:background="@android:color/background_dark" />
 
             <Button
-                android:id="@+id/companyProfile"
+                android:id="@+id/companyProfile1"
                 android:layout_width="48dp"
                 android:layout_height="29dp"
                 android:layout_marginStart="20dp"

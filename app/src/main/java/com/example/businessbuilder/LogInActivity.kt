@@ -43,6 +43,9 @@ class LogInActivity : AppCompatActivity() {
 
         }
     }
+    override fun onBackPressed() {
+        this.moveTaskToBack(true);
+    }
     //Used to create another level of abstraction
 
     /* private fun requestAbstractor(){
