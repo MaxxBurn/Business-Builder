@@ -24,6 +24,7 @@ private val getHRUrl: String = "https://albreezetours.com/android_register_login
 private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
 private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
 private val getBusinessEmployeesUrl: String = "https://albreezetours.com/android_register_login/GetBusinessEmployees.php"
+private val getMoopUrl: String = "https://albreezetours.com/android_register_login/GetMoop.php"
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
 private val getUserDetailsUrl: String = "https://albreezetours.com/android_register_login/GetUserDetails.php"
 private val insertDataUrl14: String = "https://albreezetours.com/android_register_login/InsertData14.php"
@@ -268,16 +269,16 @@ open class MySingleton constructor(context: Context) {
     fun getMoop(context: Context, list: ListView, business: ArrayList<Movie>){
         val jsonObject = JsonObjectRequest(
             Request.Method.GET,
-            getHRUrl,
+            getMoopUrl,
             null,
-            Response.Listener { response ->
+            { response ->
                 val jsonO: JSONObject = response
                 val jsonArry = jsonO.getJSONArray("Users")
                 for(i in 0 until jsonArry.length()){
                     val userStuff: JSONObject = jsonArry.getJSONObject(i)
                     val text2 = userStuff.getString("number")
                     val text = userStuff.getString("logo")
-                    val text3 = userStuff.getString("business_name_unit")
+                    val text3 = userStuff.getString("business_name")
                     val text4= userStuff.getString("business_username")
 
                     val textAdd = TextView(context)
@@ -285,7 +286,7 @@ open class MySingleton constructor(context: Context) {
 
                     val imageObj = ImageRequest(
                         "https://albreezetours.com/android_register_login/logo/"+"${text}",
-                        Response.Listener<Bitmap> {response1 ->
+                        {response1 ->
                             textAdd.text = text3
                             numberText.text = text2
                             val yeet1 = Movie(response1, textAdd.text.toString(), numberText.text.toString(),text4)
@@ -297,21 +298,18 @@ open class MySingleton constructor(context: Context) {
                         200,
                         ImageView.ScaleType.CENTER,
                         Bitmap.Config.RGB_565,
-                        Response.ErrorListener {
+                        {
                         }
                     )
                     addToRequestQueue(imageObj)
                 }
 
             },
-            Response.ErrorListener {
+            {
             }
         )
         addToRequestQueue(jsonObject)
     }
-
-
-
 
     fun createTask(
         text1: String, text2: String, text3: String, text4: String,
@@ -342,9 +340,9 @@ open class MySingleton constructor(context: Context) {
             Request.Method.POST,
             createTaskUrl,
             rootObject,
-            Response.Listener { response ->
+            { response ->
             },
-            Response.ErrorListener {
+            {
             }
         )
         addToRequestQueue(jsonObject)
@@ -358,13 +356,13 @@ open class MySingleton constructor(context: Context) {
             Request.Method.POST,
             logInUrl,
             obj1,
-            Response.Listener { response ->
+            { response ->
                 val jsonObj: JSONObject = response
                 SESSION_ID = jsonObj.getString("id")
                 SESSION_STATUS = jsonObj.getString("user_status")
                 SESSION_NAME = jsonObj.getString("name")
             },
-            Response.ErrorListener {error->
+            {error->
                 val text = "Incorrect email or password!"
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(context, text, duration)
@@ -393,9 +391,9 @@ open class MySingleton constructor(context: Context) {
             Request.Method.POST,
             requestBudget,
             obj1,
-            Response.Listener { response ->
+            { response ->
             },
-            Response.ErrorListener {
+            {
             }
         )
         addToRequestQueue(jsonObject)
@@ -409,7 +407,7 @@ open class MySingleton constructor(context: Context) {
             Request.Method.POST,
             getGiver,
             obj1,
-            Response.Listener { response ->
+            { response ->
                 val jsonObj: JSONObject = response
                 val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
                 for (i in 0 until jsonArray.length()) {
@@ -418,7 +416,7 @@ open class MySingleton constructor(context: Context) {
                     textview2.setText(userStuff.getString("titull_request").toString())
                     textview3.setText(userStuff.getString("description").toString())
                 }
-            }, Response.ErrorListener {error->
+            }, { error->
             }
         )
         addToRequestQueue(request)
@@ -436,8 +434,8 @@ open class MySingleton constructor(context: Context) {
             Request.Method.POST,
             updateBudget,
             obj1,
-            Response.Listener { response ->
-            }, Response.ErrorListener {error->
+            { response ->
+            }, { error->
             }
         )
         addToRequestQueue(request)
@@ -453,7 +451,7 @@ open class MySingleton constructor(context: Context) {
             Request.Method.GET,
             getDataUrl,
             null,
-            Response.Listener { response ->
+            { response ->
                 val jsonObj: JSONObject = response
                 val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
                 for (i in 0 until jsonArray.length()) {
@@ -469,7 +467,7 @@ open class MySingleton constructor(context: Context) {
                     yeet.add(willWrite)
                 }
                 list.adapter = adapter
-            }, Response.ErrorListener {
+            }, {
             }
         )
         addToRequestQueue(request)
