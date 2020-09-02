@@ -188,7 +188,6 @@ open class MySingleton constructor(context: Context) {
     }
     fun businessEmployees(businessName: String, list: ListView, array: ArrayList<BusinessEmployee>,
                             context: Context){
-
         val rootObject = JSONObject()
         rootObject.put("name", businessName)
         val jsonObject = JsonObjectRequest(
@@ -212,11 +211,8 @@ open class MySingleton constructor(context: Context) {
                     val adapter1 = BusinessAdapter(context, array)
                     list.adapter = adapter1
                 }
-
-
             },
             {
-
             }
         )
 
@@ -266,7 +262,7 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
 
-    fun getMoop(context: Context, list: ListView, business: ArrayList<Movie>){
+    fun getMoop(context: Context, list: ListView, taskAdapter: ArrayList<TaskMenuList>){
         val jsonObject = JsonObjectRequest(
             Request.Method.GET,
             getMoopUrl,
@@ -274,12 +270,27 @@ open class MySingleton constructor(context: Context) {
             { response ->
                 val jsonO: JSONObject = response
                 val jsonArry = jsonO.getJSONArray("Users")
+                val jsonarry2 = jsonO.getJSONArray("Tasks")
                 for(i in 0 until jsonArry.length()){
                     val userStuff: JSONObject = jsonArry.getJSONObject(i)
-                    val text2 = userStuff.getString("number")
+                    val taskStuff: JSONObject = jsonarry2.getJSONObject(i)
                     val text = userStuff.getString("logo")
+                    val text2 = "Total ${taskStuff.getString("number")} tasks"
                     val text3 = userStuff.getString("business_name")
                     val text4= userStuff.getString("business_username")
+
+                    val dailyPending = "0"
+                    val dailyFinished = "0"
+                    val dailyProgress = "0"
+                    val dailyReject = "0"
+                    val requestPending = "0"
+                    val requestFinished = "0"
+                    val requestProgress= "0"
+                    val requestReject= "0"
+                    val requirePending = "0"
+                    val requireFinished = "0"
+                    val requireProgress = "0"
+                    val requireReject= "0"
 
                     val textAdd = TextView(context)
                     val numberText = TextView(context)
@@ -289,9 +300,10 @@ open class MySingleton constructor(context: Context) {
                         {response1 ->
                             textAdd.text = text3
                             numberText.text = text2
-                            val yeet1 = Movie(response1, textAdd.text.toString(), numberText.text.toString(),text4)
-                            business.add(yeet1)
-                            val adapter1 = MovieAdapter(context, business)
+                            val yeet1 = TaskMenuList(response1, textAdd.text.toString(), numberText.text.toString(),text4, dailyPending, dailyFinished,dailyProgress,dailyReject
+                            ,requestPending,requestFinished,requestProgress,requestReject,requirePending,requireFinished,requireProgress,requireReject)
+                            taskAdapter.add(yeet1)
+                            val adapter1 = TaskMenuAdapter(context, taskAdapter)
                             list.adapter = adapter1
                         },
                         200,

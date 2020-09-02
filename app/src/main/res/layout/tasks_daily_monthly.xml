@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="50dp"
+        android:id="@+id/name11"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/imageView_poster1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView_name1"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/name11"
+        android:layout_margin="20dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/textView_release1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/textView_name1"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/pendingStuff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/textView_name1"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="10sp"
+        android:text="Pending"/>
+    <TextView
+        android:id="@+id/finishedStuff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/textView_name1"
+        android:layout_toRightOf="@id/pendingStuff"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="10sp"
+
+        android:text="Finished"
+        />
+    <TextView
+        android:id="@+id/progressStuff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/finishedStuff"
+        android:layout_alignTop="@id/textView_name1"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="10sp"
+        android:text="Progress"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/progressStuff"
+        android:layout_marginLeft="30dp"
+        android:layout_alignTop="@id/textView_name1"
+        android:layout_marginTop="40dp"
+        android:text="Rejected"
+        android:textSize="10sp"
+        />
+
+
+
+
+    <TextView
+        android:id="@+id/daily"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/pendingStuff"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="35dp"
+        android:text="Daily Tasks"
+        android:textSize="10sp"
+        />
+    <TextView
+        android:id="@+id/monthlyRequest"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/daily"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:text="Monthly Requested"
+        android:textSize="10sp"
+        />
+    <TextView
+        android:id="@+id/monthlyRequire"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/monthlyRequest"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:text="Monthly Required"
+        android:textSize="10sp"
+        />
+
+    <TextView
+        android:id="@+id/dailyPending"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/pendingStuff"
+        android:layout_toRightOf="@id/daily"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+
+    <TextView
+        android:id="@+id/dailyFinished"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/pendingStuff"
+        android:layout_toRightOf="@id/dailyPending"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/dailyProgress"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/pendingStuff"
+        android:layout_toRightOf="@id/dailyFinished"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/dailyRejected"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/pendingStuff"
+        android:layout_toRightOf="@id/dailyProgress"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textAlignment="textEnd"
+        android:textSize="10sp"
+        />
+    <TextView
+        android:id="@+id/requestedPending"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/dailyPending"
+        android:layout_toRightOf="@id/monthlyRequest"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+
+    <TextView
+        android:id="@+id/requestedFinished"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/dailyPending"
+        android:layout_toRightOf="@id/requestedPending"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/requestedProgress"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/dailyPending"
+        android:layout_toRightOf="@id/requestedFinished"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/requestedReject"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/dailyPending"
+        android:layout_toRightOf="@id/requestedProgress"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+
+
+
+    <TextView
+        android:id="@+id/requirePending"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/monthlyRequest"
+        android:layout_toRightOf="@id/monthlyRequire"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/requireFinished"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/monthlyRequest"
+        android:layout_toRightOf="@id/requirePending"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/requireProgress"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/monthlyRequest"
+        android:layout_toRightOf="@id/requireFinished"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+    <TextView
+        android:id="@+id/requireReject"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/monthlyRequest"
+        android:layout_toRightOf="@id/requireProgress"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="35dp"
+        android:textSize="10sp"
+        android:textAlignment="textEnd"
+        />
+
+
+
+
+
+
+
+</RelativeLayout>

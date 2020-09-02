@@ -67,7 +67,6 @@ class BusinessEmployees : AppCompatActivity() {
 
         val given = intent.getStringExtra("autoComplete")
         val nameForLabel = intent.getStringExtra("nameBusiness")
-
         this.title = nameForLabel
 
         MySingleton.getInstance(this).businessEmployees(given, listView, employeeList, this)
