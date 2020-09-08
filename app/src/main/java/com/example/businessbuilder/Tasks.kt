@@ -109,13 +109,13 @@ class TaskMenuAdapter(context: Context, list: ArrayList<TaskMenuList>) :
         requestReject.text = currentTaskList.getRequestedReject()
 
         val requirePending = listItem.findViewById(R.id.requirePending) as TextView
-        requirePending.text = currentTaskList.getDailyPending()
+        requirePending.text = currentTaskList.getRequirePending()
         val requireFinished = listItem.findViewById(R.id.requireFinished) as TextView
-        requireFinished.text = currentTaskList.getDailyFinished()
+        requireFinished.text = currentTaskList.getRequireFinished()
         val requireProgress= listItem.findViewById(R.id.requireProgress) as TextView
-        requireProgress.text = currentTaskList.getDailyProgress()
+        requireProgress.text = currentTaskList.getRequireProgress()
         val requireReject= listItem.findViewById(R.id.requireReject) as TextView
-        requireReject.text = currentTaskList.getDailyReject()
+        requireReject.text = currentTaskList.getRequireReject()
 
         return listItem
     }
@@ -125,9 +125,6 @@ class TaskMenuAdapter(context: Context, list: ArrayList<TaskMenuList>) :
         mContext = context;
     }
 }
-
-
-
 class Tasks : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,6 +143,8 @@ class Tasks : AppCompatActivity() {
             val intent = Intent(this, TaskMenu::class.java)
             intent.putExtra("autoComplete",element?.getUserName())
             intent.putExtra("nameBusiness", element?.getmName())
+
+            intent.putExtra("nameForOtherTaskMenu", element?.getmName())
             startActivity(intent)
         }
 

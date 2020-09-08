@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewTasks">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:id="@+id/titleOfTask"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="170dp"
+                    android:text="Title:"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/categoryOfTask"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Category:"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:id="@+id/textView235"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Users"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView236"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Businesses"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <ListView
+                android:paddingTop="7dp"
+                android:id="@+id/yeetlist"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:id="@+id/commentTask"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Comment: " />
+
+
+                <TextView
+                    android:id="@+id/priorityTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Priority: " />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="50dp">
+
+                <TextView
+                    android:id="@+id/startFinishTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Start/Finish " />
+
+                <TextView
+                    android:id="@+id/delgatedTask"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Delegated By" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="50dp">
+
+                <TextView
+                    android:id="@+id/statusOfTask"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status: " />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

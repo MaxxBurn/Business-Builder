@@ -9,6 +9,7 @@ import android.util.LruCache
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
@@ -31,9 +32,11 @@ private val insertDataUrl14: String = "https://albreezetours.com/android_registe
 private val createTaskUrl: String = "https://albreezetours.com/android_register_login/InsertTask.php"
 private val insertRegister: String = "https://albreezetours.com/android_register_login/Register.php"
 private val logInUrl: String = "https://albreezetours.com/android_register_login/Login.php"
+private val GetTaskInfoUrl: String = "https://albreezetours.com/android_register_login/GetInfoForTask.php"
 private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
 private val getBusinessNames: String = "https://albreezetours.com/android_register_login/GetBusinessNames.php"
 private val getReason: String = "https://albreezetours.com/android_register_login/GetReason.php"
+private val getSpecificBusinessTaskUrl: String = "https://albreezetours.com/android_register_login/GetSpecificForBusinessTask.php"
 private val getSpecificReason: String = "https://albreezetours.com/android_register_login/GetSpecificReason.php"
 private val verifyPendingStatus: String = "https://albreezetours.com/android_register_login/VerifyPendingImage.php"
 private val requestBudget: String = "https://albreezetours.com/android_register_login/RequestBudget.php"
@@ -218,6 +221,39 @@ open class MySingleton constructor(context: Context) {
 
         addToRequestQueue(jsonObject)
     }
+
+    fun getTasksMenu(given: String, list:ListView, context: Context, tasksList: ArrayList<TasksInBusiness>, number: String){
+        val rootObject = JSONObject()
+        rootObject.put("business_name", given)
+        rootObject.put("number",number)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            getSpecificBusinessTaskUrl,
+            rootObject,
+            { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+
+                    val text1 = userStuff.getString("category")
+                    val text2 = userStuff.getString("id_task")
+                    val text3 = userStuff.getString("title_task")
+                    val text4 = userStuff.getString("status_task_finish")
+                    val text5 = userStuff.getString("created")
+                    val obj1 = TasksInBusiness(text2, text3, text4, text1, text5)
+                    tasksList.add(obj1)
+                    val adapter1 = TaskAdapter(context, tasksList)
+                    list.adapter = adapter1
+                }
+            },
+            {
+            }
+        )
+
+        addToRequestQueue(jsonObject)
+    }
+
     fun getHR(context: Context, list: ListView, business: ArrayList<Movie>){
         val jsonObject = JsonObjectRequest(
             Request.Method.GET,
@@ -262,6 +298,84 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
 
+    fun getUsersAndBusiness(context: Context, list: ListView, taskAdapter: ArrayList<UsersAndBusinessInTask>, id: String, text1: TextView, text2: TextView, text3: TextView, text4: TextView){
+        val rootObject = JSONObject()
+        val nameList: MutableList<String> = mutableListOf()
+        val businessList: MutableList<String> = mutableListOf()
+        val neededArray: ArrayList<UsersAndBusinessInTask> = ArrayList()
+
+        rootObject.put("id", id)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            GetTaskInfoUrl,
+            rootObject,
+            { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                val jsonarry2 = jsonO.getJSONArray("Tasks")
+                val jsonarry3 = jsonO.getJSONArray("Business")
+                val jsonarry4 = jsonO.getJSONArray("UserCreated")
+                for(i in 0 until jsonarry2.length()){
+                    val userStuff: JSONObject = jsonarry2.getJSONObject(i)
+
+                    val sDate = userStuff.getString("start_date_task")
+                    val eDate = userStuff.getString("end_date_task")
+                    val comment = userStuff.getString("comment_task")
+                    val userCreated = userStuff.getString("user_create")
+                    val priority = userStuff.getString("prioriteti")
+                    text1.text = "Comment: $comment"
+                    text2.text = "Priority: $priority"
+                    text3.text = "$sDate - $eDate"
+                }
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+
+                    val name = userStuff.getString("name_user")
+                    val lname = userStuff.getString("last_name_user")
+                    val needed = "$name $lname"
+                    nameList.add(needed)
+                }
+                for(i in 0 until jsonarry3.length()){
+                    val userStuff: JSONObject = jsonarry3.getJSONObject(i)
+
+                    val name = userStuff.getString("business_id")
+                    businessList.add(name)
+                }
+                for(i in 0 until jsonarry4.length()){
+                    val userStuff: JSONObject = jsonarry4.getJSONObject(i)
+
+                    val name = userStuff.getString("name_user")
+                    val lname = userStuff.getString("last_name_user")
+                    text4.text = "Created by: $name $lname"
+                }
+                if(nameList.size < businessList.size){
+                    for(i in 0 until businessList.size - nameList.size){
+                        nameList.add("")
+                    }
+
+                }
+                else{
+                    for(i in 0 until nameList.size - businessList.size){
+                        businessList.add("")
+                    }
+                }
+                for(i in 0 until nameList.size){
+                    val full: String =  nameList[i]
+                    val bus: String =  businessList[i]
+                    val yeet1 = UsersAndBusinessInTask(full, bus)
+                    neededArray.add(yeet1)
+                    val adapter1 = UsersAndBusinessAdapter(context, neededArray)
+                    list.adapter = adapter1
+                }
+
+            },
+            {
+            }
+        )
+
+        addToRequestQueue(jsonObject)
+    }
+
     fun getMoop(context: Context, list: ListView, taskAdapter: ArrayList<TaskMenuList>){
         val jsonObject = JsonObjectRequest(
             Request.Method.GET,
@@ -271,26 +385,56 @@ open class MySingleton constructor(context: Context) {
                 val jsonO: JSONObject = response
                 val jsonArry = jsonO.getJSONArray("Users")
                 val jsonarry2 = jsonO.getJSONArray("Tasks")
+
+                val dailyArry1 = jsonO.getJSONArray("Tasks Daily Pending")
+                val dailyArry2 = jsonO.getJSONArray("Tasks Daily Finished")
+                val dailyArry3 = jsonO.getJSONArray("Tasks Daily Progress")
+                val dailyArry4 = jsonO.getJSONArray("Tasks Daily Rejected")
+
+                val requested1 = jsonO.getJSONArray("Tasks MonthlyRequested Pending")
+                val requested2 = jsonO.getJSONArray("Tasks MonthlyRequested Finished")
+                val requested3 = jsonO.getJSONArray("Tasks MonthlyRequested Progress")
+                val requested4 = jsonO.getJSONArray("Tasks MonthlyRequested Rejected")
+
+                val required1 = jsonO.getJSONArray("Tasks MonthlyRequired Pending")
+                val required2 = jsonO.getJSONArray("Tasks MonthlyRequired Finished")
+                val required3 = jsonO.getJSONArray("Tasks MonthlyRequired Progress")
+                val required4 = jsonO.getJSONArray("Tasks MonthlyRequired Rejected")
                 for(i in 0 until jsonArry.length()){
                     val userStuff: JSONObject = jsonArry.getJSONObject(i)
                     val taskStuff: JSONObject = jsonarry2.getJSONObject(i)
+                    val dailyPending1: JSONObject = dailyArry1.getJSONObject(i)
+                    val dailyFinished1: JSONObject = dailyArry2.getJSONObject(i)
+                    val dailyProgress1: JSONObject = dailyArry3.getJSONObject(i)
+                    val dailyRejected1: JSONObject = dailyArry4.getJSONObject(i)
+                    val requestedPending1: JSONObject = requested1.getJSONObject(i)
+                    val requestedFinished1: JSONObject = requested2.getJSONObject(i)
+                    val requestedProgress1: JSONObject = requested3.getJSONObject(i)
+                    val requestedRejected1: JSONObject = requested4.getJSONObject(i)
+                    val requiredPending1: JSONObject = required1.getJSONObject(i)
+                    val requiredFinished1: JSONObject = required2.getJSONObject(i)
+                    val requiredProgress1: JSONObject = required3.getJSONObject(i)
+                    val requiredRejected1: JSONObject = required4.getJSONObject(i)
+
                     val text = userStuff.getString("logo")
                     val text2 = "Total ${taskStuff.getString("number")} tasks"
                     val text3 = userStuff.getString("business_name")
                     val text4= userStuff.getString("business_username")
 
-                    val dailyPending = "0"
-                    val dailyFinished = "0"
-                    val dailyProgress = "0"
-                    val dailyReject = "0"
-                    val requestPending = "0"
-                    val requestFinished = "0"
-                    val requestProgress= "0"
-                    val requestReject= "0"
-                    val requirePending = "0"
-                    val requireFinished = "0"
-                    val requireProgress = "0"
-                    val requireReject= "0"
+                    val dailyPending = dailyPending1.getString("Task_Pending")
+                    val dailyFinished = dailyFinished1.getString("Task_Finished")
+                    val dailyProgress = dailyProgress1.getString("Task_Progress")
+                    val dailyReject = dailyRejected1.getString("Task_Rejected")
+
+                    val requestPending = requestedPending1.getString("Task_Pending")
+                    val requestFinished = requestedFinished1.getString("Task_Finished")
+                    val requestProgress= requestedProgress1.getString("Task_Progress")
+                    val requestReject= requestedRejected1.getString("Task_Rejected")
+
+                    val requirePending = requiredPending1.getString("Task_Pending")
+                    val requireFinished = requiredFinished1.getString("Task_Finished")
+                    val requireProgress = requiredProgress1.getString("Task_Progress")
+                    val requireReject= requiredRejected1.getString("Task_Rejected")
 
                     val textAdd = TextView(context)
                     val numberText = TextView(context)
@@ -373,6 +517,15 @@ open class MySingleton constructor(context: Context) {
                 SESSION_ID = jsonObj.getString("id")
                 SESSION_STATUS = jsonObj.getString("user_status")
                 SESSION_NAME = jsonObj.getString("name")
+
+                if (SESSION_STATUS == "User" || SESSION_STATUS == "Super Users"){
+                    val intent = Intent(context, MainActivity::class.java)
+                    context.startActivity(intent)
+                }
+                else if(SESSION_STATUS == "Administrator"){
+                    val intent = Intent(context, AdministratorMenu::class.java)
+                    context.startActivity(intent)
+                }
             },
             {error->
                 val text = "Incorrect email or password!"

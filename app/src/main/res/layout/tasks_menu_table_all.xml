@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/taskTitle1"
+        android:layout_marginLeft="15dp"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/taskStatus"
+        android:layout_toRightOf="@id/taskTitle1"
+        android:layout_marginLeft="40dp"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/taskType"
+        android:layout_toRightOf="@id/taskStatus"
+        android:layout_marginLeft="26dp"
+        android:layout_width="70dp"
+        android:paddingBottom="15dp"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateCreated1"
+        android:layout_toRightOf="@id/taskType"
+        android:layout_marginLeft="15dp"
+        />
+
+</RelativeLayout>
