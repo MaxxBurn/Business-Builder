@@ -5,11 +5,13 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.media.Image
+import android.text.Html
 import android.util.LruCache
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.text.HtmlCompat
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +52,8 @@ private val updateUsersUrl: String = "https://albreezetours.com/android_register
 private val getUsersNameSolo: String = "https://albreezetours.com/android_register_login/GetUserNamesSolo.php"
 private val getGiver: String = "https://albreezetours.com/android_register_login/GetGiver.php"
 private val updateBudget: String = "https://albreezetours.com/android_register_login/UpdateBudget.php"
+private val getTasksForUsersUrl: String = "https://albreezetours.com/android_register_login/GetTasksForUsers.php"
+private val submitTaskUrl: String = "https://albreezetours.com/android_register_login/SubmitTaskAnswer.php"
 
 //ID the user will LogIn with and uses to update/receive his data.
 var SESSION_ID: String = ""
@@ -221,6 +225,54 @@ open class MySingleton constructor(context: Context) {
 
         addToRequestQueue(jsonObject)
     }
+    fun submitTaskConfirmation(answer: String, taskid: String, reason: String){
+        val rootObject = JSONObject()
+        rootObject.put("id", SESSION_ID)
+        rootObject.put("answer", answer)
+        rootObject.put("taskid", taskid)
+        rootObject.put("reason", reason)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            submitTaskUrl,
+            rootObject,
+            { response ->
+
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
+    fun getTasksForUsers(list: ListView, context: Context, tasksList: ArrayList<TasksInBusiness>){
+        val rootObject = JSONObject()
+        rootObject.put("id", SESSION_ID)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            getTasksForUsersUrl,
+            rootObject,
+            { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+
+                    val text1 = userStuff.getString("category")
+                    val text2 = userStuff.getString("id_task")
+                    val text3 = userStuff.getString("title_task")
+                    val text4 = userStuff.getString("status_task")
+                    val text5 = userStuff.getString("created")
+                    val obj1 = TasksInBusiness(text2, text3, text4, text1, text5)
+                    tasksList.add(obj1)
+                    val adapter1 = TaskAdapter(context, tasksList)
+                    list.adapter = adapter1
+                }
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
 
     fun getTasksMenu(given: String, list:ListView, context: Context, tasksList: ArrayList<TasksInBusiness>, number: String){
         val rootObject = JSONObject()
@@ -298,7 +350,8 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
 
-    fun getUsersAndBusiness(context: Context, list: ListView, taskAdapter: ArrayList<UsersAndBusinessInTask>, id: String, text1: TextView, text2: TextView, text3: TextView, text4: TextView){
+    fun getUsersAndBusiness(context: Context, list: ListView, taskAdapter: ArrayList<UsersAndBusinessInTask>, id: String,
+                            text1: TextView, text2: TextView, text3: TextView, text4: TextView, text5: TextView){
         val rootObject = JSONObject()
         val nameList: MutableList<String> = mutableListOf()
         val businessList: MutableList<String> = mutableListOf()
@@ -323,9 +376,16 @@ open class MySingleton constructor(context: Context) {
                     val comment = userStuff.getString("comment_task")
                     val userCreated = userStuff.getString("user_create")
                     val priority = userStuff.getString("prioriteti")
-                    text1.text = "Comment: $comment"
-                    text2.text = "Priority: $priority"
-                    text3.text = "$sDate - $eDate"
+                    val delegated = userStuff.getString("delegated")
+
+                    var stringYeet = "<b>Comment:</b> $comment"
+                    text1.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
+                    stringYeet = "<b>Priority:</b> $priority"
+                    text2.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
+                    stringYeet = "<b>Date:</b> $sDate - $eDate"
+                    text3.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
+                    stringYeet = "<b>Delegated:</b> $delegated"
+                    text5.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
                 }
                 for(i in 0 until jsonArry.length()){
                     val userStuff: JSONObject = jsonArry.getJSONObject(i)
@@ -344,9 +404,12 @@ open class MySingleton constructor(context: Context) {
                 for(i in 0 until jsonarry4.length()){
                     val userStuff: JSONObject = jsonarry4.getJSONObject(i)
 
+
+
                     val name = userStuff.getString("name_user")
                     val lname = userStuff.getString("last_name_user")
-                    text4.text = "Created by: $name $lname"
+                    var stringYeet = "<b>Created by:</b> $name $lname"
+                    text4.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
                 }
                 if(nameList.size < businessList.size){
                     for(i in 0 until businessList.size - nameList.size){
@@ -1041,13 +1104,4 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-
 }
-
-
-
-
-
-
-
-

@@ -131,20 +131,19 @@ class Tasks : AppCompatActivity() {
         setContentView(R.layout.activity_tasks)
 
         val addTasks = findViewById<ImageButton>(R.id.addTask)
-        val taskList: ArrayList<TaskMenuList> = ArrayList()
-        val adapter1 = TaskMenuAdapter(this, taskList)
-        val list : ListView = findViewById(R.id.listView3)
+        val addTasks1 = findViewById<ImageButton>(R.id.taskss)
+        val addTasks2 = findViewById<ImageButton>(R.id.taskDelegated)
+        val addTasks3 = findViewById<ImageButton>(R.id.tasksByBusiness)
 
+        addTasks1.setOnClickListener {
+            val intent = Intent(this, MyTasks::class.java)
+            startActivity(intent)
+        }
+        addTasks2.setOnClickListener {
 
-        MySingleton.getInstance(this).getMoop(this, list, taskList )
-
-        list.setOnItemClickListener { parent, view, position, id ->
-            val element = adapter1.getItem(position)
-            val intent = Intent(this, TaskMenu::class.java)
-            intent.putExtra("autoComplete",element?.getUserName())
-            intent.putExtra("nameBusiness", element?.getmName())
-
-            intent.putExtra("nameForOtherTaskMenu", element?.getmName())
+        }
+        addTasks3.setOnClickListener {
+            val intent = Intent(this, TasksbyBusiness::class.java)
             startActivity(intent)
         }
 

@@ -106,10 +106,10 @@
                     android:text="Start/Finish " />
 
                 <TextView
-                    android:id="@+id/delgatedTask"
+                    android:id="@+id/createdTask"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:text="Delegated By" />
+                    android:text="Created By" />
             </TableRow>
 
             <TableRow
@@ -123,6 +123,81 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Status: " />
+                <TextView
+                    android:id="@+id/delegatedTask"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Delegated: " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/firstNeeded"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="50dp"
+                android:visibility="gone">
+
+                <RadioGroup
+                    android:id="@+id/radiogroup120"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reject"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Accept"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/secondNeeded"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="50dp"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/button26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/text_color_in_blue_background"
+                    android:text="Submit"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/thirdNeeded"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="50dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/reasonNeeded"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="Reason..."
+                    android:inputType="textMultiLine"
+                    android:textSize="12sp" />
             </TableRow>
 
         </TableLayout>

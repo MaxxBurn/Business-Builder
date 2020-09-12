@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#404040"
+    android:background="#D1D1D1"
     tools:context=".Tasks">
 
     <TableLayout
@@ -16,7 +16,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        android:background="#474747">
+        android:background="#C3C3C3">
 
         <ImageButton
             android:id="@+id/addTask"
@@ -29,13 +29,38 @@
             android:background="#FFFFFF"
             app:srcCompat="@mipmap/add_task_foreground" />
 
-        <ListView
-            android:id="@+id/listView3"
+        <ImageButton
+            android:id="@+id/taskss"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="3dp"
-            android:background="#FFF" />
+            android:layout_marginBottom="3dp"
+            android:background="#FFFFFF"
+            app:srcCompat="@mipmap/add_task_foreground" />
+
+        <ImageButton
+            android:id="@+id/taskDelegated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="#FFFFFF"
+            app:srcCompat="@mipmap/add_task_foreground" />
+
+        <ImageButton
+            android:id="@+id/tasksByBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="#FFFFFF"
+            app:srcCompat="@mipmap/add_task_foreground" />
 
     </TableLayout>
 

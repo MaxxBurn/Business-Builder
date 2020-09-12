@@ -90,6 +90,7 @@ class TaskMenu : AppCompatActivity() {
         listView.setOnItemClickListener { parent, view, position, id ->
             val element = adapter1.getItem(position)
             val intent = Intent(this, ViewTasks::class.java)
+            intent.putExtra("whichMenu", "TaskMenu")
             intent.putExtra("id",element?.getTaskId())
             intent.putExtra("status", element?.getTaskStatus1())
             intent.putExtra("title", element?.getTaskTitle())
