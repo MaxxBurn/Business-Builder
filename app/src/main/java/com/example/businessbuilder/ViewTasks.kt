@@ -90,9 +90,15 @@ class ViewTasks : AppCompatActivity() {
             firstneeded.visibility= VISIBLE
             secondNeeded.visibility = VISIBLE
         }
+        if(whichMenu == "MyTasks" && givenStatus == "Progress"){
+            submitButton.text = "Finish"
+            secondNeeded.visibility = VISIBLE
+            thirdNeeded.visibility = VISIBLE
+        }
+
+
 
         completeradio.setOnCheckedChangeListener { group, checkedId ->
-
             val radio: RadioButton = group.findViewById(checkedId)
             if (radio == rejectRadio) {
                 thirdNeeded.visibility = VISIBLE
@@ -111,28 +117,35 @@ class ViewTasks : AppCompatActivity() {
             else if(acceptRadio.isChecked){
                 yeet = "Progress"
             }
-            if (yeet == ""){
-                val text = "Reject or Accept the task!"
-                val duration = Toast.LENGTH_SHORT
 
-                val toast = Toast.makeText(applicationContext, text, duration)
-                toast.show()
+            if(whichMenu =="MyTasks" && givenStatus=="Progress"){
+                yeet = "Finished"
+                MySingleton.getInstance(this).submitTaskConfirmation("Finished", givenId, reasonNeeded.text.toString(), 1)
+                val intent = Intent(this, Tasks::class.java)
+                startActivity(intent)
             }
             else{
                 if(thirdNeeded.visibility == GONE){
-                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId,"")
+                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId,"", 0)
                     firstneeded.visibility= GONE
                     secondNeeded.visibility = GONE
                     val intent = Intent(this, Tasks::class.java)
                     startActivity(intent)
                 }
                 else{
-                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId, reasonNeeded.text.toString() )
+                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId, reasonNeeded.text.toString(), 0)
                     firstneeded.visibility= GONE
                     secondNeeded.visibility = GONE
                     val intent = Intent(this, Tasks::class.java)
                     startActivity(intent)
                 }
+            }
+            if (yeet == ""){
+                val text = "Reject or Accept the task!"
+                val duration = Toast.LENGTH_SHORT
+
+                val toast = Toast.makeText(applicationContext, text, duration)
+                toast.show()
             }
         }
         val userlist = findViewById<ListView>(R.id.yeetlist)

@@ -225,12 +225,13 @@ open class MySingleton constructor(context: Context) {
 
         addToRequestQueue(jsonObject)
     }
-    fun submitTaskConfirmation(answer: String, taskid: String, reason: String){
+    fun submitTaskConfirmation(answer: String, taskid: String, reason: String, number: Int){
         val rootObject = JSONObject()
         rootObject.put("id", SESSION_ID)
         rootObject.put("answer", answer)
         rootObject.put("taskid", taskid)
         rootObject.put("reason", reason)
+        rootObject.put("number", number)
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
             submitTaskUrl,
