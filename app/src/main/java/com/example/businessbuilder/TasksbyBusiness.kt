@@ -14,7 +14,6 @@ class TasksbyBusiness : AppCompatActivity() {
         val adapter1 = TaskMenuAdapter(this, taskList)
         val list : ListView = findViewById(R.id.listView3)
 
-
         MySingleton.getInstance(this).getMoop(this, list, taskList )
 
         list.setOnItemClickListener { parent, view, position, id ->
@@ -22,7 +21,6 @@ class TasksbyBusiness : AppCompatActivity() {
             val intent = Intent(this, TaskMenu::class.java)
             intent.putExtra("autoComplete",element?.getUserName())
             intent.putExtra("nameBusiness", element?.getmName())
-
             intent.putExtra("nameForOtherTaskMenu", element?.getmName())
             startActivity(intent)
         }

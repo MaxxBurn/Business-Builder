@@ -29,10 +29,12 @@ private val updateDataUrl: String = "https://albreezetours.com/android_register_
 private val getBusinessEmployeesUrl: String = "https://albreezetours.com/android_register_login/GetBusinessEmployees.php"
 private val getMoopUrl: String = "https://albreezetours.com/android_register_login/GetMoop.php"
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
+private val getDelegatedUrl: String = "https://albreezetours.com/android_register_login/GetTaskDelegated.php"
 private val getUserDetailsUrl: String = "https://albreezetours.com/android_register_login/GetUserDetails.php"
 private val insertDataUrl14: String = "https://albreezetours.com/android_register_login/InsertData14.php"
 private val createTaskUrl: String = "https://albreezetours.com/android_register_login/InsertTask.php"
 private val insertRegister: String = "https://albreezetours.com/android_register_login/Register.php"
+private val GetDelegated2Url: String = "https://albreezetours.com/android_register_login/GetDelegated2.php"
 private val logInUrl: String = "https://albreezetours.com/android_register_login/Login.php"
 private val GetTaskInfoUrl: String = "https://albreezetours.com/android_register_login/GetInfoForTask.php"
 private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
@@ -237,7 +239,6 @@ open class MySingleton constructor(context: Context) {
             submitTaskUrl,
             rootObject,
             { response ->
-
             },
             {
             }
@@ -245,6 +246,84 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
 
+    fun submitDelegatedTask(taskid: String){
+        val rootObject = JSONObject()
+        rootObject.put("taskid", taskid)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            submitTaskUrl,
+            rootObject,
+            { response ->
+
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+    fun getDelegated2ndUsers(list: ListView, context: Context, tasksList: ArrayList<DelegatedClass>, givenId: String){
+        val rootObject = JSONObject()
+        rootObject.put("id", givenId)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            GetDelegated2Url,
+            rootObject,
+            { response ->
+
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+
+                    val name = userStuff.getString("name_user")
+                    val lastname = userStuff.getString("last_name_user")
+                    val nameReal = "$name $lastname"
+                    val percentage = userStuff.getString("perqindja_complete_user")
+                    val idUserTask = userStuff.getString("id_user_task")
+                    val status = userStuff.getString("status_task_finish")
+
+                    val obj1 = DelegatedClass(idUserTask, status, nameReal, "", percentage)
+                    tasksList.add(obj1)
+
+                    val adapter1 = DelegatedAdapter(context, tasksList)
+                    list.adapter = adapter1
+                }
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
+    fun getDelegatedTasks(list: ListView, context: Context, tasksList: ArrayList<TasksInBusiness>){
+        val rootObject = JSONObject()
+        rootObject.put("id", SESSION_ID)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            getDelegatedUrl,
+            rootObject,
+            { response ->
+                val jsonO: JSONObject = response
+                val jsonArry = jsonO.getJSONArray("Users")
+                for(i in 0 until jsonArry.length()){
+                    val userStuff: JSONObject = jsonArry.getJSONObject(i)
+
+                    val text1 = userStuff.getString("category")
+                    val text2 = userStuff.getString("id_task")
+                    val text3 = userStuff.getString("title_task")
+                    val text4 = userStuff.getString("status_task_finish")
+                    val text5 = userStuff.getString("created")
+                    val obj1 = TasksInBusiness(text2, text3, text4, text1, text5)
+                    tasksList.add(obj1)
+                    val adapter1 = TaskAdapter(context, tasksList)
+                    list.adapter = adapter1
+                }
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
     fun getTasksForUsers(list: ListView, context: Context, tasksList: ArrayList<TasksInBusiness>){
         val rootObject = JSONObject()
         rootObject.put("id", SESSION_ID)
@@ -404,8 +483,6 @@ open class MySingleton constructor(context: Context) {
                 }
                 for(i in 0 until jsonarry4.length()){
                     val userStuff: JSONObject = jsonarry4.getJSONObject(i)
-
-
 
                     val name = userStuff.getString("name_user")
                     val lname = userStuff.getString("last_name_user")
@@ -1087,7 +1164,6 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-
     fun verifyPendingStatus(value: ImageButton){
         val request = StringRequest(
             Request.Method.GET,

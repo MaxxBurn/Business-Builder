@@ -119,7 +119,6 @@ class TaskMenuAdapter(context: Context, list: ArrayList<TaskMenuList>) :
 
         return listItem
     }
-
     init {
         taskList = list
         mContext = context;
@@ -140,13 +139,13 @@ class Tasks : AppCompatActivity() {
             startActivity(intent)
         }
         addTasks2.setOnClickListener {
-
+            val intent = Intent(this, TasksDelegated::class.java)
+            startActivity(intent)
         }
         addTasks3.setOnClickListener {
             val intent = Intent(this, TasksbyBusiness::class.java)
             startActivity(intent)
         }
-
         addTasks.setOnClickListener {
             val intent = Intent(this, AddTasksMenu::class.java)
             startActivity(intent)

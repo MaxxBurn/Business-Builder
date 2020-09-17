@@ -24,7 +24,7 @@
                 android:paddingTop="20dp">
 
                 <TextView
-                    android:id="@+id/titleOfTask"
+                    android:id="@+id/titleOfTask1"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -34,7 +34,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/categoryOfTask"
+                    android:id="@+id/categoryOfTask1"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:text="Category:"
@@ -50,7 +50,7 @@
                 android:paddingTop="20dp">
 
                 <TextView
-                    android:id="@+id/textView235"
+                    android:id="@+id/textView2357"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -59,7 +59,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView236"
+                    android:id="@+id/textView2367"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Businesses"
@@ -68,10 +68,11 @@
             </TableRow>
 
             <ListView
-                android:paddingTop="7dp"
-                android:id="@+id/yeetlist"
+                android:layout_marginTop="7dp"
+                android:id="@+id/yeetlist12"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                android:nestedScrollingEnabled="true"/>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -80,14 +81,14 @@
                 android:paddingTop="5dp">
 
                 <TextView
-                    android:id="@+id/commentTask"
+                    android:id="@+id/commentTask1"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Comment: " />
 
 
                 <TextView
-                    android:id="@+id/priorityTask"
+                    android:id="@+id/priorityTask1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Priority: " />
@@ -100,13 +101,13 @@
                 android:paddingTop="50dp">
 
                 <TextView
-                    android:id="@+id/startFinishTask"
+                    android:id="@+id/startFinishTask1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Start/Finish " />
 
                 <TextView
-                    android:id="@+id/createdTask"
+                    android:id="@+id/createdTask1"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="Created By" />
@@ -119,86 +120,39 @@
                 android:paddingTop="50dp">
 
                 <TextView
-                    android:id="@+id/statusOfTask"
+                    android:id="@+id/statusOfTask1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Status: " />
                 <TextView
-                    android:id="@+id/delegatedTask"
+                    android:id="@+id/delegatedTask1"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="Delegated: " />
             </TableRow>
-
-            <TableRow
-                android:id="@+id/firstNeeded"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:paddingTop="50dp"
-                android:visibility="gone">
-
-                <RadioGroup
-                    android:id="@+id/radiogroup120"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButton11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reject"
-                        android:textSize="14sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Accept"
-                        android:textSize="14sp" />
-                </RadioGroup>
-            </TableRow>
-
             <TableRow
                 android:id="@+id/secondNeeded"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:paddingTop="50dp"
-                android:visibility="gone">
+                android:paddingTop="50dp">
 
                 <Button
-                    android:id="@+id/button26"
+                    android:id="@+id/button260"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="90dp"
                     android:background="@color/text_color_in_blue_background"
-                    android:text="Submit"
+                    android:text="Finish"
                     android:textColor="#FFF"
                     android:textStyle="bold" />
             </TableRow>
-
-            <TableRow
-                android:id="@+id/thirdNeeded"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:paddingTop="35dp"
-                android:visibility="gone">
-
-                <EditText
-                    android:id="@+id/reasonNeeded"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:hint="Reason..."
-                    android:inputType="textMultiLine"
-                    android:textSize="12sp" />
-            </TableRow>
+            <ListView
+                android:layout_marginTop="7dp"
+                android:id="@+id/yeetlist1222"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:nestedScrollingEnabled="true"/>
 
         </TableLayout>
     </ScrollView>

@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyTasks"></activity>
+        <activity android:name=".ViewTaskDelegated"></activity>
+        <activity android:name=".TasksDelegated" />
+        <activity android:name=".MyTasks" />
         <activity android:name=".TasksbyBusiness" />
         <activity android:name=".ViewTasks" />
         <activity android:name=".TaskMenu" />

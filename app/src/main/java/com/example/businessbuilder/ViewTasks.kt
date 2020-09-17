@@ -95,8 +95,10 @@ class ViewTasks : AppCompatActivity() {
             secondNeeded.visibility = VISIBLE
             thirdNeeded.visibility = VISIBLE
         }
-
-
+        if(whichMenu == "TasksDelegated" && (givenStatus == "Progress" || givenStatus == "Pending") ){
+            submitButton.text = "Finish"
+            secondNeeded.visibility = VISIBLE
+        }
 
         completeradio.setOnCheckedChangeListener { group, checkedId ->
             val radio: RadioButton = group.findViewById(checkedId)
@@ -106,7 +108,6 @@ class ViewTasks : AppCompatActivity() {
             else{
                 thirdNeeded.visibility = GONE
             }
-
         }
 
         submitButton.setOnClickListener {
@@ -124,16 +125,16 @@ class ViewTasks : AppCompatActivity() {
                 val intent = Intent(this, Tasks::class.java)
                 startActivity(intent)
             }
-            else{
+            else if(whichMenu =="MyTasks" && givenStatus == "Pending"){
                 if(thirdNeeded.visibility == GONE){
-                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId,"", 0)
+                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId,"", 0 )
                     firstneeded.visibility= GONE
                     secondNeeded.visibility = GONE
                     val intent = Intent(this, Tasks::class.java)
                     startActivity(intent)
                 }
                 else{
-                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId, reasonNeeded.text.toString(), 0)
+                    MySingleton.getInstance(this).submitTaskConfirmation(yeet, givenId, reasonNeeded.text.toString(), 0 )
                     firstneeded.visibility= GONE
                     secondNeeded.visibility = GONE
                     val intent = Intent(this, Tasks::class.java)
