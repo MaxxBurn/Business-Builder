@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ViewTasks">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -147,6 +146,7 @@
                     android:textColor="#FFF"
                     android:textStyle="bold" />
             </TableRow>
+
             <ListView
                 android:layout_marginTop="7dp"
                 android:id="@+id/yeetlist1222"

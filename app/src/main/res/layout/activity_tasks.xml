@@ -38,7 +38,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginBottom="3dp"
             android:background="#FFFFFF"
-            app:srcCompat="@mipmap/add_task_foreground" />
+            app:srcCompat="@mipmap/my_task_menu_foreground" />
 
         <ImageButton
             android:id="@+id/taskDelegated"
@@ -49,7 +49,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginBottom="3dp"
             android:background="#FFFFFF"
-            app:srcCompat="@mipmap/add_task_foreground" />
+            app:srcCompat="@mipmap/delegated_task_menu_foreground" />
 
         <ImageButton
             android:id="@+id/tasksByBusiness"
@@ -60,7 +60,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginBottom="3dp"
             android:background="#FFFFFF"
-            app:srcCompat="@mipmap/add_task_foreground" />
+            app:srcCompat="@mipmap/business_menu_foreground" />
 
     </TableLayout>
 

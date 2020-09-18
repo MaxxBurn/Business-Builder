@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.text.HtmlCompat
@@ -48,8 +49,21 @@ class DelegatedAdapter(context: Context, list: ArrayList<DelegatedClass>) :
         circular.text = letters
         val backProgress = listItem.findViewById(R.id.button111) as Button
         backProgress.text = "Back To Progress"
-        val document = listItem.findViewById(R.id.button11) as Button
-        document.text = "Document"
+        if(currentMovie.getStatus() != "Finished"){
+            backProgress.visibility = GONE
+        }
+        val document = listItem.findViewById(R.id.button11) as TextView
+        document.text = currentMovie.getDocument()
+
+        backProgress.setOnClickListener {
+            MySingleton.getInstance(context).returnBackToProgress(currentMovie.getTaskUser())
+            val text = "Task was returned to progress!"
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(context, text, duration)
+            toast.show()
+            status.text = "Progress"
+            backProgress.visibility = GONE
+        }
         return listItem
     }
     init {

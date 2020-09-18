@@ -24,6 +24,7 @@ import org.json.JSONObject
 
 private val dbConnectUrl: String = "https://albreezetours.com/android_register_login/Connection.php"
 private val getHRUrl: String = "https://albreezetours.com/android_register_login/GetBusinessHR.php"
+private val backToProgressUrl: String = "https://albreezetours.com/android_register_login/BackToProgress.php"
 private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
 private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
 private val getBusinessEmployeesUrl: String = "https://albreezetours.com/android_register_login/GetBusinessEmployees.php"
@@ -246,6 +247,22 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
 
+    fun returnBackToProgress(userIdTask: String){
+        val rootObject = JSONObject()
+        rootObject.put("id", userIdTask)
+        val jsonObject = JsonObjectRequest(
+            Request.Method.POST,
+            backToProgressUrl,
+            rootObject,
+            { response ->
+
+            },
+            {
+            }
+        )
+        addToRequestQueue(jsonObject)
+    }
+
     fun submitDelegatedTask(taskid: String){
         val rootObject = JSONObject()
         rootObject.put("taskid", taskid)
@@ -280,11 +297,18 @@ open class MySingleton constructor(context: Context) {
                     val nameReal = "$name $lastname"
                     val percentage = userStuff.getString("perqindja_complete_user")
                     val idUserTask = userStuff.getString("id_user_task")
-                    val status = userStuff.getString("status_task_finish")
-
-                    val obj1 = DelegatedClass(idUserTask, status, nameReal, "", percentage)
-                    tasksList.add(obj1)
-
+                    val status = userStuff.getString("status_task")
+                    val document = userStuff.getString("comment_task_user")
+                    val document1 = userStuff.getString("reason_reject_user")
+                    
+                    if(document1 != ""){
+                        val obj1 = DelegatedClass(idUserTask, status, nameReal, document1, percentage)
+                        tasksList.add(obj1)
+                    }
+                    else{
+                        val obj1 = DelegatedClass(idUserTask, status, nameReal, document, percentage)
+                        tasksList.add(obj1)
+                    }
                     val adapter1 = DelegatedAdapter(context, tasksList)
                     list.adapter = adapter1
                 }
