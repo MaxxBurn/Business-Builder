@@ -1,9 +1,7 @@
 package com.example.businessbuilder
 
-import android.app.TaskInfo
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +9,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.*
-import org.w3c.dom.Text
 
 class TaskAdapter(context: Context, list: ArrayList<TasksInBusiness>) :
     ArrayAdapter<TasksInBusiness>(context, 0, list as List<TasksInBusiness?>) {

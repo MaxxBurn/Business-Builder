@@ -11,10 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isEmpty
 import androidx.core.view.isNotEmpty
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import kotlinx.android.synthetic.main.activity_add_tasks_menu.*
-import kotlinx.android.synthetic.main.activity_request_budget.*
 import java.util.*
 
 

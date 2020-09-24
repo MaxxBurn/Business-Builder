@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View.GONE
-import android.view.View.INVISIBLE
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView

@@ -10,7 +10,6 @@ import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_edit_budget_menu.*
-import kotlinx.android.synthetic.main.activity_request_budget.*
 import java.util.*
 
 

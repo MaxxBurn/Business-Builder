@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import android.widget.*
 
@@ -133,6 +134,10 @@ class Tasks : AppCompatActivity() {
         val addTasks1 = findViewById<ImageButton>(R.id.taskss)
         val addTasks2 = findViewById<ImageButton>(R.id.taskDelegated)
         val addTasks3 = findViewById<ImageButton>(R.id.tasksByBusiness)
+
+        if(SESSION_STATUS != "Administrator"){
+            addTasks3.visibility = GONE
+        }
 
         addTasks1.setOnClickListener {
             val intent = Intent(this, MyTasks::class.java)

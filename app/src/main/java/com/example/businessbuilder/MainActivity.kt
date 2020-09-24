@@ -29,9 +29,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
-        button7.visibility = INVISIBLE
+        button6.visibility = INVISIBLE
         button8.visibility = INVISIBLE
 
 

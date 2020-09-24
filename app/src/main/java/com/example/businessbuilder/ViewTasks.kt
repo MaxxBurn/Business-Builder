@@ -11,8 +11,6 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.text.HtmlCompat
-import kotlinx.android.synthetic.main.activity_edit_budget_menu.*
-import kotlinx.android.synthetic.main.activity_view_tasks.*
 
 class UsersAndBusinessAdapter(context: Context, list: ArrayList<UsersAndBusinessInTask>) :
     ArrayAdapter<UsersAndBusinessInTask>(context, 0, list as List<UsersAndBusinessInTask?>) {
@@ -84,6 +82,8 @@ class ViewTasks : AppCompatActivity() {
         val secondNeeded = findViewById<TableRow>(R.id.secondNeeded)
         val thirdNeeded = findViewById<TableRow>(R.id.thirdNeeded)
         val reasonNeeded = findViewById<EditText>(R.id.reasonNeeded)
+        val rejectedrow = findViewById<TableRow>(R.id.reasonrow1)
+        val text6 = findViewById<TextView>(R.id.reason111)
 
         if(whichMenu == "MyTasks" && givenStatus == "Pending"){
 
@@ -98,6 +98,9 @@ class ViewTasks : AppCompatActivity() {
         if(whichMenu == "TasksDelegated" && (givenStatus == "Progress" || givenStatus == "Pending") ){
             submitButton.text = "Finish"
             secondNeeded.visibility = VISIBLE
+        }
+        if(givenStatus == "Rejected"){
+            rejectedrow.visibility = VISIBLE
         }
 
         completeradio.setOnCheckedChangeListener { group, checkedId ->
@@ -151,6 +154,6 @@ class ViewTasks : AppCompatActivity() {
         }
         val userlist = findViewById<ListView>(R.id.yeetlist)
         val tasksList : ArrayList<UsersAndBusinessInTask> = ArrayList()
-        MySingleton.getInstance(this).getUsersAndBusiness(this, userlist, tasksList, givenId, text1, text2, text3, text4, text5)
+        MySingleton.getInstance(this).getUsersAndBusiness(this, userlist, tasksList, givenId, text1, text2, text3, text4, text5, text6)
     }
 }

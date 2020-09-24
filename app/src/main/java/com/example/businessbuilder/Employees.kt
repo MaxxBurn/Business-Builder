@@ -53,6 +53,14 @@ class Employees : AppCompatActivity() {
                 val text: String = "Registration Complete!"
                 val toast = Toast.makeText(this, text,duration)
                 toast.show()
+                if(SESSION_STATUS == "Administrator"){
+                    val intent = Intent(this, AdministratorMenu::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }

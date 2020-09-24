@@ -1,19 +1,15 @@
 package com.example.businessbuilder
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_request_budget.*
 import java.util.*
-
-
-var BUSINESS_ID: Int = 0
-var USER_ID: Int = 0
 
 data class GetUsersName(val name: String){
     override fun toString(): String {
@@ -38,7 +34,6 @@ class RequestBudget : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_request_budget)
 
-        val datePicker = findViewById<TextView>(R.id.datePicker)
         pickDate()
 
         //First Spinner
@@ -47,8 +42,12 @@ class RequestBudget : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         nameList.add("Select User...")
         val adapter: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList)
         spinner1.adapter = adapter
-        MySingleton.getInstance(this).getUsersNames(spinner1, adapter, nameList, SESSION_STATUS)
-
+        if(SESSION_STATUS != "Administrator"){
+            MySingleton.getInstance(this).getBudgetNames(spinner1, adapter, nameList)
+        }
+        else{
+            MySingleton.getInstance(this).getUsersNames(spinner1, adapter, nameList, SESSION_STATUS)
+        }
 
 
         //Second Spinner
@@ -115,16 +114,28 @@ class RequestBudget : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 val pickedButtonId: Int = typeOfPayment.checkedRadioButtonId
                 val radio: RadioButton = findViewById(pickedButtonId)
 
-                MySingleton.getInstance(this).getBusinessId(spinner2.selectedItem.toString())
-                MySingleton.getInstance(this).getUserId(spinner1.selectedItem.toString())
-                println(USER_ID)
-                println("=======")
-                MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(), BUSINESS_ID,
-                    spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), radio.text.toString(), spinner4.selectedItem.toString(),
-                    description.text.toString(), date.text.toString(), USER_ID, spinner1.selectedItem.toString())
 
-                val intent = Intent(this, BudgetMenu::class.java)
-                startActivity(intent)
+                val businessText = TextView(this)
+                val userId = TextView(this)
+
+
+//                MySingleton.getInstance(this).getBusinessId(spinner1.selectedItem.toString(), userId)
+//                MySingleton.getInstance(parent!!.context).getBusinessId(spinner2.selectedItem.toString(), businessText)
+
+                if(SESSION_STATUS == "Administrator"){
+                    MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(), businessText.text.toString(),
+                        spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), radio.text.toString(), spinner4.selectedItem.toString(),
+                        description.text.toString(), date.text.toString(), userId.text.toString(), spinner1.selectedItem.toString())
+                    val intent = Intent(this, AdministratorMenu::class.java)
+                    startActivity(intent)
+                }
+                else if(SESSION_STATUS != "Administrator"){
+                    MySingleton.getInstance(this).requestBudget(title.text.toString(), amount.text.toString().toInt(), businessText.text.toString(),
+                        spinner2.selectedItem.toString(), spinner3.selectedItem.toString(), radio.text.toString(), spinner4.selectedItem.toString(),
+                        description.text.toString(), date.text.toString(), SESSION_ID, spinner1.selectedItem.toString())
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
@@ -147,6 +158,6 @@ class RequestBudget : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         savedYear = year
 
         getDateTimeCalendar()
-        datePicker.text = "$savedMonth-$savedDay-$savedYear"
+        datePicker.text = "$savedYear-$savedMonth-$savedDay"
     }
 }

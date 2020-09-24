@@ -1,18 +1,10 @@
 package com.example.businessbuilder
 
-import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_daily_transcation4.*
-import org.json.JSONArray
-import org.json.JSONObject
 
 
 data class addCashBook( val date: String, var description: String, var reference: String, var department: String, var cashIn: Int, var cashOut: Int, var balance: Int) {

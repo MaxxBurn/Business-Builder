@@ -56,7 +56,7 @@ class DelegatedAdapter(context: Context, list: ArrayList<DelegatedClass>) :
         document.text = currentMovie.getDocument()
 
         backProgress.setOnClickListener {
-            MySingleton.getInstance(context).returnBackToProgress(currentMovie.getTaskUser())
+            MySingleton.getInstance(context as TasksDelegated).returnBackToProgress(currentMovie.getTaskUser())
             val text = "Task was returned to progress!"
             val duration = Toast.LENGTH_SHORT
             val toast = Toast.makeText(context, text, duration)
@@ -105,6 +105,7 @@ class ViewTaskDelegated : AppCompatActivity() {
         val givenStatus = intent.getStringExtra("status")
         val givenCategory = intent.getStringExtra("category")
 
+
         val statusText = findViewById<TextView>(R.id.statusOfTask1)
 
         var stringYeet = "<b>Status:</b> $givenStatus"
@@ -119,8 +120,13 @@ class ViewTaskDelegated : AppCompatActivity() {
         val text3 = findViewById<TextView>(R.id.startFinishTask1)
         val text4 = findViewById<TextView>(R.id.createdTask1)
         val text5 = findViewById<TextView>(R.id.delegatedTask1)
+        val text6 = findViewById<TextView>(R.id.reason1)
         val button = findViewById<Button>(R.id.button260)
+        val rejectedrow = findViewById<TableRow>(R.id.reasonrow)
 
+        if(givenStatus == "Finished"){
+            button.visibility = GONE
+        }
         button.setOnClickListener {
             MySingleton.getInstance(this).submitDelegatedTask(givenId)
             val intent = Intent(this, Tasks::class.java)
@@ -132,7 +138,7 @@ class ViewTaskDelegated : AppCompatActivity() {
         val tasksList1 : ArrayList<DelegatedClass> = ArrayList()
         val userlist1 = findViewById<ListView>(R.id.yeetlist1222)
 
-        MySingleton.getInstance(this).getUsersAndBusiness(this, userlist, tasksList, givenId, text1, text2, text3, text4, text5)
+        MySingleton.getInstance(this).getUsersAndBusiness(this, userlist, tasksList, givenId, text1, text2, text3, text4, text5, text6)
 
         MySingleton.getInstance(this).getDelegated2ndUsers(userlist1, this, tasksList1, givenId)
 

@@ -2,16 +2,10 @@ package com.example.businessbuilder
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
-import android.text.SpannableString
-import android.text.Spanned
-import android.text.style.StyleSpan
 import android.widget.*
 import androidx.core.text.HtmlCompat
-import org.w3c.dom.Text
 
 data class UserDetails(val name: String, val lastname: String, val status: String, val email: String, val context:Context ){
      fun toString1(): CharSequence {

@@ -128,7 +128,33 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:text="Delegated: " />
+
             </TableRow>
+
+
+            <TableRow
+                android:id="@+id/reasonrow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="50dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/reason1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reason: " />
+
+            </TableRow>
+
+            <ListView
+                android:id="@+id/yeetlist1222"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginTop="7dp"
+                android:nestedScrollingEnabled="true" />
+
             <TableRow
                 android:id="@+id/secondNeeded"
                 android:layout_width="match_parent"
@@ -147,13 +173,7 @@
                     android:textStyle="bold" />
             </TableRow>
 
-            <ListView
-                android:layout_marginTop="7dp"
-                android:id="@+id/yeetlist1222"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:nestedScrollingEnabled="true"/>
-
         </TableLayout>
     </ScrollView>
+
 </RelativeLayout>

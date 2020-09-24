@@ -108,6 +108,7 @@
                     android:text="I forgot my password"
                     android:textAllCaps="false"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/login"
                     app:layout_constraintTop_toBottomOf="@+id/login" />
@@ -154,6 +155,7 @@
                     android:background="@null"
                     android:text="Terms of Service"
                     android:textAllCaps="false"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
@@ -165,6 +167,7 @@
                     android:layout_marginTop="15dp"
                     android:text="•"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     app:layout_constraintStart_toEndOf="@+id/button7"
                     app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
@@ -176,6 +179,7 @@
                     android:background="@null"
                     android:text="Privacy Policy"
                     android:textAllCaps="false"
+                    android:visibility="gone"
                     app:layout_constraintStart_toEndOf="@+id/textView91"
                     app:layout_constraintTop_toBottomOf="@+id/signUp" />
             </androidx.constraintlayout.widget.ConstraintLayout>

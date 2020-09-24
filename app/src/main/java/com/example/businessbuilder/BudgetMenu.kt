@@ -3,10 +3,7 @@ package com.example.businessbuilder
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ImageButton
-import android.widget.ListView
-import androidx.core.view.isEmpty
 
 class BudgetMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +16,12 @@ class BudgetMenu : AppCompatActivity() {
         val unapproved = findViewById<ImageButton>(R.id.unapprovedList)
         val receivedList = findViewById<ImageButton>(R.id.receivedList)
 
-        MySingleton.getInstance(this).verifyPendingStatus(lookAtBudgetRequests)
+        if(SESSION_STATUS == "Administrator"){
+            MySingleton.getInstance(this).verifyPendingStatus(lookAtBudgetRequests)
+        }
+        else{
+            MySingleton.getInstance(this).verifyPendingStatus1(lookAtBudgetRequests)
+        }
 
         lookAtBudgetRequests.setOnClickListener {
             val intent = Intent(this, BudgetRequestList::class.java)

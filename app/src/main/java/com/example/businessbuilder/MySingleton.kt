@@ -3,18 +3,10 @@ package com.example.businessbuilder
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
-import android.media.Image
-import android.text.Html
 import android.util.LruCache
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.text.HtmlCompat
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
-import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -40,10 +32,12 @@ private val logInUrl: String = "https://albreezetours.com/android_register_login
 private val GetTaskInfoUrl: String = "https://albreezetours.com/android_register_login/GetInfoForTask.php"
 private val getUsersName : String = "https://albreezetours.com/android_register_login/GetUsersName.php"
 private val getBusinessNames: String = "https://albreezetours.com/android_register_login/GetBusinessNames.php"
+private val getBusinessNamesBudget: String = "https://albreezetours.com/android_register_login/GetBusinessNameBudget.php"
 private val getReason: String = "https://albreezetours.com/android_register_login/GetReason.php"
 private val getSpecificBusinessTaskUrl: String = "https://albreezetours.com/android_register_login/GetSpecificForBusinessTask.php"
 private val getSpecificReason: String = "https://albreezetours.com/android_register_login/GetSpecificReason.php"
 private val verifyPendingStatus: String = "https://albreezetours.com/android_register_login/VerifyPendingImage.php"
+private val verifyPendingStatus1: String = "https://albreezetours.com/android_register_login/VerifyPendingImage1.php"
 private val requestBudget: String = "https://albreezetours.com/android_register_login/RequestBudget.php"
 private val getBusinessID: String = "https://albreezetours.com/android_register_login/GetBusinessId.php"
 private val getUserID: String = "https://albreezetours.com/android_register_login/GetUserId.php"
@@ -57,6 +51,7 @@ private val getGiver: String = "https://albreezetours.com/android_register_login
 private val updateBudget: String = "https://albreezetours.com/android_register_login/UpdateBudget.php"
 private val getTasksForUsersUrl: String = "https://albreezetours.com/android_register_login/GetTasksForUsers.php"
 private val submitTaskUrl: String = "https://albreezetours.com/android_register_login/SubmitTaskAnswer.php"
+private val submitTaskDelegatedUrl: String = "https://albreezetours.com/android_register_login/SubmitTaskDelegated.php"
 
 //ID the user will LogIn with and uses to update/receive his data.
 var SESSION_ID: String = ""
@@ -268,7 +263,7 @@ open class MySingleton constructor(context: Context) {
         rootObject.put("taskid", taskid)
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
-            submitTaskUrl,
+            submitTaskDelegatedUrl,
             rootObject,
             { response ->
 
@@ -336,8 +331,10 @@ open class MySingleton constructor(context: Context) {
                     val text2 = userStuff.getString("id_task")
                     val text3 = userStuff.getString("title_task")
                     val text4 = userStuff.getString("status_task_finish")
+                    val startDate = userStuff.getString("start_date_task")
+                    val finishDate = userStuff.getString("end_date_task")
                     val text5 = userStuff.getString("created")
-                    val obj1 = TasksInBusiness(text2, text3, text4, text1, text5)
+                    val obj1 = TasksInBusiness(text2, text3, text4, text1, "$startDate $finishDate")
                     tasksList.add(obj1)
                     val adapter1 = TaskAdapter(context, tasksList)
                     list.adapter = adapter1
@@ -365,8 +362,11 @@ open class MySingleton constructor(context: Context) {
                     val text2 = userStuff.getString("id_task")
                     val text3 = userStuff.getString("title_task")
                     val text4 = userStuff.getString("status_task")
+                    val startDate = userStuff.getString("start_date_task")
+                    val finishDate  = userStuff.getString("end_date_task")
                     val text5 = userStuff.getString("created")
-                    val obj1 = TasksInBusiness(text2, text3, text4, text1, text5)
+
+                    val obj1 = TasksInBusiness(text2, text3, text4, text1, "$startDate $finishDate")
                     tasksList.add(obj1)
                     val adapter1 = TaskAdapter(context, tasksList)
                     list.adapter = adapter1
@@ -396,8 +396,10 @@ open class MySingleton constructor(context: Context) {
                     val text2 = userStuff.getString("id_task")
                     val text3 = userStuff.getString("title_task")
                     val text4 = userStuff.getString("status_task_finish")
+                    val startDate = userStuff.getString("start_date_task")
+                    val finishDate = userStuff.getString("end_date_task")
                     val text5 = userStuff.getString("created")
-                    val obj1 = TasksInBusiness(text2, text3, text4, text1, text5)
+                    val obj1 = TasksInBusiness(text2, text3, text4, text1, "$startDate $finishDate")
                     tasksList.add(obj1)
                     val adapter1 = TaskAdapter(context, tasksList)
                     list.adapter = adapter1
@@ -455,13 +457,14 @@ open class MySingleton constructor(context: Context) {
     }
 
     fun getUsersAndBusiness(context: Context, list: ListView, taskAdapter: ArrayList<UsersAndBusinessInTask>, id: String,
-                            text1: TextView, text2: TextView, text3: TextView, text4: TextView, text5: TextView){
+                            text1: TextView, text2: TextView, text3: TextView, text4: TextView, text5: TextView, text6: TextView){
         val rootObject = JSONObject()
         val nameList: MutableList<String> = mutableListOf()
         val businessList: MutableList<String> = mutableListOf()
         val neededArray: ArrayList<UsersAndBusinessInTask> = ArrayList()
 
         rootObject.put("id", id)
+        rootObject.put("userId", SESSION_ID)
         val jsonObject = JsonObjectRequest(
             Request.Method.POST,
             GetTaskInfoUrl,
@@ -472,6 +475,7 @@ open class MySingleton constructor(context: Context) {
                 val jsonarry2 = jsonO.getJSONArray("Tasks")
                 val jsonarry3 = jsonO.getJSONArray("Business")
                 val jsonarry4 = jsonO.getJSONArray("UserCreated")
+                val jsonarry5 = jsonO.getJSONArray("Reason")
                 for(i in 0 until jsonarry2.length()){
                     val userStuff: JSONObject = jsonarry2.getJSONObject(i)
 
@@ -482,6 +486,7 @@ open class MySingleton constructor(context: Context) {
                     val priority = userStuff.getString("prioriteti")
                     val delegated = userStuff.getString("delegated")
 
+
                     var stringYeet = "<b>Comment:</b> $comment"
                     text1.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
                     stringYeet = "<b>Priority:</b> $priority"
@@ -491,11 +496,19 @@ open class MySingleton constructor(context: Context) {
                     stringYeet = "<b>Delegated:</b> $delegated"
                     text5.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
                 }
+                for(i in 0 until jsonarry5.length()){
+                    val userStuff: JSONObject = jsonarry5.getJSONObject(i)
+
+                    val reject = userStuff.getString("reason_reject_user")
+                    val stringYeet = "<b>Rejected reason:</b> <font color='red'>$reject</font>"
+                    text6.text = (HtmlCompat.fromHtml(stringYeet, HtmlCompat.FROM_HTML_MODE_LEGACY))
+                }
                 for(i in 0 until jsonArry.length()){
                     val userStuff: JSONObject = jsonArry.getJSONObject(i)
 
                     val name = userStuff.getString("name_user")
                     val lname = userStuff.getString("last_name_user")
+
                     val needed = "$name $lname"
                     nameList.add(needed)
                 }
@@ -532,7 +545,6 @@ open class MySingleton constructor(context: Context) {
                     val adapter1 = UsersAndBusinessAdapter(context, neededArray)
                     list.adapter = adapter1
                 }
-
             },
             {
             }
@@ -702,8 +714,8 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
     //RequestBudget
-    fun requestBudget(title: String, amount:Int, businessId: Int, businessName: String, reason: String,
-                        deposit: String, giver: String, description: String, data: String, userId: Int, userName: String){
+    fun requestBudget(title: String, amount:Int, businessId: String, businessName: String, reason: String,
+                        deposit: String, giver: String, description: String, data: String, userId: String, userName: String){
         val obj1 = JSONObject()
         obj1.put("title", title)
         obj1.put("amount", amount)
@@ -1012,7 +1024,33 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(request)
     }
 
+    fun getBudgetNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>){
 
+        val obj = JSONObject()
+        obj.put("id", SESSION_ID)
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getUsersNameSolo,
+            obj,
+            Response.Listener { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = GetUsersNameAndLastName(
+                        userStuff.getString("name_user"),
+                        userStuff.getString("last_name_user")
+                    ).toString()
+                    nameList.add(willWrite)
+                }
+                spinner.adapter = arrayAdapter
+
+            }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
 
     fun getUsersNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>, nameList: MutableList<String>, user_status: String) {
         if(user_status == "User" || user_status == "SuperUsers") {
@@ -1020,7 +1058,7 @@ open class MySingleton constructor(context: Context) {
             obj.put("id", SESSION_ID)
             val request = JsonObjectRequest(
                 Request.Method.POST,
-                getUsersNameSolo,
+                getUsersName,
                 obj,
                 Response.Listener { response ->
                     val jsonObj: JSONObject = response
@@ -1067,7 +1105,7 @@ open class MySingleton constructor(context: Context) {
             addToRequestQueue(request)
         }
     }
-    fun getUserId(name: String){
+    fun getUserId(name: String, id: TextView){
         var first_name: String = ""
         var last_name: String = ""
         var keepInMind: Int = 0
@@ -1092,8 +1130,7 @@ open class MySingleton constructor(context: Context) {
             obj1,
             Response.Listener { response ->
                 val jsonObj: JSONObject = response
-                USER_ID = jsonObj.getString("id").toInt()
-
+                id.text = jsonObj.getString("id")
             },
             Response.ErrorListener {
             }
@@ -1101,8 +1138,7 @@ open class MySingleton constructor(context: Context) {
         addToRequestQueue(jsonObject)
     }
 
-    fun getBusinessId(name: String){
-        var answer12: String = ""
+    fun getBusinessId(name: String, id: TextView){
         val obj1 = JSONObject()
         obj1.put("businessName", name)
         val jsonObject = JsonObjectRequest(
@@ -1111,7 +1147,7 @@ open class MySingleton constructor(context: Context) {
             obj1,
             Response.Listener { response ->
                 val jsonObj: JSONObject = response
-                BUSINESS_ID = jsonObj.getString("id").toInt()
+                id.text = jsonObj.getString("id")
             },
             Response.ErrorListener {
             }
@@ -1122,7 +1158,7 @@ open class MySingleton constructor(context: Context) {
     fun getBusinessNames(spinner: Spinner, arrayAdapter: ArrayAdapter<String>,nameList: MutableList<String>){
         val request = JsonObjectRequest(
             Request.Method.GET,
-            getBusinessNames,
+            getBusinessNamesBudget,
             null,
             Response.Listener { response ->
                 val jsonObj: JSONObject = response
@@ -1131,7 +1167,7 @@ open class MySingleton constructor(context: Context) {
                     val userStuff: JSONObject = jsonArray.getJSONObject(i)
 
                     val willWrite = GetUsersName(
-                        userStuff.getString("business_name")
+                        userStuff.getString("name_business")
                     ).toString()
 
                     nameList.add(willWrite)
@@ -1201,6 +1237,27 @@ open class MySingleton constructor(context: Context) {
                     value.setImageResource(R.mipmap.ic_pending_foreground)
                 }
             }, Response.ErrorListener {
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun verifyPendingStatus1(value: ImageButton){
+        val rootObject = JSONObject()
+        rootObject.put("id", SESSION_ID)
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            verifyPendingStatus1,
+            rootObject,
+            { response ->
+                val yeet: JSONObject = response
+                val number1 = yeet.getString("Users")
+                if(number1 == "1"){
+                    value.setImageResource(R.mipmap.ic_pending_ring_foreground)
+                }
+                else{
+                    value.setImageResource(R.mipmap.ic_pending_foreground)
+                }
+            }, {
             }
         )
         addToRequestQueue(request)
