@@ -22,7 +22,6 @@ class BudgetMenu : AppCompatActivity() {
         else{
             MySingleton.getInstance(this).verifyPendingStatus1(lookAtBudgetRequests)
         }
-
         lookAtBudgetRequests.setOnClickListener {
             val intent = Intent(this, BudgetRequestList::class.java)
             startActivity(intent)

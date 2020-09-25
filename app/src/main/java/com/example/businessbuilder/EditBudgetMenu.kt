@@ -61,8 +61,6 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         val date1 = findViewById<TextView>(R.id.datePicker1)
         val reasonText = findViewById<TextView>(R.id.reasonText)
 
-        MySingleton.getInstance(this).getGiver(rId, autoGiver, title, description)
-
         textAmount.setText(amount)
 
         MySingleton.getInstance(this).getSpecificReason(rId, reasonText)
@@ -76,6 +74,10 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         nameList6.add("Received")
         val adapter6: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList6)
         spinner6.adapter = adapter6
+
+        MySingleton.getInstance(this).getGiver(rId, autoGiver, title, description, spinner6)
+
+
 
         val reasonRejectText = findViewById<EditText>(R.id.reasonRejectText)
         val reasonReject = findViewById<TextView>(R.id.textView221)
@@ -102,6 +104,10 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         }
         val updateButton = findViewById<Button>(R.id.button4)
         val editButton = findViewById<FloatingActionButton>(R.id.editStuff)
+        if(SESSION_STATUS != "Administrator"){
+            editButton.hide()
+            updateButton.visibility = GONE
+        }
         val viewButton = findViewById<FloatingActionButton>(R.id.viewStuff)
 
         title.isEnabled = false

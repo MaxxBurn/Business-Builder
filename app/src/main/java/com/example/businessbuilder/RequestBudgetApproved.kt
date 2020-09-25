@@ -15,7 +15,13 @@ class RequestBudgetApproved : AppCompatActivity() {
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter(applicationContext, android.R.layout.simple_list_item_1, yeet)
         val list1: ListView = findViewById(R.id.budgetListApproved)
 
-        MySingleton.getInstance(this).getBudgetApproved(list1,this,yeet,adapter)
+        if(SESSION_STATUS != "Administrator"){
+            MySingleton.getInstance(this).getBudgetApproved1(list1,this,yeet,adapter)
+        }
+        else{
+            MySingleton.getInstance(this).getBudgetApproved(list1,this,yeet,adapter)
+        }
+
         list1.setOnItemClickListener { parent, view, position, id ->
             val element = adapter.getItem(position)
             val intent = Intent(this, EditBudgetMenu::class.java)

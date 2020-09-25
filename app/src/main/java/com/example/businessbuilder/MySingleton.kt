@@ -19,6 +19,7 @@ private val getHRUrl: String = "https://albreezetours.com/android_register_login
 private val backToProgressUrl: String = "https://albreezetours.com/android_register_login/BackToProgress.php"
 private val getDataUrl: String = "https://albreezetours.com/android_register_login/GetData.php"
 private val updateDataUrl: String = "https://albreezetours.com/android_register_login/UpdateData.php"
+private val getBudgetList1Url: String = "https://albreezetours.com/android_register_login/GetBudgetList1.php"
 private val getBusinessEmployeesUrl: String = "https://albreezetours.com/android_register_login/GetBusinessEmployees.php"
 private val getMoopUrl: String = "https://albreezetours.com/android_register_login/GetMoop.php"
 private val getDataUrl14: String = "https://albreezetours.com/android_register_login/GetData14.php"
@@ -43,8 +44,11 @@ private val getBusinessID: String = "https://albreezetours.com/android_register_
 private val getUserID: String = "https://albreezetours.com/android_register_login/GetUserId.php"
 private val getBudgetRequestListUrl: String = "https://albreezetours.com/android_register_login/GetBudgetList.php"
 private val getBudgetRequestApprovedUrl:String = "https://albreezetours.com/android_register_login/GetBudgetApproved.php"
+private val getBudgetRequestApprovedUrl1: String = "https://albreezetours.com/android_register_login/GetBudgetApproved1.php"
 private val getBudgetRequestUnapprovedUrl: String = "https://albreezetours.com/android_register_login/GetBudgetUnapproved.php"
+private val getBudgetRequestUnapprovedUrl1: String = "https://albreezetours.com/android_register_login/GetBudgetUnapproved1.php"
 private val getBudgetRequestReceivedUrl: String = "https://albreezetours.com/android_register_login/GetBudgetReceived.php"
+private val getBudgetRequestReceivedUrl1: String = "https://albreezetours.com/android_register_login/GetBudgetReceived1.php"
 private val updateUsersUrl: String = "https://albreezetours.com/android_register_login/UpdateUsers.php"
 private val getUsersNameSolo: String = "https://albreezetours.com/android_register_login/GetUserNamesSolo.php"
 private val getGiver: String = "https://albreezetours.com/android_register_login/GetGiver.php"
@@ -740,7 +744,7 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(jsonObject)
     }
-    fun getGiver(id: Int, textview: TextView, textview2: EditText, textview3: EditText){
+    fun getGiver(id: Int, textview: TextView, textview2: EditText, textview3: EditText, spinner: Spinner){
         val obj1 = JSONObject()
         obj1.put("id",id)
         var answer: String = ""
@@ -757,6 +761,19 @@ open class MySingleton constructor(context: Context) {
                     textview.text = userStuff.getString("gave")
                     textview2.setText(userStuff.getString("titull_request").toString())
                     textview3.setText(userStuff.getString("description").toString())
+                    val textstatus = userStuff.getString("status")
+                    if(textstatus == "Pending"){
+                        spinner.setSelection(1)
+                    }
+                    else if(textstatus == "Unapproved"){
+                        spinner.setSelection(2)
+                    }
+                    else if(textstatus == "Approved"){
+                        spinner.setSelection(3)
+                    }
+                    else{
+                        spinner.setSelection(4)
+                    }
                 }
             }, { error->
             }
@@ -909,13 +926,136 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
+
+    fun getBudgetRequestList1(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                             adapter: ArrayAdapter<CharSequence>){
+        val obj1 = JSONObject()
+        obj1.put("id", SESSION_ID)
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getBudgetList1Url,
+            obj1,
+            { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, {
+            }
+        )
+        addToRequestQueue(request)
+    }
+
     fun getBudgetRequestList(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
                              adapter: ArrayAdapter<CharSequence>){
-
         val request = JsonObjectRequest(
             Request.Method.GET,
             getBudgetRequestListUrl,
             null,
+            { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, {
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun getBudgetApproved1(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                          adapter: ArrayAdapter<CharSequence>){
+
+        val obj1 = JSONObject()
+        obj1.put("id", SESSION_ID)
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getBudgetRequestApprovedUrl1,
+            obj1,
+            { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, {
+            }
+        )
+        addToRequestQueue(request)
+    }
+
+    fun getBudgetApproved(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                          adapter: ArrayAdapter<CharSequence>){
+
+            val request = JsonObjectRequest(
+                Request.Method.GET,
+                getBudgetRequestApprovedUrl,
+                null,
+                { response ->
+                    val jsonObj: JSONObject = response
+                    val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                    for (i in 0 until jsonArray.length()) {
+                        val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                        val willWrite = BudgetList(
+                            userStuff.getString("id_budget"),
+                            userStuff.getString("request"),
+                            userStuff.getString("business"),
+                            userStuff.getString("sum_budget"),
+                            applicationContext
+                        ).toString1()
+                        yeet.add(willWrite)
+                    }
+                    list.adapter = adapter
+                }, {
+                }
+            )
+            addToRequestQueue(request)
+        }
+    fun getBudgetUnapproved1(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                            adapter: ArrayAdapter<CharSequence>){
+        val obj1 = JSONObject()
+        obj1.put("id", SESSION_ID)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getBudgetRequestUnapprovedUrl1,
+            obj1,
             Response.Listener { response ->
                 val jsonObj: JSONObject = response
                 val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
@@ -938,35 +1078,6 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(request)
     }
-    fun getBudgetApproved(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
-                          adapter: ArrayAdapter<CharSequence>){
-
-            val request = JsonObjectRequest(
-                Request.Method.GET,
-                getBudgetRequestApprovedUrl,
-                null,
-                Response.Listener { response ->
-                    val jsonObj: JSONObject = response
-                    val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
-
-                    for (i in 0 until jsonArray.length()) {
-                        val userStuff: JSONObject = jsonArray.getJSONObject(i)
-
-                        val willWrite = BudgetList(
-                            userStuff.getString("id_budget"),
-                            userStuff.getString("request"),
-                            userStuff.getString("business"),
-                            userStuff.getString("sum_budget"),
-                            applicationContext
-                        ).toString1()
-                        yeet.add(willWrite)
-                    }
-                    list.adapter = adapter
-                }, Response.ErrorListener {
-                }
-            )
-            addToRequestQueue(request)
-        }
     fun getBudgetUnapproved(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
                           adapter: ArrayAdapter<CharSequence>){
         val request = JsonObjectRequest(
@@ -1001,7 +1112,7 @@ open class MySingleton constructor(context: Context) {
             Request.Method.GET,
             getBudgetRequestReceivedUrl,
             null,
-            Response.Listener { response ->
+            { response ->
                 val jsonObj: JSONObject = response
                 val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
 
@@ -1018,7 +1129,38 @@ open class MySingleton constructor(context: Context) {
                     yeet.add(willWrite)
                 }
                 list.adapter = adapter
-            }, Response.ErrorListener {
+            }, {
+            }
+        )
+        addToRequestQueue(request)
+    }
+    fun getBudgetReceived1(list: ListView, applicationContext: Context, yeet: MutableList<CharSequence>,
+                          adapter: ArrayAdapter<CharSequence>){
+        val obj1 = JSONObject()
+        obj1.put("id", SESSION_ID)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            getBudgetRequestReceivedUrl1,
+            obj1,
+            { response ->
+                val jsonObj: JSONObject = response
+                val jsonArray: JSONArray = jsonObj.getJSONArray("Users")
+
+                for (i in 0 until jsonArray.length()) {
+                    val userStuff: JSONObject = jsonArray.getJSONObject(i)
+
+                    val willWrite = BudgetList(
+                        userStuff.getString("id_budget"),
+                        userStuff.getString("request"),
+                        userStuff.getString("business"),
+                        userStuff.getString("sum_budget"),
+                        applicationContext
+                    ).toString1()
+                    yeet.add(willWrite)
+                }
+                list.adapter = adapter
+            }, {
             }
         )
         addToRequestQueue(request)
