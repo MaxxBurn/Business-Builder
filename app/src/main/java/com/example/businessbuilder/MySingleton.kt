@@ -744,10 +744,9 @@ open class MySingleton constructor(context: Context) {
         )
         addToRequestQueue(jsonObject)
     }
-    fun getGiver(id: Int, textview: TextView, textview2: EditText, textview3: EditText, spinner: Spinner){
+    fun getGiver(context:Context, id: Int, data: TextView, textview: TextView, textview2: EditText, textview3: EditText, reason: TextView){
         val obj1 = JSONObject()
         obj1.put("id",id)
-        var answer: String = ""
 
         val request = JsonObjectRequest(
             Request.Method.POST,
@@ -761,19 +760,9 @@ open class MySingleton constructor(context: Context) {
                     textview.text = userStuff.getString("gave")
                     textview2.setText(userStuff.getString("titull_request").toString())
                     textview3.setText(userStuff.getString("description").toString())
+                    data.text = userStuff.getString("data")
                     val textstatus = userStuff.getString("status")
-                    if(textstatus == "Pending"){
-                        spinner.setSelection(1)
-                    }
-                    else if(textstatus == "Unapproved"){
-                        spinner.setSelection(2)
-                    }
-                    else if(textstatus == "Approved"){
-                        spinner.setSelection(3)
-                    }
-                    else{
-                        spinner.setSelection(4)
-                    }
+                    reason.text = userStuff.getString("reason_reject")
                 }
             }, { error->
             }

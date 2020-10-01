@@ -24,6 +24,7 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_budget_menu)
         val given = intent.getCharSequenceExtra("autoComplete").toString()
+        val menu = intent.getStringExtra("menu")
         pickDate()
 
         var keepinMind: Int = 0
@@ -68,18 +69,15 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         val spinner6 = findViewById<Spinner>(R.id.spinnerStatus)
         var nameList6 = mutableListOf<String>()
         nameList6.add("Select Status...")
-        nameList6.add("Pending")
         nameList6.add("Unapproved")
         nameList6.add("Approved")
-        nameList6.add("Received")
         val adapter6: ArrayAdapter<String> = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, nameList6)
         spinner6.adapter = adapter6
-
-        MySingleton.getInstance(this).getGiver(rId, autoGiver, title, description, spinner6)
-
-
-
         val reasonRejectText = findViewById<EditText>(R.id.reasonRejectText)
+
+        MySingleton.getInstance(this).getGiver(this,rId, date1, autoGiver, title, description, reasonRejectText)
+
+
         val reasonReject = findViewById<TextView>(R.id.textView221)
 
         spinner6.onItemSelectedListener = object : OnItemSelectedListener {
@@ -99,7 +97,6 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                     reasonRejectText.visibility = GONE
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         val updateButton = findViewById<Button>(R.id.button4)
@@ -119,6 +116,27 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         date1.isEnabled = false
         reasonRejectText.isEnabled = false
 
+        if(menu == "Unapproved"){
+            editButton.hide()
+            updateButton.visibility = GONE
+            nameList6.clear()
+            nameList6.add("Unapproved")
+        }
+        else if(menu=="Received"){
+            editButton.hide()
+            updateButton.visibility = GONE
+            nameList6.clear()
+            nameList6.add("Received")
+        }
+        else if(menu == "Approved"){
+            nameList6.clear()
+            nameList6.add("Received")
+            spinner6.adapter = adapter6
+            spinner6.isEnabled = true
+            updateButton.visibility = VISIBLE
+            editButton.hide()
+        }
+
         editButton.setOnClickListener {
             title.isEnabled = true
             textAmount.isEnabled = true
@@ -128,6 +146,7 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             autoGiver.isEnabled = true
             date1.isEnabled = true
             reasonRejectText.isEnabled = true
+            reasonRejectText.setText("")
             editButton.hide()
             viewButton.show()
         }
@@ -151,7 +170,7 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             if(textAmount.text.toString() == "" || spinner6.selectedItem.toString() == "Select Status..."){
                 toast.show()
             }
-            else if((spinner6.selectedItem == "Unapproved" && reasonRejectText.text.toString() == "") || !title.isEnabled){
+            else if((spinner6.selectedItem == "Unapproved" && reasonRejectText.text.toString() == "")){
                 toast.show()
             }
             else{
@@ -160,8 +179,14 @@ class EditBudgetMenu : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 val inputText2 = "Updated Successfully!"
                 val toast2 = Toast.makeText(applicationContext, inputText2, duration)
                 toast2.show()
-                val intent = Intent(this, BudgetMenu::class.java)
-                startActivity(intent)
+                if(SESSION_STATUS != "Administrator"){
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    val intent = Intent(this, AdministratorMenu::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }

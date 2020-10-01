@@ -26,6 +26,7 @@ class RequestBudgetUnapproved : AppCompatActivity() {
         list1.setOnItemClickListener { parent, view, position, id ->
             val element = adapter.getItem(position)
             val intent = Intent(this, EditBudgetMenu::class.java)
+            intent.putExtra("menu", "Unapproved")
             intent.putExtra("autoComplete", element)
             startActivity(intent)
         }

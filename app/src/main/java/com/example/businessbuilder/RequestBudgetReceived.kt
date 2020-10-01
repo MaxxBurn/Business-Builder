@@ -25,6 +25,7 @@ class RequestBudgetReceived : AppCompatActivity() {
         list1.setOnItemClickListener { parent, view, position, id ->
             val element = adapter.getItem(position)
             val intent = Intent(this, EditBudgetMenu::class.java)
+            intent.putExtra("menu", "Received")
             intent.putExtra("autoComplete", element)
             startActivity(intent)
         }
